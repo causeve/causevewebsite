@@ -557,7 +557,7 @@
         const thresh = 140;
         const wDiff = Math.abs(window.outerWidth - window.innerWidth);
         const hDiff = Math.abs(window.outerHeight - window.innerHeight);
-        if (wDiff > thresh || hDiff > thresh) showGuard(); else hideGuard();
+        //if (wDiff > thresh || hDiff > thresh) showGuard(); else hideGuard();
       }
       detect();
       window.addEventListener('resize', detect);
