@@ -3,18 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Causeve Technologies LLP – Firmware, IoT, Cloud, AI/ML</title>
-  <meta name="description" content="Causeve Technologies LLP – Reliable technology  partner for Firmware Development, IoT integration, Cloud integration with AI/ML. Product Engineering, Digital Engineering, and a portfolio of real-world IoT solutions." />
+  <title>Causeve Technologies LLP | Firmware, IoT, Cloud, and AI/ML Engineering</title>
+  <meta name="description" content="Causeve Technologies LLP engineers reliable connected products across firmware, IoT integration, cloud platforms, and AI/ML-enabled applications." />
+  <script>
+    (() => {
+      const root = document.documentElement;
+      root.classList.add('js');
+      try {
+        const savedTheme = localStorage.getItem('causeve-theme');
+        root.dataset.theme = savedTheme === 'dark' ? 'dark' : 'light';
+      } catch (_) {
+        root.dataset.theme = 'light';
+      }
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        root.classList.add('hero-reveal-pending');
+      }
+    })();
+  </script>
 
   <link rel="icon" type="image/svg+xml" href="./causeve-logo.svg" />
   <link rel="alternate icon" type="image/png" href="./CAUSEVE logo-1.png" />
   <link rel="preload" as="image" href="CAUSEVE logo-1.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="asset/hero/3.png" />
 
-  <meta property="og:title" content="Causeve Technologies LLP" />
-  <meta property="og:description" content="Reliable partner for Firmware, IoT, Cloud, and AI/ML." />
+  <meta property="og:title" content="Causeve Technologies LLP | Firmware, IoT, Cloud, and AI/ML Engineering" />
+  <meta property="og:description" content="Firmware, IoT, cloud, and AI/ML engineering for connected products that need to work in the field." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://causeve.example" />
-  <meta property="og:image" content="./assets/hero-poster.jpg" />
+  <meta property="og:url" content="https://causeve.com" />
+  <meta property="og:image" content="https://causeve.com/CAUSEVE%20logo-1.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="robots" content="noimageindex, noarchive" />
 
@@ -24,16 +40,23 @@
 
   <style>
     :root{
-      --bg:#fff; --surface:#fafbfc; --card:#fff; --card-2:#f3f5f8;
-      --text:#12151a; --muted:#5b6573; --muted-2:#7b8696; --border:#e5e9ef;
-      --primary:#20b2aa; --primary-2:#48d1cc; --accent:#0f766e; --chip-bg:#e6fbf8;
-      --shadow:0 10px 24px rgba(16,24,40,.06);
+      --bg:#f5f1e6; --surface:rgba(255,255,255,.82); --card:rgba(255,255,255,.84); --card-2:rgba(248,245,238,.84);
+      --text:#101722; --muted:#526070; --muted-2:#708093; --border:rgba(16,23,34,.10);
+      --primary:#1ab7ad; --primary-2:#f6b654; --accent:#0b8f88; --chip-bg:#dff7f3;
+      --shadow:0 18px 40px rgba(8,18,28,.08);
       --radius:16px; --radius-sm:12px; --maxw:1200px; --header-h:64px;
       --safe-top: env(safe-area-inset-top);
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%;scroll-behavior:smooth;background:var(--bg);color:var(--text)}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;padding-top:calc(var(--header-h) + var(--safe-top,0px))}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      padding-top:calc(var(--header-h) + var(--safe-top,0px));
+      background:
+        radial-gradient(circle at top left, rgba(26,183,173,.18), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(246,182,84,.18), transparent 24%),
+        linear-gradient(180deg, #f3efe3 0%, #faf7f0 44%, #edf3f5 100%);
+    }
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     img{max-width:100%;display:block}
@@ -55,68 +78,314 @@
     /* Fixed header */
     header{
       position:fixed; top:0; left:0; right:0; z-index:50;
-      background:rgba(255,255,255,.86);
+      background:rgba(248,245,238,.84);
       -webkit-backdrop-filter:saturate(160%) blur(8px);
       backdrop-filter:saturate(160%) blur(8px);
-      border-bottom:1px solid var(--border);
+      border-bottom:1px solid rgba(16,23,34,.08);
     }
     header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--mode-color, var(--accent));opacity:.35;pointer-events:none;transition:background-color .2s ease, opacity .2s ease}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-    .brand img.logo-header{height:clamp(44px,6vw,72px);width:auto;border-radius:14px}
+    .nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 5px 12px 0}
+    .nav-actions{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:20px}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      font-weight:800;
+      letter-spacing:.2px;
+      padding:2px 8px 2px 3px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(245,240,231,.78));
+      border:1px solid rgba(16,23,34,.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.26),
+        0 8px 18px rgba(8,18,28,.08);
+      transition:transform .28s cubic-bezier(.22,.61,.36,1), box-shadow .28s ease, border-color .28s ease;
+    }
+    .brand::before{
+      content:"";
+      position:absolute;
+      inset:1px;
+      border-radius:inherit;
+      background:
+        radial-gradient(circle at 76% 18%, rgba(95,230,221,.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(246,182,84,.12) 0 2px, transparent 3px),
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 62%);
+      opacity:.74;
+      pointer-events:none;
+      z-index:0;
+    }
+    .brand::after{
+      content:"";
+      position:absolute;
+      top:-16%;
+      left:-48%;
+      width:30%;
+      height:156%;
+      background:
+        radial-gradient(circle at 56% 18%, rgba(110,244,233,.42) 0 2px, transparent 3px),
+        radial-gradient(circle at 64% 54%, rgba(246,182,84,.30) 0 2px, transparent 3px),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.30) 26%, rgba(255,255,255,.42) 50%, rgba(246,182,84,.30) 60%, rgba(110,244,233,.24) 74%, rgba(255,255,255,0) 100%);
+      transform:translateX(-150%) rotate(18deg);
+      opacity:0;
+      mix-blend-mode:screen;
+      filter:blur(.35px);
+      pointer-events:none;
+      z-index:2;
+      transition:transform .78s cubic-bezier(.22,.61,.36,1), opacity .38s ease;
+    }
+    .brand img.logo-header{
+      position:relative;
+      z-index:1;
+      height:clamp(38px,5vw,75px);
+      width:auto;
+      border-radius:14px;
+      filter:brightness(1.08) contrast(1.06);
+    }
     .menu{display:flex;align-items:center;gap:4px;position:relative}
     .menu li{list-style:none}
-    .menu a{padding:12px 14px;border-radius:12px;font-weight:600;border:1px solid transparent;display:inline-block;position:relative;z-index:1;transition:background-color .2s ease}
-    .menu a:hover{background:#f3f6f8}
+    .menu a{padding:12px 14px;border-radius:12px;font-weight:600;border:1px solid transparent;display:inline-block;position:relative;z-index:1;white-space:nowrap;transition:background-color .2s ease, color .2s ease}
+    header .menu a{color:var(--text)}
+    .menu a:hover{background:rgba(26,183,173,.12)}
     .active-link{background:var(--nav-bg) !important}
     .menu a.active-link:hover{background:var(--nav-bg) !important}
     .menu a.active-link::after{content:none}
     .nav-indicator{display:none}
+    .theme-toggle{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      min-height:46px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(16,23,34,.10);
+      background:rgba(255,255,255,.74);
+      color:var(--text);
+      font-weight:700;
+      box-shadow:0 10px 20px rgba(8,18,28,.08);
+      position:fixed;
+      top:calc(var(--safe-top, 0px) + 12px);
+      right:20px;
+      transform:none;
+      z-index:70;
+      transition:transform .22s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease, color .22s ease;
+    }
+    .theme-toggle::before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow:0 0 0 6px rgba(26,183,173,.10);
+      flex:0 0 auto;
+    }
+    .theme-toggle:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.9);
+      box-shadow:0 14px 24px rgba(8,18,28,.10);
+    }
+    .theme-toggle-label{display:inline-block;line-height:1}
 
     /* Mobile menu */
     .hamburger{display:none}
     .mobile-panel{display:none}
     .scrim{display:none}
     @media (max-width:900px){
+      .nav{padding-right:0}
       .menu{display:none}
-      .hamburger{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);padding:12px 14px;border-radius:12px;background:#fff;font-weight:700}
+      .hamburger{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(16,23,34,.10);padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.78);font-weight:700;color:var(--text)}
       .mobile-panel{
         display:none; position:fixed; inset:calc(var(--header-h) + 12px) 12px auto 12px;
-        background:var(--card); border:1px solid var(--border); border-radius:18px; padding:12px; box-shadow:var(--shadow); z-index:60;
+        background:rgba(248,245,238,.96); border:1px solid rgba(16,23,34,.10); border-radius:18px; padding:12px; box-shadow:0 18px 40px rgba(8,18,28,.12); z-index:60;
       }
+      .nav-actions{flex:none;gap:10px}
+      .theme-toggle{min-height:44px;padding:0 12px;position:static;transform:none}
+      .theme-toggle:hover{transform:translateY(-2px)}
       .mobile-panel.open{display:block}
       .nav-indicator{display:none}
-      .mobile-links a{display:block;padding:14px 12px;border-radius:12px;font-weight:600}
-      .mobile-links a:hover{background:#eef2f6}
-      .mobile-section{padding:10px 8px;border-radius:12px;background:var(--card-2);margin:10px 0}
+      .mobile-links a{display:block;padding:14px 12px;border-radius:12px;font-weight:600;color:var(--text)}
+      .mobile-links a:hover{background:rgba(26,183,173,.12)}
+      .mobile-section{padding:10px 8px;border-radius:12px;background:rgba(255,255,255,.66);margin:10px 0}
       .mobile-section h4{margin:6px 8px 8px;font-size:1rem;color:var(--muted)}
 
       /* Scrim behind mobile panel */
-      .scrim{display:none; position:fixed; inset:0; background:rgba(15,23,42,.28); z-index:55}
+      .scrim{display:none; position:fixed; inset:0; background:rgba(16,23,34,.18); z-index:55}
       .scrim.open{display:block}
     }
 
     /* Hero (acts like a tabbed surface) */
-    .hero{position:relative;min-height:100svh;padding:110px 0 48px;overflow:hidden}
-    .hero::after{content:"";position:absolute;inset:0;z-index:1;background:
-        radial-gradient(1200px 600px at 70% 10%, rgba(32,178,170,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.26), rgba(255,255,255,.64))}
+    .hero{
+      position:relative;
+      min-height:calc(100svh - var(--header-h));
+      padding:110px 0 12px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 16% 20%, rgba(26,183,173,.14), transparent 28%),
+        radial-gradient(circle at 84% 18%, rgba(246,182,84,.16), transparent 22%),
+        linear-gradient(180deg, #f4efe3 0%, #faf7f0 46%, #edf3f5 100%);
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:40px auto auto -110px;
+      z-index:1;
+      width:300px;
+      height:300px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(26,183,173,.18), transparent 70%);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      bottom:60px;
+      z-index:1;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(246,182,84,.18), transparent 70%);
+    }
     /* Remove the decorative "picture" orb behind hero */
     .bg-orb{display:none !important}
-    .hero-inner{position:relative;z-index:2;text-align:center}
-    .hero .lead{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-weight:600;color:var(--accent)}
-    .hero h1{margin:14px 0 10px;font-size:clamp(24px,5.6vw,46px);line-height:1.12;letter-spacing:-.3px}
+    .hero-inner{position:relative;z-index:2;display:grid;align-items:center;min-height:calc(100svh - var(--header-h) - 122px)}
+    .hero-shell{
+      position:relative;
+      isolation:isolate;
+      display:grid;
+      grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr);
+      align-items:center;
+      gap:32px;
+    }
+    .hero-copy{position:relative;z-index:1;max-width:640px;text-align:left;isolation:isolate}
+    .hero-copy::before{
+      content:"";
+      position:absolute;
+      inset:-36px -54px -34px -28px;
+      z-index:-1;
+      border-radius:42px;
+      background:
+        radial-gradient(circle at 22% 30%, rgba(255,255,255,.86) 0%, rgba(255,255,255,.72) 38%, rgba(255,255,255,.30) 66%, rgba(255,255,255,0) 84%),
+        linear-gradient(90deg, rgba(255,255,255,.84) 0%, rgba(255,255,255,.56) 54%, rgba(255,255,255,.12) 78%, rgba(255,255,255,0) 100%);
+      filter:blur(16px);
+      opacity:.96;
+      pointer-events:none;
+    }
+    .hero .lead{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(16,23,34,.10);background:rgba(255,255,255,.74);font-weight:700;color:var(--accent);box-shadow:0 14px 28px rgba(8,18,28,.08)}
+    .hero h1{margin:14px 0 10px;max-width:11.5ch;font-size:clamp(24px,5.6vw,46px);line-height:1.12;letter-spacing:-.3px;color:var(--text)}
     .hero h1 .grad{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{margin:0;color:var(--muted);font-size:clamp(13px,3.2vw,17px)}
+    .hero p{margin:0;max-width:35rem;color:var(--muted);font-size:clamp(13px,3.2vw,17px);line-height:1.56;text-shadow:none}
     .cta{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
+    .hero-copy .cta{justify-content:flex-start}
+    .hero-copy > *,
+    .hero-visual{
+      will-change:opacity, transform, filter;
+      transition:
+        opacity .74s cubic-bezier(.22,.61,.36,1),
+        transform .78s cubic-bezier(.22,.61,.36,1),
+        filter .78s cubic-bezier(.22,.61,.36,1);
+    }
+    .hero-copy .lead{transition-delay:.06s}
+    .hero-copy h1{transition-delay:.14s}
+    .hero-copy p{transition-delay:.24s}
+    .hero-copy .cta{transition-delay:.34s}
+    .hero-visual{transition-delay:.42s}
+    .hero-visual{
+      position:relative;
+      z-index:1;
+      justify-self:end;
+      width:min(56vw,760px);
+      max-width:min(56vw,760px);
+      aspect-ratio:1.36/1;
+      padding:0;
+      border:0;
+      background:transparent;
+      display:grid;
+      place-items:center;
+      cursor:default;
+      pointer-events:auto;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .hero-visual::before{
+      content:"";
+      position:absolute;
+      inset:12% 12% 14%;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(26,183,173,.20) 0%, rgba(246,182,84,.16) 36%, rgba(255,255,255,.06) 58%, rgba(72,209,204,0) 76%);
+      filter:blur(20px);
+      z-index:0;
+    }
+    .hero-visual::after{
+      content:"";
+      position:absolute;
+      left:14%;
+      right:14%;
+      bottom:4%;
+      height:18%;
+      border-radius:50%;
+      background:
+        radial-gradient(ellipse at center, rgba(110,244,233,.14) 0%, rgba(246,182,84,.10) 34%, rgba(255,255,255,.06) 58%, rgba(255,255,255,0) 74%);
+      filter:blur(18px);
+      transform:perspective(620px) rotateX(72deg);
+      transform-origin:center top;
+      opacity:.76;
+      z-index:0;
+      pointer-events:none;
+    }
+    .hero-visual:focus-visible{outline:2px solid rgba(26,183,173,.42);outline-offset:8px;border-radius:24px}
+    .hero-echo,
+    .hero-slide{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:76% 48%;
+      user-select:none;
+      -webkit-user-drag:none;
+      pointer-events:none;
+    }
+    .hero-echo{
+      z-index:1;
+      opacity:.18;
+      transform:translate(58px, 0) scale(1.19);
+      filter:blur(13px) brightness(1.06) saturate(1.04);
+      mix-blend-mode:screen;
+      transition:opacity .52s ease, transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
+    }
+    .hero-slide{
+      z-index:2;
+      opacity:1;
+      transform:translateY(-4px) scale(1.20);
+      transition:transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
+      filter:drop-shadow(0 28px 42px rgba(2,8,12,.38));
+    }
+    .js.hero-reveal-pending .hero-copy > *{
+      opacity:0;
+      transform:translateY(22px);
+      filter:blur(10px);
+    }
+    .js.hero-reveal-pending .hero-copy .lead{
+      transform:translateY(14px);
+      filter:blur(7px);
+    }
+    .js.hero-reveal-pending .hero-visual{
+      opacity:0;
+      transform:translateY(16px) scale(.962);
+      filter:blur(10px);
+    }
     /* Smooth swap for hero header/content */
     .hero-inner, .hero-content{transition:opacity .2s ease, transform .2s ease; will-change:opacity, transform}
     .fade-out{opacity:0 !important; transform:translateY(12px)}
     .btn{padding:12px 14px;border-radius:12px;border:1px solid var(--border);font-weight:700}
-    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#05343a;border-color:transparent;box-shadow:0 8px 16px rgba(15,118,110,.16)}
-    .btn.ghost{background:#fff;color:var(--text)}
+    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#05343a;border-color:transparent;box-shadow:0 10px 18px rgba(15,118,110,.18)}
+    .hero .btn.ghost{background:rgba(255,255,255,.76);border-color:rgba(16,23,34,.10);color:var(--text);box-shadow:0 10px 20px rgba(8,18,28,.08)}
+    .hero .btn.ghost:hover{background:rgba(255,255,255,.92)}
 
-    .hero-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+    .hero-canvas{
+      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;opacity:.92;
+    }
 
     /* Tabs content area */
     .hero-content{position:relative;z-index:2;margin-top:14px}
@@ -131,18 +400,19 @@
     .hero.about-compact .hero-content{margin-top:8px}
 
     :root{
-      --about-bg:#0b0f1a; --about-surface:#141a28; --about-border:#223047;
-      --about-text:#e2e8f0; --about-muted:#a0aec0; --about-accent:#20b2aa;
-      --about-glow:rgba(32,178,170,0.25); --about-shadow:rgba(0,0,0,0.35);
+      --about-bg:rgba(255,255,255,.86); --about-surface:rgba(255,255,255,.88); --about-border:rgba(16,23,34,.10);
+      --about-text:#101722; --about-muted:#526070; --about-accent:#1ab7ad;
+      --about-glow:rgba(26,183,173,0.18); --about-shadow:rgba(8,18,28,0.10);
     }
     /* Mode color mapping (used by header accent and nav underline) */
-    :root{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-home{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-product{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-digital{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-about{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-portfolio{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
-    html.mode-contact{ --mode-color:#19B5BD; --nav-bg: rgba(25,181,189,.38); }
+    :root{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-home{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-product{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-digital{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-process{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-about{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-portfolio{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    html.mode-contact{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
     .about-tabs-container{
       max-width:900px;margin:0 auto;padding:14px 14px 12px;
       background:var(--about-bg);border-radius:14px;
@@ -199,11 +469,22 @@
       content:"▶";color:var(--about-accent);font-size:.75rem;position:absolute;left:0;top:7px;
     }
 
-    .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:6px;margin-top:8px}
+    .tech-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      width:100%;
+      align-self:stretch;
+      margin-top:12px;
+    }
     .tech-chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:84px;
       background:linear-gradient(135deg,var(--about-accent),#48d1cc);
-      color:white;padding:7px 9px;border-radius:8px;text-align:center;
-      font-size:.78rem;font-weight:600;transition:all .2s ease;
+      color:white;padding:7px 11px;border-radius:8px;text-align:center;
+      font-size:.78rem;font-weight:600;line-height:1.1;white-space:nowrap;transition:all .2s ease;
       box-shadow:0 3px 10px rgba(32,178,170,0.18);
     }
     .tech-chip:hover{transform:translateY(-2px);box-shadow:0 6px 14px var(--about-glow)}
@@ -213,51 +494,1685 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
     @media (max-width:768px){
+      .hero{padding:92px 0 20px}
+      .hero-inner{min-height:auto}
+      .hero-shell{grid-template-columns:1fr;gap:18px}
+      .hero-copy{max-width:760px;margin:0 auto;text-align:center}
+      .hero-copy::before{inset:-24px -16px -20px -16px;border-radius:30px;filter:blur(12px)}
+      .hero .lead{max-width:min(100%, 420px);line-height:1.35}
+      .hero-copy .cta{justify-content:center}
+      .hero h1{max-width:none}
+      .hero p{max-width:34rem;margin:0 auto}
+      .hero .cta{max-width:340px;margin-left:auto;margin-right:auto}
+      .hero .cta .btn{width:100%;text-align:center;justify-content:center}
+      .hero-visual{justify-self:center;width:min(94vw,580px);max-width:min(94vw,580px)}
+      #product-engineering{padding-top:14px}
       .hero.about-compact{padding-top:82px;padding-bottom:18px}
       .about-tabs-container{padding:12px;max-width:94vw;max-height:calc(100svh - var(--header-h) - 150px)}
       .about-tabs{gap:4px;margin-bottom:8px;justify-content:flex-start;overflow-x:auto;padding-bottom:4px}
       .about-tab{padding:7px 10px;font-size:.78rem;min-width:84px}
       .about-content{padding:12px;border-radius:10px}
-      .tech-grid{grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:6px}
+      .tech-grid{gap:7px}
       .about-panel h3{font-size:1.1rem}
       .about-panel p,.about-panel li{font-size:.88rem}
+    }
+    @media (max-width:520px){
+      section{padding:38px 0}
+      .card{padding:14px}
+      .hero h1{font-size:clamp(22px, 11vw, 38px)}
+      .hero p{font-size:15px;line-height:1.5}
+      .hero-visual{width:min(98vw,500px);max-width:min(98vw,500px)}
+      .hero .lead{font-size:.92rem;padding:7px 11px}
     }
 
     .tabs-note{margin:8px auto 0;text-align:center;color:var(--muted);font-size:.9rem}
 
-    .grid{display:grid;gap:14px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:980px){.grid.cols-3{grid-template-columns:1fr 1fr}}
-    @media (max-width:700px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-    .card .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-weight:700;font-size:.92rem}
-    .card p{margin:0;color:var(--muted)}
-    .chip{display:inline-block;margin-top:10px;padding:8px 12px;border-radius:999px;background:var(--chip-bg);font-size:.85rem}
+    .card,
+    .case-card{
+      position:relative;
+      overflow:hidden;
+      transform-style:preserve-3d;
+      transition:transform .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s ease, border-color .34s ease, background-color .34s ease;
+      will-change:transform, box-shadow;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    .card::before,
+    .case-card::before{
+      content:"";
+      position:absolute;
+      inset:1px;
+      border-radius:inherit;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(95,230,221,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(246,182,84,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 34%, rgba(95,230,221,.12) 0 1.5px, transparent 2.5px),
+        linear-gradient(146deg, rgba(255,255,255,0) 0 58%, rgba(95,230,221,.07) 58.5%, rgba(95,230,221,0) 60.5%),
+        linear-gradient(128deg, rgba(255,255,255,0) 0 64%, rgba(95,230,221,.05) 64.5%, rgba(95,230,221,0) 66.5%),
+        linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.04) 32%, rgba(255,255,255,0) 58%);
+      background-repeat:no-repeat;
+      background-size:100% 100%;
+      opacity:.66;
+      pointer-events:none;
+      z-index:0;
+    }
+    .card::after,
+    .case-card::after{
+      content:"";
+      position:absolute;
+      top:-16%;
+      left:-48%;
+      width:46%;
+      height:156%;
+      background:
+        radial-gradient(circle at 56% 18%, rgba(110,244,233,.24) 0 2px, transparent 3px),
+        radial-gradient(circle at 64% 54%, rgba(246,182,84,.20) 0 2px, transparent 3px),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.12) 30%, rgba(246,182,84,.18) 50%, rgba(110,244,233,.12) 70%, rgba(255,255,255,0) 100%),
+        repeating-linear-gradient(30deg, rgba(110,244,233,.10) 0 1.5px, transparent 1.5px 22px);
+      background-repeat:no-repeat;
+      transform:translateX(-150%) rotate(18deg);
+      opacity:.0;
+      pointer-events:none;
+      z-index:0;
+      transition:transform .78s cubic-bezier(.22,.61,.36,1), opacity .38s ease;
+    }
+    .card-feature::before,
+    .case-feature::before{opacity:.78}
+    .card-support::before{opacity:.58}
+    .card > *,
+    .case-card > *{position:relative;z-index:1}
+    .card-copy{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      width:100%;
+      flex:1 1 auto;
+      transition:
+        opacity .62s cubic-bezier(.22,.61,.36,1),
+        transform .72s cubic-bezier(.22,.61,.36,1),
+        filter .72s cubic-bezier(.22,.61,.36,1);
+    }
+    .interactive-reveal-card{
+      isolation:isolate;
+      cursor:pointer;
+    }
+    .card-image-reveal{
+      position:absolute;
+      inset:1px;
+      z-index:3;
+      display:grid;
+      place-items:center;
+      padding:20px;
+      overflow:hidden;
+      border-radius:inherit;
+      background:
+        radial-gradient(circle at 30% 24%, rgba(110,244,233,.14), transparent 26%),
+        radial-gradient(circle at 76% 22%, rgba(246,182,84,.12), transparent 22%),
+        linear-gradient(180deg, rgba(6,15,22,.94) 0%, rgba(9,22,31,.88) 100%);
+      transition:
+        opacity .68s cubic-bezier(.22,.61,.36,1),
+        transform .82s cubic-bezier(.22,.61,.36,1),
+        filter .82s cubic-bezier(.22,.61,.36,1);
+      pointer-events:none;
+    }
+    .card-image-caption{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      transition:
+        opacity .48s cubic-bezier(.22,.61,.36,1),
+        transform .58s cubic-bezier(.22,.61,.36,1),
+        filter .58s cubic-bezier(.22,.61,.36,1);
+      pointer-events:none;
+    }
+    .card-image-caption .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
+      position:absolute;
+      top:18px;
+      left:18px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(7,18,28,.64);
+      border:1px solid rgba(158,232,224,.16);
+      color:#9ae9e1;
+      font-size:.74rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .card-image-caption .eyebrow::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#f6b756;
+      box-shadow:0 0 0 5px rgba(246,182,84,.10);
+    }
+    .card-image-caption h3{
+      position:absolute;
+      left:20px;
+      right:20px;
+      bottom:18px;
+      margin:0;
+      max-width:12ch;
+      color:#f4fbff;
+      font-size:clamp(1.12rem, 2.6vw, 1.5rem);
+      line-height:1.1;
+      text-shadow:0 10px 24px rgba(3,8,14,.46);
+    }
+    .card-image-reveal::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 72% 22%, rgba(95,230,221,.20) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 30%, rgba(246,182,84,.18) 0 2px, transparent 3px),
+        linear-gradient(146deg, rgba(255,255,255,0) 0 56%, rgba(95,230,221,.09) 56.5%, rgba(95,230,221,0) 58.5%),
+        linear-gradient(124deg, rgba(255,255,255,0) 0 62%, rgba(95,230,221,.07) 62.5%, rgba(95,230,221,0) 64.5%);
+      opacity:.86;
+    }
+    .card-image-reveal::after{
+      content:"";
+      position:absolute;
+      top:-12%;
+      left:-42%;
+      width:42%;
+      height:148%;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.10) 34%, rgba(246,182,84,.14) 50%, rgba(110,244,233,.10) 66%, rgba(255,255,255,0) 100%);
+      transform:translateX(-140%) rotate(18deg);
+      opacity:.0;
+      transition:transform .78s cubic-bezier(.22,.61,.36,1), opacity .34s ease;
+    }
+    .card-image-reveal img{
+      position:relative;
+      z-index:1;
+      width:min(100%, var(--card-image-width, 360px));
+      max-height:var(--card-image-max-height, 240px);
+      object-fit:contain;
+      object-position:var(--card-image-position, 50% 50%);
+      filter:drop-shadow(0 18px 30px rgba(2,8,12,.32));
+      transform:scale(var(--card-image-scale, .98));
+      transition:transform .82s cubic-bezier(.22,.61,.36,1), filter .82s cubic-bezier(.22,.61,.36,1);
+    }
+    .js .interactive-reveal-card:not(.is-open):not(:hover) .card-copy{
+      opacity:0;
+      transform:translateY(16px);
+      filter:blur(8px);
+    }
+    .js .interactive-reveal-card.is-open .card-image-reveal{
+      opacity:0;
+      transform:scale(1.04);
+      filter:blur(16px);
+    }
+    .js .interactive-reveal-card.is-open .card-image-reveal::after{
+      transform:translateX(324%) rotate(18deg);
+      opacity:.82;
+    }
+    .js .interactive-reveal-card.is-open .card-image-reveal img{
+      transform:scale(var(--card-image-open-scale, 1.02));
+      filter:drop-shadow(0 24px 34px rgba(2,8,12,.18));
+    }
+    .js .interactive-reveal-card.is-open .card-image-caption{
+      opacity:0;
+      transform:translateY(10px);
+      filter:blur(8px);
+    }
+    .js .interactive-reveal-card.is-open .card-copy{
+      opacity:1;
+      transform:none;
+      filter:none;
+      transition-delay:.14s;
+    }
+    .interactive-reveal-card:focus-visible{
+      outline:2px solid rgba(110,244,233,.42);
+      outline-offset:8px;
+    }
+    .card h3{margin:12px 0 10px;max-width:18ch;font-size:1.18rem;line-height:1.34}
+    .card .kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:2px;color:var(--accent);font-weight:700;font-size:.92rem;letter-spacing:.01em}
+    .card p{margin:0;max-width:35ch;color:var(--muted);line-height:1.68}
+    .chip{display:inline-block;align-self:flex-start;margin-top:auto;padding:8px 12px;border-radius:999px;background:var(--chip-bg);font-size:.85rem}
     .card img.thumb{width:100%;height:auto;border-radius:12px;margin-bottom:10px;display:block;object-fit:cover;aspect-ratio:16/9;background:#f3f5f8}
+    .clean-list{list-style:none;padding:0;max-width:35ch;margin:16px 0 14px;display:grid;gap:10px}
+    .clean-list li{position:relative;padding-left:18px;margin:0;color:var(--muted);line-height:1.62}
+    .clean-list li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--accent);transform:translateY(-50%)}
+    .section-copy,
+    .section-head{position:relative;padding-left:24px}
+    .section-copy::before,
+    .section-head::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.9rem;
+      width:2px;
+      height:calc(100% - 1.2rem);
+      border-radius:999px;
+      background:linear-gradient(180deg, rgba(110,244,233,.92) 0%, rgba(246,182,84,.58) 100%);
+      opacity:.78;
+    }
+    .section-eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 12px;
+      color:var(--teal-deep);
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .section-eyebrow::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#f6b756;
+      box-shadow:0 0 0 6px rgba(246,182,84,.10);
+    }
+    .section-copy{max-width:46rem;margin-bottom:30px}
+    .section-copy h2{max-width:14ch;line-height:1.14}
+    .section-copy p{max-width:44rem}
+    .section-head .section-eyebrow{color:var(--teal-deep)}
+    .section-surface{background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(241,247,249,.90));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .product-layout,
+    .digital-layout{display:grid;gap:18px}
+    .product-layout .card{height:100%}
+    .product-layout{grid-template-columns:repeat(12,minmax(0,1fr))}
+    .product-feature{
+      grid-column:span 7;
+      padding:22px 22px 18px;
+      --card-image-width:470px;
+      --card-image-max-height:338px;
+      --card-image-position:52% 50%;
+      --card-image-scale:1.25;
+      --card-image-open-scale:1.50;
+    }
+    .product-support{
+      grid-column:span 5;
+      padding:18px;
+      --card-image-width:408px;
+      --card-image-max-height:265px;
+      --card-image-position:54% 10%;
+      --card-image-scale:1.27;
+      --card-image-open-scale:1.50;
+    }
+    .digital-layout{
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      align-items:stretch;
+    }
+    .digital-layout .card{height:100%}
+    .digital-primary{
+      padding:22px 22px 18px;
+      --card-image-width:396px;
+      --card-image-max-height:254px;
+      --card-image-position:52% 50%;
+      --card-image-scale:1.17;
+      --card-image-open-scale:1.13;
+    }
+    .digital-stack .card{
+      --card-image-width:350px;
+      --card-image-max-height:220px;
+      --card-image-position:52% 50%;
+      --card-image-scale:1.25;
+      --card-image-open-scale:1.10;
+    }
+    .digital-analytics{
+      --card-image-width:372px;
+      --card-image-max-height:232px;
+      --card-image-position:52% 50%;
+      --card-image-scale:1.22;
+      --card-image-open-scale:1.17;
+    }
+    .digital-apps{
+      --card-image-width:368px;
+      --card-image-max-height:228px;
+      --card-image-position:52% 50%;
+      --card-image-scale:1.10;
+      --card-image-open-scale:1.15;
+    }
+    .digital-layout .card-feature h3{font-size:1.28rem;max-width:15ch}
+    .digital-layout .card-feature p,
+    .digital-layout .card-feature .clean-list{max-width:33ch}
+    .digital-stack{display:contents}
+    .digital-stack .card{min-height:0}
+    .card-feature h3{font-size:1.36rem;max-width:16ch;line-height:1.28}
+    .card-feature p{max-width:40ch}
+    .card-feature .clean-list{max-width:38ch;margin-top:18px}
+    .card-support h3{max-width:17ch}
+    .card-support p,
+    .card-support .clean-list{max-width:34ch}
+    #product-engineering,
+    #digital-engineering,
+    #process,
+    #about,
+    #contact{
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      color:var(--text);
+      border-top:1px solid rgba(16,23,34,.06);
+      border-bottom:1px solid rgba(16,23,34,.06);
+    }
+    #product-engineering > .container,
+    #digital-engineering > .container,
+    #process > .container,
+    #about > .container,
+    #contact > .container{position:relative;z-index:2}
+    #product-engineering{
+      padding-top:18px;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(24,182,174,.12), transparent 24%),
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.12), transparent 20%),
+        linear-gradient(180deg, rgba(250,247,240,.98) 0%, rgba(242,247,248,.96) 100%);
+    }
+    #product-engineering::before,
+    #digital-engineering::before,
+    #process::before,
+    #about::before,
+    #contact::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+    }
+    #product-engineering::before{
+      background:
+        radial-gradient(circle at 8% 18%, rgba(32,178,170,.06), transparent 26%),
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.05), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
+    }
+    #product-engineering::after{
+      content:"";
+      position:absolute;
+      top:14%;
+      right:-3%;
+      width:min(42vw,540px);
+      height:64%;
+      z-index:0;
+      opacity:.42;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(53,178,199,.24) 0 3px, transparent 4px),
+        radial-gradient(circle, rgba(246,182,84,.16) 0 3px, transparent 4px),
+        repeating-linear-gradient(28deg, rgba(53,178,199,.08) 0 2px, transparent 2px 96px),
+        repeating-linear-gradient(-34deg, rgba(53,178,199,.06) 0 2px, transparent 2px 108px);
+      background-size:118px 118px, 176px 176px, 180px 152px, 220px 166px;
+      background-position:18px 22px, 74px 54px, 0 10px, 18px 0;
+      filter:blur(.2px);
+    }
+    #digital-engineering{
+      background:
+        radial-gradient(circle at 16% 14%, rgba(24,182,174,.10), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(246,182,84,.09), transparent 18%),
+        linear-gradient(180deg, rgba(245,241,230,.98) 0%, rgba(239,246,248,.96) 100%);
+    }
+    #digital-engineering::before{
+      background:
+        radial-gradient(circle at 14% 14%, rgba(32,178,170,.05), transparent 24%),
+        radial-gradient(circle at 78% 18%, rgba(246,182,84,.05), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
+    }
+    #digital-engineering::after{
+      content:"";
+      position:absolute;
+      top:10%;
+      right:2%;
+      width:min(48vw,620px);
+      height:68%;
+      z-index:0;
+      opacity:.34;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(59,192,214,.24) 0 3px, transparent 4px),
+        radial-gradient(circle, rgba(246,182,84,.14) 0 3px, transparent 4px),
+        repeating-linear-gradient(24deg, rgba(59,192,214,.09) 0 2px, transparent 2px 92px),
+        repeating-linear-gradient(-26deg, rgba(59,192,214,.07) 0 2px, transparent 2px 100px);
+      background-size:124px 124px, 186px 186px, 170px 142px, 206px 160px;
+      background-position:0 0, 96px 68px, 12px 18px, 18px 0;
+      filter:blur(.15px);
+    }
+    #process{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(24,182,174,.10), transparent 24%),
+        radial-gradient(circle at 86% 14%, rgba(246,182,84,.12), transparent 20%),
+        linear-gradient(180deg, rgba(250,247,240,.98) 0%, rgba(240,246,247,.96) 100%);
+    }
+    #process::before{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(32,178,170,.05), transparent 24%),
+        radial-gradient(circle at 84% 14%, rgba(246,182,84,.05), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
+    }
+    #process::after{
+      content:"";
+      position:absolute;
+      top:14%;
+      right:3%;
+      width:min(40vw,520px);
+      height:62%;
+      z-index:0;
+      opacity:.30;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(70,188,208,.18) 0 2.5px, transparent 3.5px),
+        radial-gradient(circle, rgba(246,182,84,.14) 0 2.5px, transparent 3.5px),
+        repeating-linear-gradient(24deg, rgba(70,188,208,.06) 0 2px, transparent 2px 102px),
+        repeating-linear-gradient(-30deg, rgba(70,188,208,.05) 0 2px, transparent 2px 114px);
+      background-size:122px 122px, 178px 178px, 182px 148px, 214px 170px;
+      background-position:16px 18px, 80px 52px, 0 8px, 20px 0;
+    }
+    #about{
+      background:
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.12), transparent 22%),
+        radial-gradient(circle at 14% 80%, rgba(24,182,174,.08), transparent 24%),
+        linear-gradient(180deg, rgba(245,241,230,.98) 0%, rgba(242,247,248,.96) 100%);
+    }
+    #about::before{
+      background:
+        radial-gradient(circle at 84% 10%, rgba(246,182,84,.06), transparent 24%),
+        radial-gradient(circle at 10% 82%, rgba(32,178,170,.04), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
+    }
+    #about::after{
+      content:"";
+      position:absolute;
+      top:12%;
+      right:4%;
+      width:min(32vw,420px);
+      height:54%;
+      z-index:0;
+      opacity:.24;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(70,188,208,.18) 0 2.5px, transparent 3.5px),
+        repeating-linear-gradient(30deg, rgba(70,188,208,.06) 0 2px, transparent 2px 110px),
+        repeating-linear-gradient(-32deg, rgba(70,188,208,.05) 0 2px, transparent 2px 116px);
+      background-size:126px 126px, 186px 152px, 210px 166px;
+      background-position:10px 12px, 0 0, 24px 16px;
+    }
+    #product-engineering h2,
+    #digital-engineering h2,
+    #process h2,
+    #about h2,
+    #contact h3,
+    #contact h4{color:var(--text)}
+    #product-engineering .section-tag,
+    #digital-engineering .section-tag,
+    #process .section-tag,
+    #about .section-tag,
+    #about .about-copy > p,
+    #contact .section-tag,
+    #contact address{color:var(--muted)}
+    #product-engineering .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(247,249,250,.92));
+      border-color:rgba(16,23,34,.08);
+      box-shadow:0 18px 36px rgba(8,18,28,.08);
+    }
+    #digital-engineering .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(245,249,251,.92));
+      border-color:rgba(16,23,34,.08);
+      box-shadow:0 18px 36px rgba(8,18,28,.08);
+    }
+    #product-engineering .card h3,
+    #digital-engineering .card h3{color:var(--text)}
+    #product-engineering .card-image-caption h3,
+    #digital-engineering .card-image-caption h3{
+      color:#f4fbff;
+      text-shadow:0 10px 24px rgba(3,8,14,.46);
+    }
+    #product-engineering .card p,
+    #digital-engineering .card p,
+    #product-engineering .clean-list li,
+    #digital-engineering .clean-list li{color:var(--muted)}
+    #product-engineering .kicker{color:var(--teal-deep)}
+    #digital-engineering .kicker{color:#157f9a}
+    #product-engineering .chip{
+      background:rgba(223,247,243,.88);
+      border:1px solid rgba(26,183,173,.14);
+      color:var(--text);
+    }
+    #digital-engineering .chip{
+      background:rgba(234,244,248,.92);
+      border:1px solid rgba(21,127,154,.14);
+      color:var(--text);
+    }
+    #process .chip{
+      background:rgba(234,245,246,.92);
+      border:1px solid rgba(26,183,173,.14);
+      color:var(--text);
+    }
+    #about .chip{
+      background:rgba(239,247,248,.92);
+      border:1px solid rgba(16,23,34,.08);
+      color:var(--text);
+    }
+    .process-head{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(360px, .88fr);
+      gap:18px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .process-head .section-copy{
+      margin-bottom:0;
+    }
+    .about-head{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(340px, .84fr);
+      gap:18px;
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .about-head .section-copy{
+      margin-bottom:0;
+    }
+    .process-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap:24px;
+      align-items:start;
+    }
+    .process-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:18px;
+    }
+    .process-card,
+    .ops-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(16,23,34,.08);
+      border-radius:24px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(246,182,84,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(245,249,250,.90) 100%);
+      background-repeat:no-repeat;
+      background-size:240% 240%, 100% 100%;
+      background-position:160% 0, 0 0;
+      box-shadow:0 18px 38px rgba(8,18,28,.08);
+      transition:transform .28s cubic-bezier(.22,.61,.36,1), border-color .28s ease, box-shadow .28s ease, background-position .78s cubic-bezier(.22,.61,.36,1);
+    }
+    .process-card::before,
+    .ops-card::before{
+      content:"";
+      position:absolute;
+      inset:1px 1px auto 1px;
+      height:44%;
+      border-radius:inherit;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(95,230,221,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 91% 26%, rgba(246,182,84,.14) 0 2px, transparent 3px),
+        linear-gradient(146deg, rgba(255,255,255,0) 0 60%, rgba(95,230,221,.06) 60.5%, rgba(95,230,221,0) 62.5%),
+        linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04) 30%, rgba(255,255,255,0) 60%);
+      opacity:.72;
+      pointer-events:none;
+    }
+    .process-card{padding:24px}
+    .process-visual{
+      position:relative;
+      margin:0;
+      justify-self:end;
+      width:min(100%, 560px);
+      display:grid;
+      place-items:center;
+      min-height:0;
+      isolation:isolate;
+      background:transparent;
+      border:0;
+      box-shadow:none;
+      overflow:visible;
+    }
+    .process-visual img{
+      position:relative;
+      z-index:1;
+      display:block;
+      width:min(100%, 560px);
+      height:auto;
+      object-fit:contain;
+      filter:drop-shadow(0 22px 30px rgba(8,18,28,.16));
+      transform:translateY(2px) scale(1.01);
+      transition:transform .72s cubic-bezier(.22,.61,.36,1), filter .72s cubic-bezier(.22,.61,.36,1);
+    }
+    .about-visual{
+      position:relative;
+      margin:0;
+      justify-self:end;
+      width:min(100%, 520px);
+      display:grid;
+      place-items:center;
+      min-height:0;
+      isolation:isolate;
+      background:transparent;
+      border:0;
+      box-shadow:none;
+      overflow:visible;
+    }
+    .about-visual img{
+      position:relative;
+      z-index:1;
+      display:block;
+      width:min(100%, 520px);
+      height:auto;
+      object-fit:contain;
+      filter:drop-shadow(0 22px 30px rgba(8,18,28,.15));
+      transform:translateY(2px) scale(1.01);
+      transition:transform .72s cubic-bezier(.22,.61,.36,1), filter .72s cubic-bezier(.22,.61,.36,1);
+    }
+    .process-number{
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:50px;
+      height:50px;
+      margin-bottom:18px;
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(26,183,173,.18), rgba(246,182,84,.26));
+      color:var(--text);
+      font-family:"Space Grotesk",sans-serif;
+      font-size:1.06rem;
+      font-weight:700;
+      letter-spacing:.03em;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+    }
+    .process-card h3,
+    .ops-card h3{
+      position:relative;
+      z-index:1;
+      margin:0;
+      color:var(--text);
+      line-height:1.22;
+    }
+    .process-card h3{font-size:1.18rem}
+    .process-card p,
+    .ops-card p,
+    .ops-list li{
+      position:relative;
+      z-index:1;
+      color:var(--muted);
+      line-height:1.68;
+    }
+    .process-card p{margin:14px 0 0}
+    .ops-card{padding:24px}
+    .ops-card .kicker{
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      margin-bottom:14px;
+      color:var(--accent);
+      font-size:.82rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .ops-card p{margin:14px 0 0}
+    .ops-list{
+      position:relative;
+      z-index:1;
+      list-style:none;
+      padding:0;
+      margin:18px 0 0;
+      display:grid;
+      gap:12px;
+    }
+    .ops-list li{
+      position:relative;
+      padding-left:18px;
+      margin:0;
+    }
+    .ops-list li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.74em;
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#20b2aa;
+      transform:translateY(-50%);
+    }
+    .stack-lines p + p{margin-top:10px}
+    .about-shell{
+      display:grid;
+      grid-template-columns:minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap:24px;
+      align-items:start;
+      margin-bottom:28px;
+    }
+    .about-copy{padding-right:18px}
+    .about-copy > p{
+      margin:0 0 16px;
+      max-width:44rem;
+      color:var(--muted);
+      line-height:1.78;
+    }
+    .principle-grid{
+      position:relative;
+      isolation:isolate;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:16px;
+      margin-top:28px;
+    }
+    .principle-grid::after{
+      content:"";
+      position:absolute;
+      inset:-8% -4%;
+      pointer-events:none;
+      opacity:0;
+      background:
+        linear-gradient(104deg,
+          rgba(95,230,221,0) 0 36%,
+          rgba(95,230,221,.18) 42%,
+          rgba(255,255,255,.12) 49%,
+          rgba(246,182,84,.14) 55%,
+          rgba(246,182,84,0) 64%
+        );
+      mix-blend-mode:screen;
+      filter:blur(14px);
+      transform:translateX(36%) skewX(-14deg);
+    }
+    .principle-card,
+    .founder-card,
+    .fit-card,
+    .about-tech-strip{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(16,23,34,.08);
+      border-radius:24px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(246,182,84,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(245,248,250,.90) 100%);
+      background-repeat:no-repeat;
+      background-size:240% 240%, 100% 100%;
+      background-position:160% 0, 0 0;
+      box-shadow:0 18px 38px rgba(8,18,28,.08);
+      transition:transform .28s cubic-bezier(.22,.61,.36,1), border-color .28s ease, box-shadow .28s ease, background-position .78s cubic-bezier(.22,.61,.36,1);
+    }
+    .principle-card::before,
+    .founder-card::before,
+    .fit-card::before,
+    .about-tech-strip::before{
+      content:"";
+      position:absolute;
+      inset:1px 1px auto 1px;
+      height:42%;
+      border-radius:inherit;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(95,230,221,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 91% 26%, rgba(246,182,84,.16) 0 2px, transparent 3px),
+        linear-gradient(146deg, rgba(255,255,255,0) 0 60%, rgba(95,230,221,.06) 60.5%, rgba(95,230,221,0) 62.5%),
+        linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04) 30%, rgba(255,255,255,0) 60%);
+      opacity:.74;
+      pointer-events:none;
+    }
+    .principle-card{
+      padding:22px;
+      will-change:transform, opacity, filter;
+      transform-origin:50% 50%;
+      transition:
+        transform .46s cubic-bezier(.22,.61,.36,1),
+        opacity .32s ease,
+        filter .32s ease,
+        border-color .28s ease,
+        box-shadow .28s ease,
+        background-position .78s cubic-bezier(.22,.61,.36,1);
+    }
+    .js #about .principle-grid.is-stack-primed .principle-card{
+      opacity:1;
+      filter:none;
+      pointer-events:auto;
+    }
+    .js #about .principle-grid.is-stack-primed .principle-card:nth-child(1){
+      z-index:4;
+      transform:translate(-6px, 18px) scale(.985);
+    }
+    .js #about .principle-grid.is-stack-primed .principle-card:nth-child(2){
+      z-index:3;
+      transform:translate(6px, 12px) scale(.99);
+    }
+    .js #about .principle-grid.is-stack-primed .principle-card:nth-child(3){
+      z-index:2;
+      transform:translate(-5px, 16px) scale(.99);
+    }
+    .js #about .principle-grid.is-stack-primed .principle-card:nth-child(4){
+      z-index:1;
+      transform:translate(5px, 10px) scale(.99);
+    }
+    .js #about .principle-grid.is-stack-revealed .principle-card{
+      opacity:1;
+      filter:none;
+      pointer-events:auto;
+      transform:none;
+    }
+    .js #about .principle-grid.is-stack-primed.is-stack-revealed .principle-card:nth-child(1){transition-delay:0s}
+    .js #about .principle-grid.is-stack-primed.is-stack-revealed .principle-card:nth-child(2){transition-delay:.05s}
+    .js #about .principle-grid.is-stack-primed.is-stack-revealed .principle-card:nth-child(3){transition-delay:.1s}
+    .js #about .principle-grid.is-stack-primed.is-stack-revealed .principle-card:nth-child(4){transition-delay:.15s}
+    .principle-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      pointer-events:none;
+      opacity:0;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(95,230,221,.20) 0 0, rgba(95,230,221,0) 56%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0) 42%);
+    }
+    .js #about .principle-grid.is-signal-pass::after{
+      animation:aboutPrincipleSweep .94s cubic-bezier(.22,.61,.36,1) forwards;
+    }
+    .js #about .principle-grid.is-signal-pass .principle-card::after{
+      animation:aboutPrinciplePulse .7s ease forwards;
+    }
+    .js #about .principle-grid.is-signal-pass .principle-card:nth-child(1)::after{animation-delay:.08s}
+    .js #about .principle-grid.is-signal-pass .principle-card:nth-child(2)::after{animation-delay:.16s}
+    .js #about .principle-grid.is-signal-pass .principle-card:nth-child(3)::after{animation-delay:.24s}
+    .js #about .principle-grid.is-signal-pass .principle-card:nth-child(4)::after{animation-delay:.32s}
+    .principle-card strong,
+    .fit-card strong{
+      position:relative;
+      z-index:1;
+      display:block;
+      margin-bottom:12px;
+      color:var(--text);
+      font-size:1.05rem;
+      font-weight:800;
+      line-height:1.24;
+    }
+    .principle-card p,
+    .founder-card p,
+    .fit-card p{
+      position:relative;
+      z-index:1;
+      margin:0;
+      color:var(--muted);
+      line-height:1.68;
+    }
+    .founder-card,
+    .fit-card,
+    .about-tech-strip{
+      will-change:transform, opacity, filter;
+      transition:
+        transform .58s cubic-bezier(.22,.61,.36,1),
+        opacity .46s ease,
+        filter .52s ease,
+        border-color .28s ease,
+        box-shadow .28s ease,
+        background-position .78s cubic-bezier(.22,.61,.36,1);
+    }
+    .founder-card::after,
+    .fit-card::after,
+    .about-tech-strip::after{
+      content:"";
+      position:absolute;
+      pointer-events:none;
+      opacity:0;
+    }
+    .founder-card::after{
+      left:20px;
+      right:20px;
+      bottom:18px;
+      height:1px;
+      background:linear-gradient(90deg, rgba(95,230,221,0), rgba(95,230,221,.58), rgba(246,182,84,.34), rgba(246,182,84,0));
+      transform:scaleX(.28);
+      transform-origin:left center;
+    }
+    .about-tech-strip::after{
+      inset:0;
+      border-radius:inherit;
+      background:
+        linear-gradient(106deg,
+          rgba(95,230,221,0) 0 40%,
+          rgba(95,230,221,.18) 46%,
+          rgba(255,255,255,.14) 50%,
+          rgba(246,182,84,.14) 56%,
+          rgba(246,182,84,0) 62%
+        );
+      mix-blend-mode:screen;
+      filter:blur(12px);
+      transform:translateX(40%) skewX(-16deg);
+    }
+    .fit-card::after{
+      width:10px;
+      height:10px;
+      right:18px;
+      top:18px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(95,230,221,.92) 0 38%, rgba(95,230,221,.18) 39% 100%);
+      box-shadow:0 0 0 8px rgba(95,230,221,.08);
+      transform:scale(.5);
+    }
+    .js #about.is-about-sequence-primed .founder-card,
+    .js #about.is-about-sequence-primed .about-tech-strip,
+    .js #about.is-about-sequence-primed .fit-card{
+      opacity:0;
+      filter:blur(10px);
+      pointer-events:none;
+    }
+    .js #about.is-about-sequence-primed .founder-card{
+      transform:translateX(34px);
+    }
+    .js #about.is-about-sequence-primed .about-tech-strip{
+      transform:translateY(18px) scale(.985);
+    }
+    .js #about.is-about-sequence-primed .fit-card{
+      transform:translateY(22px);
+    }
+    .js #about.is-about-sequence-active .founder-card,
+    .js #about.is-about-sequence-active .about-tech-strip,
+    .js #about.is-about-sequence-active .fit-card{
+      opacity:1;
+      filter:none;
+      transform:none;
+      pointer-events:auto;
+    }
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(1){transition-delay:0s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(2){transition-delay:.08s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(3){transition-delay:.16s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .about-tech-strip{transition-delay:.24s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(1){transition-delay:.34s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(2){transition-delay:.42s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(3){transition-delay:.50s}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(1)::after{animation:aboutFounderLine .54s ease .06s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(2)::after{animation:aboutFounderLine .54s ease .14s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .founder-card:nth-child(3)::after{animation:aboutFounderLine .54s ease .22s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .about-tech-strip::after{animation:aboutTechSweep .66s cubic-bezier(.22,.61,.36,1) .30s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(1)::after{animation:aboutFitPulse .5s ease .38s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(2)::after{animation:aboutFitPulse .5s ease .46s forwards}
+    .js #about.is-about-sequence-primed.is-about-sequence-active .fit-card:nth-child(3)::after{animation:aboutFitPulse .5s ease .54s forwards}
+    .founder-stack{display:grid;gap:18px}
+    .founder-card{padding:24px}
+    .founder-card .role{
+      position:relative;
+      z-index:1;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:16px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(223,247,243,.88);
+      color:var(--accent);
+      border:1px solid rgba(26,183,173,.12);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .founder-card .role::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#f6b756;
+      box-shadow:0 0 0 5px rgba(246,182,84,.10);
+    }
+    .founder-card h3{
+      position:relative;
+      z-index:1;
+      margin:0;
+      max-width:18ch;
+      color:var(--text);
+      font-size:1.34rem;
+      line-height:1.24;
+    }
+    .founder-card p{margin-top:14px}
+    .about-tech-strip{
+      margin-top:28px;
+      padding:18px 18px 16px;
+    }
+    .about-tech-strip strong{
+      position:relative;
+      z-index:1;
+      display:block;
+      margin-bottom:14px;
+      color:var(--text);
+      font-size:.96rem;
+      font-weight:800;
+      line-height:1.2;
+    }
+    #about .tech-grid{
+      position:relative;
+      z-index:1;
+      margin-top:0;
+    }
+    .fit-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:16px;
+    }
+    .fit-card{padding:22px}
+    .section-head{max-width:46rem;margin-bottom:32px}
+    .section-head h2{max-width:12ch;line-height:1.12}
+    .section-head p{max-width:43rem;margin-top:16px;line-height:1.72}
+    .section-dark{
+      background:
+        radial-gradient(circle at top right, rgba(32,178,170,0.16), transparent 26%),
+        linear-gradient(180deg, #0c1621 0%, #101d2b 100%);
+      color:#f4fafc;
+      overflow:hidden;
+    }
+    .section-dark h2,
+    .section-dark .eyebrow{color:#f4fafc}
+    .section-dark p,
+    .section-dark .section-head p,
+    .section-dark .case-card p,
+    .section-dark .case-stack{color:rgba(233,240,247,0.76)}
+    .work-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+    .case-card{
+      grid-column:span 4;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:28px;
+      background:rgba(255,255,255,0.04);
+      box-shadow:0 18px 34px rgba(0,0,0,0.14);
+      backdrop-filter:blur(10px);
+    }
+    .case-feature{
+      grid-column:span 8;
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
+      align-items:stretch;
+    }
+    .case-image{position:relative;min-height:240px;overflow:hidden;background:#152334}
+    .case-image img{width:100%;height:100%;object-fit:cover;transform:scale(1.01)}
+    .case-body{padding:24px;display:flex;flex-direction:column;align-items:flex-start}
+    .case-tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:16px;
+      color:#9feae4;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .case-tag::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:#f6b756;
+    }
+    .case-body h3{margin:0;max-width:18ch;font-size:1.35rem;line-height:1.3}
+    .case-body p{margin-top:14px;max-width:34ch;font-size:.98rem;line-height:1.72}
+    .case-stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+    .case-stack span{
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      font-size:.82rem;
+      font-weight:800;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .brand:hover{
+        transform:translateY(-5px);
+        border-color:rgba(26,183,173,.18);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.28),
+          0 14px 28px rgba(8,18,28,.12);
+      }
+      .brand:hover img.logo-header{
+        filter:brightness(1.22) contrast(1.12);
+      }
+      .brand:hover::after{
+        transform:translateX(500%) rotate(18deg);
+        opacity:1;
+      }
+      .card:hover,
+      .case-card:hover{
+        box-shadow:0 26px 54px rgba(8,18,28,.14);
+        border-color:rgba(26,183,173,.18);
+      }
+      .card:hover::after,
+      .case-card:hover::after{
+        transform:translateX(340%) rotate(18deg);
+        opacity:.86;
+      }
+      .card:hover::before,
+      .case-card:hover::before{opacity:.82}
+      .card-support:hover::before{opacity:.68}
+      .product-layout .card-feature:hover,
+      .digital-layout .digital-primary:hover,
+      .product-layout .card-support:hover,
+      .digital-stack .card:hover{
+        transform:translateY(-7px) rotateX(2deg) rotateY(2deg);
+      }
+      .process-card:hover,
+      .ops-card:hover{
+        background-position:-72% 0, 0 0;
+        transform:translateY(-5px);
+        border-color:rgba(26,183,173,.16);
+        box-shadow:0 24px 42px rgba(8,18,28,.14);
+      }
+      #about .principle-grid.is-stack-revealed .principle-card:hover{
+        background-position:-72% 0, 0 0;
+        transform:translateY(-4px);
+        border-color:rgba(26,183,173,.16);
+        box-shadow:0 24px 42px rgba(8,18,28,.14);
+      }
+      .fit-card:hover,
+      .about-tech-strip:hover{
+        background-position:-72% 0, 0 0;
+        transform:translateY(-4px);
+        border-color:rgba(26,183,173,.14);
+        box-shadow:0 22px 40px rgba(8,18,28,.12);
+      }
+      .founder-card:hover{
+        background-position:-72% 0, 0 0;
+        transform:translateY(-4px);
+        border-color:rgba(26,183,173,.16);
+        box-shadow:0 24px 42px rgba(8,18,28,.14);
+      }
+      .case-card:hover{
+        transform:translateY(-6px) rotateX(1.4deg);
+      }
+      .hero-visual:hover::after{
+        opacity:1;
+        filter:blur(20px);
+      }
+      .hero-visual:hover .hero-echo{
+        opacity:.22;
+        transform:translate(62px, -2px) scale(1.31);
+        filter:blur(15px) brightness(1.1) saturate(1.08);
+      }
+      .hero-visual:hover .hero-slide{
+        transform:translateY(-6px) scale(1.215);
+      }
+      .process-visual:hover img,
+      .about-visual:hover img{
+        transform:translateY(0) scale(1.018);
+        filter:drop-shadow(0 26px 34px rgba(8,18,28,.18));
+      }
+      .js .interactive-reveal-card:hover .card-image-reveal{
+        opacity:0;
+        transform:scale(1.04);
+        filter:blur(16px);
+      }
+      .js .interactive-reveal-card:hover .card-image-reveal::after{
+        transform:translateX(324%) rotate(18deg);
+        opacity:.82;
+      }
+      .js .interactive-reveal-card:hover .card-image-reveal img{
+        transform:scale(var(--card-image-open-scale, 1.02));
+        filter:drop-shadow(0 24px 34px rgba(8,18,28,.18));
+      }
+      .js .interactive-reveal-card:hover .card-image-caption{
+        opacity:0;
+        transform:translateY(10px);
+        filter:blur(8px);
+      }
+      .js .interactive-reveal-card:hover .card-copy{
+        opacity:1;
+        transform:none;
+        filter:none;
+        transition-delay:.14s;
+      }
+    }
+    @media (max-width:1080px){
+      .product-layout{grid-template-columns:1fr 1fr}
+      .product-feature,
+      .product-support{grid-column:auto}
+      .digital-layout{grid-template-columns:1fr}
+      .digital-stack{display:grid;gap:18px}
+      .process-head{grid-template-columns:1fr}
+      .process-visual{justify-self:center}
+      .about-head{grid-template-columns:1fr}
+      .about-visual{justify-self:center}
+      .process-layout{grid-template-columns:1fr}
+      .about-shell{grid-template-columns:1fr}
+      .about-copy{padding-right:0}
+      .fit-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
 
     /* Contact + Footer */
     section{padding:44px 0}
     section h2{font-size:clamp(22px,5vw,32px);margin:0 0 14px}
-    section p.section-tag{margin:0 0 18px;color:var(--muted)}
-    .contact{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    section p.section-tag{margin:0 0 18px;color:var(--muted);line-height:1.72}
+    .contact{
+      background:
+        radial-gradient(circle at 18% 22%, rgba(24,182,174,.12), transparent 22%),
+        radial-gradient(circle at 86% 18%, rgba(246,182,84,.12), transparent 18%),
+        linear-gradient(180deg, rgba(247,243,234,.98) 0%, rgba(240,246,248,.96) 100%);
+    }
+    #contact::before{
+      background:
+        radial-gradient(circle at 16% 22%, rgba(32,178,170,.06), transparent 22%),
+        radial-gradient(circle at 88% 18%, rgba(246,182,84,.06), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
+    }
+    #contact::after{
+      content:"";
+      position:absolute;
+      left:-2%;
+      bottom:10%;
+      width:min(34vw,430px);
+      height:52%;
+      z-index:0;
+      opacity:.24;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, rgba(64,190,212,.20) 0 3px, transparent 4px),
+        repeating-linear-gradient(28deg, rgba(64,190,212,.06) 0 2px, transparent 2px 98px),
+        repeating-linear-gradient(-30deg, rgba(64,190,212,.05) 0 2px, transparent 2px 108px);
+      background-size:118px 118px, 180px 144px, 212px 164px;
+      background-position:0 0, 12px 12px, 20px 0;
+    }
     .contact .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .contact .info{flex:1 1 360px;min-width:280px}
+    .contact .info{flex:1 1 360px;min-width:280px;max-width:35rem}
+    #contact .section-head{max-width:34rem;margin-bottom:18px}
+    #contact .section-head h3{margin:0;max-width:16ch;line-height:1.18}
+    #contact .section-head p{max-width:33rem}
+    .contact .info h3{max-width:16ch;line-height:1.18}
+    .contact address{max-width:24ch}
+    #contact .btn.ghost{
+      background:rgba(255,255,255,.78);
+      border-color:rgba(16,23,34,.10);
+      color:var(--text);
+      box-shadow:0 10px 20px rgba(8,18,28,.08);
+    }
+    #contact .btn.ghost:hover{background:rgba(255,255,255,.94)}
+    #contact .btn.primary{box-shadow:0 10px 20px rgba(15,118,110,.16)}
     .map-embed{flex:1 1 520px;min-height:320px;width:100%;border:0;border-radius:14px;box-shadow:var(--shadow)}
     @media (max-width:520px){ .map-embed{min-height:240px} }
-    footer{margin-top:32px;border-top:1px solid var(--border);background:#fafafa}
+    footer{
+      margin-top:32px;
+      border-top:1px solid rgba(16,23,34,.08);
+      background:transparent;
+    }
     .foot{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:12px;flex-wrap:wrap}
     .foot small{color:var(--muted-2)}
+    @media (max-width:980px){
+      .work-grid{grid-template-columns:1fr}
+      .case-card,.case-feature{grid-column:auto}
+      .case-feature{grid-template-columns:1fr}
+    }
+    @media (max-width:900px){
+      #product-engineering::after,
+      #digital-engineering::after,
+      #process::after,
+      #about::after,
+      #contact::after{opacity:.32;width:min(58vw,320px);height:42%}
+    }
+    @media (max-width:700px){
+      .section-copy,
+      .section-head{padding-left:18px}
+      .section-copy::before,
+      .section-head::before{top:.75rem;height:calc(100% - 1rem)}
+      .product-layout{grid-template-columns:1fr}
+      .card-feature,
+      .product-support,
+      .digital-primary{padding:18px}
+      .process-grid{grid-template-columns:1fr}
+      .process-card,
+      .ops-card{padding:18px}
+      .process-visual{width:min(100%, 500px)}
+      .about-visual{width:min(100%, 460px)}
+      .digital-stack{gap:14px}
+      .about-shell{gap:18px}
+      .principle-grid,
+      .fit-grid{grid-template-columns:1fr}
+      .js #about .principle-grid.is-stack-primed .principle-card:nth-child(1){
+        transform:translate(0, 14px) scale(.99);
+      }
+      .js #about .principle-grid.is-stack-primed .principle-card:nth-child(2){
+        transform:translate(0, 10px) scale(.995);
+      }
+      .js #about .principle-grid.is-stack-primed .principle-card:nth-child(3){
+        transform:translate(0, 12px) scale(.995);
+      }
+      .js #about .principle-grid.is-stack-primed .principle-card:nth-child(4){
+        transform:translate(0, 8px) scale(.995);
+      }
+      .principle-card,
+      .founder-card,
+      .fit-card,
+      .about-tech-strip{padding:18px}
+      .founder-card h3{font-size:1.22rem}
+    }
 
     /* Anchor offset for fixed header */
     .anchor{scroll-margin-top:calc(var(--header-h) + 8px)}
 
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
-      .hero{background:linear-gradient(180deg, #eef9f7, #e3f4f2)}
+      .hero{background:linear-gradient(180deg, #f4efe3 0%, #faf7f0 46%, #edf3f5 100%)}
       .hero-canvas{display:none}
       .hero-inner, .hero-content{transition:none !important}
       .about-content{transition:none !important}
+    }
+    html[data-theme="dark"]{
+      --nav-bg: rgba(25,181,189,.38);
+    }
+    html[data-theme="dark"] body{
+      background:
+        radial-gradient(circle at top left, rgba(26,183,173,.12), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(246,182,84,.10), transparent 24%),
+        linear-gradient(180deg, #081018 0%, #0b1620 48%, #101e2b 100%);
+    }
+    html[data-theme="dark"] header{
+      background:rgba(8,16,24,.82);
+      border-bottom:1px solid rgba(158,232,224,.08);
+    }
+    html[data-theme="dark"] header .menu a{color:#eef8fb}
+    html[data-theme="dark"] .menu a:hover{background:rgba(26,183,173,.16)}
+    html[data-theme="dark"] .hamburger{
+      border-color:rgba(158,232,224,.12);
+      background:rgba(10,22,31,.68);
+      color:#eef8fb;
+    }
+    html[data-theme="dark"] .mobile-panel{
+      background:rgba(8,16,24,.94);
+      border-color:rgba(158,232,224,.10);
+      box-shadow:0 18px 40px rgba(0,0,0,.28);
+    }
+    html[data-theme="dark"] .mobile-links a{color:#eef8fb}
+    html[data-theme="dark"] .mobile-links a:hover{background:rgba(26,183,173,.14)}
+    html[data-theme="dark"] .mobile-section{
+      background:rgba(12,25,35,.74);
+    }
+    html[data-theme="dark"] .mobile-section h4{color:rgba(225,237,244,.78)}
+    html[data-theme="dark"] .scrim{background:rgba(15,23,42,.28)}
+    html[data-theme="dark"] .theme-toggle{
+      border-color:rgba(158,232,224,.12);
+      background:rgba(10,22,31,.68);
+      color:#eef8fb;
+      box-shadow:0 10px 20px rgba(0,0,0,.20);
+    }
+    html[data-theme="dark"] .theme-toggle:hover{
+      background:rgba(12,28,40,.78);
+      box-shadow:0 14px 24px rgba(0,0,0,.24);
+    }
+    html[data-theme="dark"] .hero{
+      background:
+        radial-gradient(circle at 18% 22%, rgba(24,182,174,.16), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(246,182,84,.14), transparent 22%),
+        linear-gradient(180deg, #081018 0%, #0b1620 52%, #10202d 100%);
+    }
+    html[data-theme="dark"] .hero-copy::before{
+      background:
+        radial-gradient(circle at 22% 30%, rgba(8,16,24,.84) 0%, rgba(8,16,24,.58) 38%, rgba(8,16,24,.22) 64%, rgba(8,16,24,0) 84%),
+        linear-gradient(90deg, rgba(8,16,24,.78) 0%, rgba(8,16,24,.48) 54%, rgba(8,16,24,.12) 78%, rgba(8,16,24,0) 100%);
+      filter:blur(18px);
+      opacity:.94;
+    }
+    html[data-theme="dark"] .hero .lead{
+      border-color:rgba(158,232,224,.22);
+      background:rgba(10,22,31,.58);
+      color:#8de7df;
+      box-shadow:0 14px 28px rgba(5,10,16,.22);
+    }
+    html[data-theme="dark"] .hero h1{color:#f5fbff}
+    html[data-theme="dark"] .hero p{color:rgba(225,237,244,.84)}
+    html[data-theme="dark"] .hero-visual::before{
+      background:radial-gradient(circle, rgba(26,183,173,.34) 0%, rgba(246,182,84,.18) 36%, rgba(15,23,42,.08) 58%, rgba(72,209,204,0) 76%);
+    }
+    html[data-theme="dark"] .hero-visual::after{
+      background:radial-gradient(ellipse at center, rgba(110,244,233,.18) 0%, rgba(246,182,84,.10) 34%, rgba(4,9,14,.06) 58%, rgba(4,9,14,0) 74%);
+      opacity:.92;
+    }
+    html[data-theme="dark"] .hero .btn.ghost{
+      background:rgba(10,22,31,.52);
+      border-color:rgba(158,232,224,.18);
+      color:#f5fbff;
+      box-shadow:0 10px 20px rgba(2,8,12,.14);
+    }
+    html[data-theme="dark"] .hero .btn.ghost:hover{background:rgba(12,28,40,.68)}
+    html[data-theme="dark"] .hero-canvas{opacity:.97}
+    html[data-theme="dark"] #product-engineering,
+    html[data-theme="dark"] #digital-engineering,
+    html[data-theme="dark"] #process,
+    html[data-theme="dark"] #about,
+    html[data-theme="dark"] #contact{
+      color:#f4fbff;
+      border-top:1px solid rgba(158,232,224,.08);
+      border-bottom:1px solid rgba(158,232,224,.08);
+    }
+    html[data-theme="dark"] #product-engineering{
+      background:
+        radial-gradient(circle at 10% 18%, rgba(24,182,174,.16), transparent 24%),
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.11), transparent 20%),
+        linear-gradient(180deg, #081018 0%, #0d1822 100%);
+    }
+    html[data-theme="dark"] #product-engineering::before{
+      background:
+        radial-gradient(circle at 8% 18%, rgba(32,178,170,.08), transparent 26%),
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.06), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] #product-engineering::after{opacity:.78}
+    html[data-theme="dark"] #digital-engineering{
+      background:
+        radial-gradient(circle at 16% 14%, rgba(24,182,174,.14), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(246,182,84,.09), transparent 18%),
+        linear-gradient(180deg, #09121b 0%, #0e1b27 100%);
+    }
+    html[data-theme="dark"] #digital-engineering::before{
+      background:
+        radial-gradient(circle at 14% 14%, rgba(32,178,170,.08), transparent 24%),
+        radial-gradient(circle at 78% 18%, rgba(246,182,84,.05), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] #digital-engineering::after{opacity:.84}
+    html[data-theme="dark"] #process{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(24,182,174,.13), transparent 24%),
+        radial-gradient(circle at 86% 14%, rgba(246,182,84,.10), transparent 20%),
+        linear-gradient(180deg, #09141f 0%, #0f1c28 100%);
+    }
+    html[data-theme="dark"] #process::before{
+      background:
+        radial-gradient(circle at 18% 18%, rgba(32,178,170,.07), transparent 24%),
+        radial-gradient(circle at 84% 14%, rgba(246,182,84,.05), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] #process::after{opacity:.62}
+    html[data-theme="dark"] #about{
+      background:
+        radial-gradient(circle at 84% 12%, rgba(246,182,84,.11), transparent 22%),
+        radial-gradient(circle at 14% 80%, rgba(24,182,174,.10), transparent 24%),
+        linear-gradient(180deg, #09131d 0%, #101e2b 100%);
+    }
+    html[data-theme="dark"] #about::before{
+      background:
+        radial-gradient(circle at 84% 10%, rgba(246,182,84,.07), transparent 24%),
+        radial-gradient(circle at 10% 82%, rgba(32,178,170,.05), transparent 22%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] #about::after{opacity:.52}
+    html[data-theme="dark"] #contact{
+      background:
+        radial-gradient(circle at 18% 22%, rgba(24,182,174,.14), transparent 22%),
+        radial-gradient(circle at 86% 18%, rgba(246,182,84,.10), transparent 18%),
+        linear-gradient(180deg, #09131d 0%, #101e2b 100%);
+    }
+    html[data-theme="dark"] #contact::before{
+      background:
+        radial-gradient(circle at 16% 22%, rgba(32,178,170,.08), transparent 22%),
+        radial-gradient(circle at 88% 18%, rgba(246,182,84,.06), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+    }
+    html[data-theme="dark"] #contact::after{opacity:.56}
+    html[data-theme="dark"] #product-engineering h2,
+    html[data-theme="dark"] #digital-engineering h2,
+    html[data-theme="dark"] #process h2,
+    html[data-theme="dark"] #about h2,
+    html[data-theme="dark"] #contact h3,
+    html[data-theme="dark"] #contact h4{color:#f4fbff}
+    html[data-theme="dark"] #product-engineering .section-tag,
+    html[data-theme="dark"] #digital-engineering .section-tag,
+    html[data-theme="dark"] #process .section-tag,
+    html[data-theme="dark"] #about .section-tag,
+    html[data-theme="dark"] #about .about-copy > p,
+    html[data-theme="dark"] #contact .section-tag,
+    html[data-theme="dark"] #contact address{color:rgba(221,235,242,.80)}
+    html[data-theme="dark"] #product-engineering .card{
+      background:rgba(8,29,38,.66);
+      border-color:rgba(140,229,220,.14);
+      box-shadow:0 18px 36px rgba(0,0,0,.22);
+    }
+    html[data-theme="dark"] #digital-engineering .card{
+      background:rgba(10,24,40,.70);
+      border-color:rgba(108,198,228,.16);
+      box-shadow:0 18px 36px rgba(0,0,0,.24);
+    }
+    html[data-theme="dark"] #product-engineering .card h3,
+    html[data-theme="dark"] #digital-engineering .card h3{color:#f5fbff}
+    html[data-theme="dark"] #product-engineering .card p,
+    html[data-theme="dark"] #digital-engineering .card p,
+    html[data-theme="dark"] #product-engineering .clean-list li,
+    html[data-theme="dark"] #digital-engineering .clean-list li{color:rgba(221,235,242,.78)}
+    html[data-theme="dark"] #product-engineering .kicker{color:#8fe7e0}
+    html[data-theme="dark"] #digital-engineering .kicker{color:#86d8f0}
+    html[data-theme="dark"] #product-engineering .chip{
+      background:rgba(8,34,42,.86);
+      border:1px solid rgba(140,229,220,.12);
+      color:#e7fbfa;
+    }
+    html[data-theme="dark"] #digital-engineering .chip{
+      background:rgba(9,28,48,.86);
+      border:1px solid rgba(108,198,228,.14);
+      color:#ebf9ff;
+    }
+    html[data-theme="dark"] #process .chip{
+      background:rgba(10,30,44,.84);
+      border:1px solid rgba(140,229,220,.12);
+      color:#eefbff;
+    }
+    html[data-theme="dark"] #about .chip{
+      background:rgba(16,28,42,.82);
+      border:1px solid rgba(255,255,255,.08);
+      color:#edf8ff;
+    }
+    html[data-theme="dark"] .process-card,
+    html[data-theme="dark"] .ops-card{
+      border-color:rgba(120,212,229,.14);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(246,182,84,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(180deg, rgba(11,27,40,.72) 0%, rgba(9,20,31,.60) 100%);
+      box-shadow:0 18px 38px rgba(0,0,0,.20);
+    }
+    html[data-theme="dark"] .process-visual img{filter:drop-shadow(0 24px 34px rgba(2,8,12,.28))}
+    html[data-theme="dark"] .about-visual img{filter:drop-shadow(0 24px 34px rgba(2,8,12,.26))}
+    html[data-theme="dark"] .process-number{color:#f5fbff}
+    html[data-theme="dark"] .process-card h3,
+    html[data-theme="dark"] .ops-card h3{color:#f5fbff}
+    html[data-theme="dark"] .process-card p,
+    html[data-theme="dark"] .ops-card p,
+    html[data-theme="dark"] .ops-list li{color:rgba(221,235,242,.76)}
+    html[data-theme="dark"] .ops-card .kicker{color:#9feae4}
+    html[data-theme="dark"] .about-copy > p{color:rgba(221,235,242,.80)}
+    html[data-theme="dark"] .principle-card,
+    html[data-theme="dark"] .founder-card,
+    html[data-theme="dark"] .fit-card,
+    html[data-theme="dark"] .about-tech-strip{
+      border-color:rgba(170,224,236,.10);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(246,182,84,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(180deg, rgba(14,23,35,.74) 0%, rgba(10,18,29,.58) 100%);
+      box-shadow:0 18px 38px rgba(0,0,0,.18);
+    }
+    html[data-theme="dark"] .principle-card strong,
+    html[data-theme="dark"] .fit-card strong,
+    html[data-theme="dark"] .founder-card h3,
+    html[data-theme="dark"] .about-tech-strip strong{color:#f5fbff}
+    html[data-theme="dark"] .principle-card p,
+    html[data-theme="dark"] .founder-card p,
+    html[data-theme="dark"] .fit-card p{color:rgba(221,235,242,.74)}
+    html[data-theme="dark"] .founder-card .role{
+      background:rgba(110,244,233,.10);
+      color:#9feae4;
+      border-color:rgba(110,244,233,.12);
+    }
+    html[data-theme="dark"] #contact .btn.ghost{
+      background:rgba(10,22,31,.52);
+      border-color:rgba(158,232,224,.18);
+      color:#f5fbff;
+      box-shadow:0 10px 20px rgba(2,8,12,.14);
+    }
+    html[data-theme="dark"] #contact .btn.ghost:hover{background:rgba(12,28,40,.68)}
+    html[data-theme="dark"] #contact .btn.primary{box-shadow:0 10px 20px rgba(3,9,14,.22)}
+    html[data-theme="dark"] footer{
+      border-top:1px solid rgba(158,232,224,.10);
+      background:linear-gradient(180deg, #081018 0%, #0c1621 100%);
+    }
+    html[data-theme="dark"] .foot small{color:rgba(221,235,242,.68)}
+    @keyframes aboutPrincipleSweep{
+      0%{
+        opacity:0;
+        transform:translateX(44%) skewX(-14deg);
+      }
+      24%{opacity:.74}
+      100%{
+        opacity:0;
+        transform:translateX(-42%) skewX(-14deg);
+      }
+    }
+    @keyframes aboutPrinciplePulse{
+      0%{
+        opacity:0;
+        box-shadow:inset 0 0 0 1px rgba(95,230,221,0);
+      }
+      32%{
+        opacity:.92;
+        box-shadow:inset 0 0 0 1px rgba(95,230,221,.22);
+      }
+      100%{
+        opacity:0;
+        box-shadow:inset 0 0 0 1px rgba(95,230,221,0);
+      }
+    }
+    @keyframes aboutFounderLine{
+      0%{
+        opacity:0;
+        transform:scaleX(.28);
+      }
+      32%{opacity:.92}
+      100%{
+        opacity:0;
+        transform:scaleX(1);
+      }
+    }
+    @keyframes aboutTechSweep{
+      0%{
+        opacity:0;
+        transform:translateX(38%) skewX(-16deg);
+      }
+      24%{opacity:.76}
+      100%{
+        opacity:0;
+        transform:translateX(-42%) skewX(-16deg);
+      }
+    }
+    @keyframes aboutFitPulse{
+      0%{
+        opacity:0;
+        transform:scale(.52);
+      }
+      38%{
+        opacity:1;
+        transform:scale(1);
+      }
+      100%{
+        opacity:0;
+        transform:scale(.82);
+      }
     }
   </style>
 </head>
@@ -269,21 +2184,28 @@
              onerror="this.style.display='none'" loading="lazy" decoding="async"/>
       </a>
 
-      <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Menu
-      </button>
+      <div class="nav-actions">
+        <!-- SIMPLE NAV -->
+        <ul class="menu" role="menubar">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#product-engineering">Product Engineering</a></li>
+          <li><a href="#digital-engineering">Digital Engineering</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <span id="navIndicator" class="nav-indicator" aria-hidden="true"></span>
+        </ul>
 
-      <!-- SIMPLE NAV -->
-      <ul class="menu" role="menubar">
-        <li><a href="#home" data-mode="home">Home</a></li>
-        <li><a href="#product-engineering" data-mode="product">Product Engineering</a></li>
-        <li><a href="#digital-engineering" data-mode="digital">Digital Engineering</a></li>
-        <li><a href="#about" data-mode="about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <span id="navIndicator" class="nav-indicator" aria-hidden="true"></span>
-      </ul>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle color theme">
+          <span class="theme-toggle-label">Dark mode</span>
+        </button>
+
+        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Menu
+        </button>
+      </div>
     </div>
 
     <!-- Mobile nav -->
@@ -291,10 +2213,11 @@
       <div class="mobile-section">
         <h4>Navigate</h4>
         <div class="mobile-links">
-          <a href="#home" data-mode="home">Home</a>
-          <a href="#product-engineering" data-mode="product">Product Engineering</a>
-          <a href="#digital-engineering" data-mode="digital">Digital Engineering</a>
-          <a href="#about" data-mode="about">About</a>
+          <a href="#home">Home</a>
+          <a href="#product-engineering">Product Engineering</a>
+          <a href="#digital-engineering">Digital Engineering</a>
+          <a href="#process">Process</a>
+          <a href="#about">About</a>
           <a href="#portfolio">Portfolio</a>
           <a href="#contact">Contact</a>
         </div>
@@ -307,60 +2230,202 @@
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
 
     <div class="container hero-inner" id="heroHeader">
-      <span class="lead" id="heroLead">Reliable Technology Partner For</span>
-      <h1 id="heroTitle">Firmware Development, IoT Integration, Cloud Integration with <span class="grad">AI &amp; ML</span></h1>
-      <p id="heroSub">From embedded firmware to connected platforms and intelligent analytics, we deliver end-to-end, production-ready products built for reliability.</p>
-      <div class="cta" id="heroCta">
-        <a class="btn primary" href="#portfolio">View Portfolio</a>
-        <a class="btn ghost" href="#contact">Contact Us</a>
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <span class="lead" id="heroLead">Embedded systems, connected platforms, and field-ready apps</span>
+          <h1 id="heroTitle">Engineering connected products that stay <span class="grad">reliable after deployment.</span></h1>
+          <p id="heroSub">Causeve Technologies builds firmware, gateways, cloud integrations, and operator-facing applications for teams shipping real devices into real environments. The focus is practical: stable releases, maintainable architecture, and systems that work beyond the lab demo.</p>
+          <div class="cta" id="heroCta">
+            <a class="btn primary" href="#contact">Discuss a Project</a>
+            <a class="btn ghost" href="#portfolio">See Selected Work</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img class="hero-echo" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
+          <img class="hero-slide" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
+        </div>
       </div>
-      <div class="tabs-note" id="tabsNote">Tip: Tap a top menu (Product / Digital / About) to view detail panels here.</div>
     </div>
-
-    <!-- This is where tabbed content will render -->
-    <div class="container hero-content" id="heroContent" aria-live="polite"></div>
   </main>
 
-  <!-- TEMPLATES (rendered inside hero) -->
-  <template id="tpl-product">
-    <div class="grid cols-2">
-      <article class="card">
-        <span class="kicker">Firmware Engineering</span>
-        <h3>MCUs, RTOS, BLE / Mesh, Drivers</h3>
-        <p>nRF52/Zephyr/FreeRTOS, power profiling, OTA/DFU, sensors &amp; peripherals, production-ready build pipelines.</p>
-        <span class="chip">C / C++ · Zephyr · FreeRTOS · Wirepas · BLE</span>
-      </article>
-      <article class="card">
-        <span class="kicker">Connected Software Development</span>
-        <h3>Gateways, APIs, Dashboards</h3>
-        <p>Linux gateways, MQTT/HTTP pipelines, device provisioning, cloud integrations, admin portals, observability.</p>
-        <span class="chip">Python · Node · Flask · Docker · Azure/AWS</span>
-      </article>
+  <section id="product-engineering" class="anchor">
+    <div class="container">
+      <div class="section-copy">
+        <span class="section-eyebrow">Embedded Systems</span>
+        <h2>Product Engineering</h2>
+        <p class="section-tag">Connected hardware needs stable device behavior, clean interfaces, repeatable releases, and update paths that do not become a support risk later.</p>
+      </div>
+      <div class="product-layout">
+        <article class="card card-feature product-feature interactive-reveal-card product-reveal-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="card-image-reveal" aria-hidden="true">
+            <img src="asset/Product/1.png" alt="" loading="lazy" decoding="async" />
+            <div class="card-image-caption">
+              <span class="eyebrow">Firmware Engineering</span>
+              <h3>Firmware and device behavior</h3>
+            </div>
+          </div>
+          <div class="card-copy">
+            <span class="kicker">Firmware Engineering</span>
+            <h3>Firmware and device behavior</h3>
+            <p>Battery-aware software, radio stability, sensor pipelines, and field-safe update paths for connected hardware.</p>
+            <ul class="clean-list">
+              <li>MCUs, drivers, RTOS, BLE, and Mesh connectivity</li>
+              <li>Provisioning, diagnostics, OTA, and DFU planning</li>
+              <li>Production-minded build discipline for rollout readiness</li>
+            </ul>
+            <span class="chip">MCUs | Drivers | RTOS | BLE | Mesh</span>
+          </div>
+        </article>
+        <article class="card card-support product-support interactive-reveal-card product-reveal-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="card-image-reveal" aria-hidden="true">
+            <img src="asset/Product/2.png" alt="" loading="lazy" decoding="async" />
+            <div class="card-image-caption">
+              <span class="eyebrow">Connected Software</span>
+              <h3>Secure movement from device to platform</h3>
+            </div>
+          </div>
+          <div class="card-copy">
+            <span class="kicker">Connected Software Development</span>
+            <h3>Secure movement from device to platform</h3>
+            <p>Linux gateways, broker integrations, site networking, and resilient data forwarding built for real operations.</p>
+            <ul class="clean-list">
+              <li>MQTT and HTTP pipelines across device and gateway layers</li>
+              <li>Dockerized services, monitoring, and support visibility</li>
+              <li>Site orchestration and fleet tools built for field conditions</li>
+            </ul>
+            <span class="chip">Python | Node | Docker | MQTT | Azure / AWS</span>
+          </div>
+        </article>
+      </div>
     </div>
-  </template>
+  </section>
 
-  <template id="tpl-digital">
-    <div class="grid cols-3">
-      <article class="card">
-        <span class="kicker">IoT</span>
-        <h3>Device-to-Cloud Integrations</h3>
-        <p>Secure provisioning, telemetry, rules &amp; alerts, digital twins, time-series storage, OTA orchestration.</p>
-        <span class="chip">MQTT · Azure IoT · InfluxDB</span>
-      </article>
-      <article class="card">
-        <span class="kicker">AI / ML</span>
-        <h3>Insight &amp; Automation</h3>
-        <p>Anomaly detection, predictive maintenance, classification &amp; forecasting on the edge and in the cloud.</p>
-        <span class="chip">Python · scikit-learn · TinyML</span>
-      </article>
-      <article class="card">
-        <span class="kicker">Web / Mobile Apps</span>
-        <h3>Dashboards &amp; Control Apps</h3>
-        <p>Modern web portals and native mobile apps to visualize, manage, and control your devices at scale.</p>
-        <span class="chip">Flutter · SwiftUI · React</span>
-      </article>
+  <section id="digital-engineering" class="anchor section-surface">
+    <div class="container">
+      <div class="section-copy">
+        <span class="section-eyebrow">Platform Delivery</span>
+        <h2>Digital Engineering</h2>
+        <p class="section-tag">Reliable telemetry needs transport, storage, alerting, and application surfaces that behave consistently in real operations.</p>
+      </div>
+      <div class="digital-layout">
+        <article class="card card-feature digital-primary interactive-reveal-card digital-reveal-card" tabindex="0" role="button" aria-expanded="false">
+          <div class="card-image-reveal" aria-hidden="true">
+            <img src="asset/Digi/1.png" alt="" loading="lazy" decoding="async" />
+            <div class="card-image-caption">
+              <span class="eyebrow">IoT</span>
+              <h3>Secure device-to-cloud transport</h3>
+            </div>
+          </div>
+          <div class="card-copy">
+            <span class="kicker">IoT</span>
+            <h3>Secure device-to-cloud transport</h3>
+            <p>Provisioning, fleet administration, audit history, alerting, and monitoring pipelines across device, gateway, and cloud layers.</p>
+            <ul class="clean-list">
+              <li>Linux gateways and containerized services</li>
+              <li>Secure transport, alerting, and monitoring pipelines</li>
+              <li>Operational visibility for real deployments</li>
+            </ul>
+            <span class="chip">MQTT | Azure IoT | Monitoring</span>
+          </div>
+        </article>
+        <div class="digital-stack">
+          <article class="card card-support interactive-reveal-card digital-reveal-card digital-analytics" tabindex="0" role="button" aria-expanded="false">
+            <div class="card-image-reveal" aria-hidden="true">
+              <img src="asset/Digi/2.png" alt="" loading="lazy" decoding="async" />
+              <div class="card-image-caption">
+                <span class="eyebrow">AI / ML</span>
+                <h3>Analytics where operations actually benefit</h3>
+              </div>
+            </div>
+            <div class="card-copy">
+              <span class="kicker">AI / ML</span>
+              <h3>Analytics where operations actually benefit</h3>
+              <p>Anomaly detection, thresholding, classification, and predictive signals are applied where they improve maintenance, monitoring, or response time.</p>
+              <ul class="clean-list">
+                <li>Anomaly detection for operational exceptions</li>
+                <li>Classification and thresholding for response workflows</li>
+                <li>Predictive signals where they reduce downtime or ambiguity</li>
+              </ul>
+              <span class="chip">Python | Analytics | Predictive Signals</span>
+            </div>
+          </article>
+          <article class="card card-support interactive-reveal-card digital-reveal-card digital-apps" tabindex="0" role="button" aria-expanded="false">
+            <div class="card-image-reveal" aria-hidden="true">
+              <img src="asset/Digi/3.png" alt="" loading="lazy" decoding="async" />
+              <div class="card-image-caption">
+                <span class="eyebrow">Web / Mobile Apps</span>
+                <h3>Operator views that reduce ambiguity</h3>
+              </div>
+            </div>
+            <div class="card-copy">
+              <span class="kicker">Web / Mobile Apps</span>
+              <h3>Operator views that reduce ambiguity</h3>
+              <p>Dashboards, alerts, mobile apps, and application flows that make device data usable for field and operations teams.</p>
+              <ul class="clean-list">
+                <li>Dashboards, alerts, and audit-friendly workflows</li>
+                <li>Mobile and web interfaces for operators and supervisors</li>
+                <li>Clear views of assets, actions, and field conditions</li>
+              </ul>
+              <span class="chip">Flutter | SwiftUI | React</span>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
-  </template>
+  </section>
+
+  <section id="process" class="anchor">
+    <div class="container">
+      <div class="process-head">
+        <div class="section-copy">
+          <span class="section-eyebrow">Delivery Model</span>
+          <h2>A process built to de-risk architecture before scale increases cost.</h2>
+          <p class="section-tag">The best results come from exposing hardware, connectivity, platform, and user-flow decisions early. The engagement model is designed to make those tradeoffs explicit before they become release friction.</p>
+        </div>
+
+        <figure class="process-visual">
+          <img src="asset/process/1.png" alt="Causeve process illustration showing the delivery model workflow" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+
+      <div class="process-layout">
+        <div class="process-grid">
+          <article class="process-card">
+            <span class="process-number">01</span>
+            <h3>Discover</h3>
+            <p>Define the device behavior, environment, data path, integration surfaces, and the operational decisions the product must support.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-number">02</span>
+            <h3>Prototype</h3>
+            <p>De-risk the radio layer, gateway path, provisioning assumptions, and the primary workflow before the build hardens.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-number">03</span>
+            <h3>Build</h3>
+            <p>Implement firmware, services, dashboards, and apps with observability, release structure, and supportability built in.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-number">04</span>
+            <h3>Deploy</h3>
+            <p>Prepare the system for rollout with update paths, field feedback loops, issue visibility, and operational refinement.</p>
+          </article>
+        </div>
+
+        <aside class="ops-card">
+          <span class="kicker">Operating Model</span>
+          <h3>What a healthy engagement usually needs.</h3>
+          <p>Teams typically bring Causeve in when the product spans hardware constraints, field connectivity, and downstream application behavior that cannot be solved in isolation.</p>
+          <ul class="ops-list">
+            <li>Architecture review before implementation reduces complexity</li>
+            <li>Provisioning, OTA, diagnostics, and fleet support accounted for early</li>
+            <li>Clear contracts between firmware, gateway, backend, and app surfaces</li>
+            <li>Leadership-level involvement through the technical decisions that matter</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
 
   <template id="tpl-about">
     <div class="about-tabs-container">
@@ -390,36 +2455,35 @@
       <div class="about-content">
         <div class="about-panel active" id="overview-panel" role="tabpanel" aria-labelledby="overview-tab">
           <h3>About Causeve Technologies</h3>
-          <p style="text-align: justify;">Causeve Technologies turns ideas into production-ready hardware, firmware, gateways, and apps. We specialise in low-power BLE on nRF52, robust Linux gateways, and secure data pipelines with OTA/DFU, provisioning, and observability built in. From PoC to MVP to fleet rollout, we design for reliability, maintainability, and scale—so your product moves from lab to field without surprises.Our approach balances rapid prototyping with production discipline: versioned releases, testable builds, and maintainable architectures that scale from PoC to MVP to fleet rollouts.</p>
-          <p style="text-align: justify;">Founded in 2021 by Ilango Thavamani and Parthiban Balaraman. Ilango brings 10+ years in automotive embedded software development; Parthiban brings 12+ years in IoT devices and product design. Together they lead hands-on delivery across firmware, electronics, and cloud.</p>
+          <p style="text-align: justify;">Since 2021, Causeve has focused on building connected products with more engineering continuity across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis is practical: build systems that can be deployed, updated, monitored, and operated with confidence.</p>
+          <p style="text-align: justify;">Founded by Ilango Thavamani and Parthiban Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, and connected product delivery.</p>
         </div>
         
         <div class="about-panel" id="expertise-panel" role="tabpanel" aria-labelledby="expertise-tab">
           <h3>Our Expertise</h3>
           <ul>
-            <li>End-to-end product delivery: firmware, electronics, gateways, cloud services, and modern apps</li>
-            <li>OTA/DFU pipelines, device provisioning, secure identity, and fleet management</li>
-            <li>Telemetry and observability with actionable dashboards and alerts</li>
-            <li>Compliance-minded engineering and production-grade release processes</li>
+            <li>Product engineering across firmware, wireless systems, Linux gateways, cloud services, and operator applications</li>
+            <li>Architecture and prototyping that can still support a later production path</li>
+            <li>Provisioning, OTA, diagnostics, and observability designed into delivery early</li>
+            <li>Senior technical leadership kept close to discovery, build, validation, and rollout</li>
           </ul>
         </div>
         
         <div class="about-panel" id="domains-panel" role="tabpanel" aria-labelledby="domains-tab">
           <h3>Application Domains</h3>
           <ul>
-            <li>Fire extinguisher monitoring & asset localization</li>
-            <li>BLE indoor navigation & attendance / workforce tracking</li>
-            <li>Asset tracking and GNSS/RFID infrastructure monitoring</li>
-            <li>Real-time ECG monitoring and connected health prototypes</li>
-            <li>Aquaculture water-quality monitoring with low-power sensing</li>
+            <li>Fire safety monitoring with maintenance visibility, tamper awareness, and compliance support</li>
+            <li>Indoor navigation, attendance, and asset tracking with BLE, GNSS, and RFID infrastructure</li>
+            <li>Connected health systems with real-time dashboards and continuous monitoring flows</li>
+            <li>Environmental and water-quality monitoring for distributed sensing deployments</li>
           </ul>
         </div>
         
         <div class="about-panel" id="stack-panel" role="tabpanel" aria-labelledby="stack-tab">
           <h3>Technology Stack</h3>
-          <p>nRF52 series, Zephyr / FreeRTOS, BLE, Mesh, and Wirepas Massive.</p>
-          <p>Linux gateways with Docker & MQTT, secure OTA, and observability.</p>
-          <p>Cloud integrations on Azure & AWS; services in Python & Node.</p>
+          <p>nRF52 series, Zephyr, FreeRTOS, BLE, Mesh, and Wirepas Massive.</p>
+          <p>Linux gateways with Docker, MQTT, secure OTA, and observability.</p>
+          <p>Cloud integrations on Azure and AWS, with services in Python and Node.</p>
           <p>Modern UIs in SwiftUI (iOS/iPadOS) and Flutter (cross-platform).</p>
           <div class="tech-grid">
             <span class="tech-chip">nRF52</span>
@@ -442,79 +2506,244 @@
         <div class="about-panel" id="highlights-panel" role="tabpanel" aria-labelledby="highlights-tab">
           <h3>Key Highlights</h3>
           <ul>
-            <li>From PoC to MVP to production: repeatable release pipelines with OTA + device provisioning</li>
-            <li>Robust gateway layer on Linux with Docker, secure MQTT, and monitoring</li>
-            <li>Clean, modern apps tailored for field teams and operators (SwiftUI, Flutter)</li>
+            <li>Reliability before novelty, with decisions judged against field behavior rather than prototype polish</li>
+            <li>System thinking across device, gateway, backend, and application layers</li>
+            <li>Clear release paths with provisioning, updates, diagnostics, and observability built in</li>
+            <li>Hands-on leadership through architecture, delivery, and rollout</li>
           </ul>
         </div>
       </div>
     </div>
   </template>
 
-  <!-- ONLY keep Portfolio + Contact as scrolling sections -->
-  <section id="portfolio" class="container anchor">
-    <h2>Portfolio</h2>
-    <p class="section-tag">Selected solutions shipped and in development.</p>
-    <div class="grid cols-3">
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/Indoor_Navigation.png" data-alt-src="assets/portfolio_img/Indoor_Navigation.png" alt="Indoor Navigation & Attendance" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Indoor Navigation &amp; Attendance</span>
-        <h3>BLE-based Indoor Navigation &amp; Attendance System</h3>
-        <p>Wayfinding and attendance tracking using beacons and mobile apps with privacy-aware design.</p>
-      </article>
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/Fire_extingusher.png" data-alt-src="assets/portfolio_img/Fire_extingusher.png" alt="Fire Extinguisher Monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Fire Safety</span>
-        <h3>Fire Extinguisher Monitoring</h3>
-        <p>BLE tags + docking stations + gateway + dashboard for status, tamper, and maintenance alerts.</p>
-      </article>
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/Gun_Point_Tracking.png" data-alt-src="assets/portfolio_img/Gun_Point_Tracking.png" alt="Gun Point Tracking" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Asset Tracking</span>
-        <h3>Gun Point Tracking</h3>
-        <p>High-reliability tracking with audit logs and zone-based alerts for sensitive assets.</p>
-      </article>
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/GNSS_RFID_Infra_Monitoring.png" data-alt-src="assets/portfolio_img/GNSS_RFID_Infra_Monitoring.png" alt="GNSS / RFID Infrastructure Monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Infrastructure</span>
-        <h3>GNSS / RFID-based Infrastructure Monitoring</h3>
-        <p>Hybrid GNSS + RFID to monitor critical assets and maintenance events across large sites.</p>
-      </article>
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/ECG_Real_time.png" data-alt-src="assets/portfolio_img/ECG_Real_time.png" alt="ECG Real-time Continuous Monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Healthcare</span>
-        <h3>ECG Real-time Continuous Monitoring</h3>
-        <p>Continuous ECG streaming with early-detection models and clinician dashboards.</p>
-      </article>
-      <article class="card">
-        <img class="thumb" src="asset/portfolio_img/Aquarium_Health.png" data-alt-src="assets/portfolio_img/Aquarium_Health.png" alt="Aquarium Health Monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}"/>
-        <span class="kicker">Aquaculture</span>
-        <h3>Aquarium Health Monitoring</h3>
-        <p>Sensor-based water-quality monitoring with alerting and guided remediation playbooks.</p>
-      </article>
+  <section id="about" class="anchor">
+    <div class="container">
+      <div class="about-head">
+        <div class="section-copy">
+          <span class="section-eyebrow">Company Approach</span>
+          <h2>Connected systems with more engineering continuity.</h2>
+          <p class="section-tag">Since 2021, Causeve has focused on building connected products across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis is practical: build systems that can be deployed, updated, monitored, and operated with confidence.</p>
+        </div>
+
+        <figure class="about-visual">
+          <img src="asset/about/1.png" alt="Causeve about-section illustration representing founder-led engineering continuity" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+      <div class="about-shell">
+        <div class="about-copy">
+          <p>Founded by Ilango Thavamani and Parthiban Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, and connected product delivery.</p>
+          <p>We keep device, gateway, backend, and application decisions aligned from prototype through rollout so the product behaves as one system instead of a collection of disconnected layers.</p>
+
+          <div class="principle-grid">
+            <article class="principle-card">
+              <strong>Reliability before novelty</strong>
+              <p>Decisions are judged against field behavior, not only prototype speed or interface polish.</p>
+            </article>
+            <article class="principle-card">
+              <strong>System thinking</strong>
+              <p>Device, gateway, backend, and operator workflows are designed as one coordinated system for the product.</p>
+            </article>
+            <article class="principle-card">
+              <strong>Clear release paths</strong>
+              <p>Provisioning, updates, diagnostics, and observability are part of delivery instead of deferred cleanup.</p>
+            </article>
+            <article class="principle-card">
+              <strong>Hands-on leadership</strong>
+              <p>Senior technical context stays close to the work through discovery, build, validation, and rollout.</p>
+            </article>
+          </div>
+
+          <div class="about-tech-strip">
+            <strong>Core platforms and tools</strong>
+            <div class="tech-grid">
+              <span class="tech-chip">nRF52</span>
+              <span class="tech-chip">Zephyr</span>
+              <span class="tech-chip">FreeRTOS</span>
+              <span class="tech-chip">BLE</span>
+              <span class="tech-chip">Mesh</span>
+              <span class="tech-chip">Wirepas</span>
+              <span class="tech-chip">Docker</span>
+              <span class="tech-chip">MQTT</span>
+              <span class="tech-chip">Azure</span>
+              <span class="tech-chip">AWS</span>
+              <span class="tech-chip">Python</span>
+              <span class="tech-chip">Node</span>
+              <span class="tech-chip">SwiftUI</span>
+              <span class="tech-chip">Flutter</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="founder-stack">
+          <article class="founder-card">
+            <span class="role">Founder</span>
+            <h3>Ilango Thavamani</h3>
+            <p>10+ years of experience in automotive embedded software development, with depth in firmware, reliability, and production-oriented engineering discipline.</p>
+          </article>
+
+          <article class="founder-card">
+            <span class="role">Founder</span>
+            <h3>Parthiban Balaraman</h3>
+            <p>12+ years of experience in IoT devices and product design, with hands-on involvement across electronics, connected systems, and delivery execution.</p>
+          </article>
+
+          <article class="founder-card">
+            <span class="role">Why teams engage</span>
+            <h3>Best fit projects tend to span more than one layer.</h3>
+            <p>Projects are strongest where success depends on coordination across firmware, wireless behavior, gateway logic, cloud integration, and the workflows used by actual operators.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="fit-grid">
+        <article class="fit-card">
+          <strong>Early-stage connected products</strong>
+          <p>Where the team needs architecture and prototyping that can still support a later production path.</p>
+        </article>
+        <article class="fit-card">
+          <strong>Operational monitoring platforms</strong>
+          <p>Where telemetry, alerting, visibility, and field action need to work together without ambiguity.</p>
+        </article>
+        <article class="fit-card">
+          <strong>Complex integration programs</strong>
+          <p>Where success depends on coordination across firmware, wireless behavior, gateway logic, cloud integration, and operator workflows.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="anchor section-dark portfolio-showcase">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow">Selected Work</span>
+        <h2>Portfolio</h2>
+        <p class="section-tag">Connected systems shaped around real devices, real environments, and real monitoring needs.</p>
+      </div>
+
+      <div class="work-grid">
+        <article class="case-card case-feature">
+          <div class="case-image">
+            <img src="asset/portfolio_img/Indoor_Navigation.png" data-alt-src="assets/portfolio_img/Indoor_Navigation.png" alt="Indoor Navigation and Attendance project" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Featured Program</span>
+            <h3>BLE-based Indoor Navigation and Attendance</h3>
+            <p>A system designed around beacon infrastructure, mobile interaction, and attendance workflows for indoor environments where location clarity and movement visibility matter.</p>
+            <div class="case-stack">
+              <span>BLE beacons</span>
+              <span>Mobile app</span>
+              <span>Attendance sync</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image">
+            <img src="asset/portfolio_img/Fire_extingusher.png" data-alt-src="assets/portfolio_img/Fire_extingusher.png" alt="Fire extinguisher monitoring system" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Fire Safety</span>
+            <h3>Fire Extinguisher Monitoring</h3>
+            <p>BLE tags, docking stations, gateway transport, and dashboards for status, tamper, and maintenance visibility.</p>
+            <div class="case-stack">
+              <span>BLE tags</span>
+              <span>Gateway</span>
+              <span>Alerts</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image">
+            <img src="asset/portfolio_img/Gun_Point_Tracking.png" data-alt-src="assets/portfolio_img/Gun_Point_Tracking.png" alt="Sensitive asset tracking platform" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Asset Control</span>
+            <h3>Sensitive Asset Tracking</h3>
+            <p>Tracking flows, movement history, and zone-oriented alerts for assets that require tighter accountability.</p>
+            <div class="case-stack">
+              <span>Tracking</span>
+              <span>Audit trail</span>
+              <span>Zone alerts</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image">
+            <img src="asset/portfolio_img/GNSS_RFID_Infra_Monitoring.png" data-alt-src="assets/portfolio_img/GNSS_RFID_Infra_Monitoring.png" alt="GNSS and RFID infrastructure monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Infrastructure</span>
+            <h3>GNSS and RFID Infrastructure Monitoring</h3>
+            <p>Hybrid location and event visibility for large sites where infrastructure state and asset movement intersect.</p>
+            <div class="case-stack">
+              <span>GNSS</span>
+              <span>RFID</span>
+              <span>Site telemetry</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image">
+            <img src="asset/portfolio_img/ECG_Real_time.png" data-alt-src="assets/portfolio_img/ECG_Real_time.png" alt="Real-time ECG monitoring platform" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Connected Health</span>
+            <h3>Real-time ECG Monitoring</h3>
+            <p>Continuous streaming, visualization, and monitoring flows for health-sensitive data that needs timely interpretation.</p>
+            <div class="case-stack">
+              <span>Streaming</span>
+              <span>Dashboards</span>
+              <span>Signal visibility</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-image">
+            <img src="asset/portfolio_img/Aquarium_Health.png" data-alt-src="assets/portfolio_img/Aquarium_Health.png" alt="Aquarium health monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
+          </div>
+          <div class="case-body">
+            <span class="case-tag">Environment</span>
+            <h3>Aquarium Health Monitoring</h3>
+            <p>Water-quality sensing, alerting, and guided response flows for remote environmental monitoring use cases.</p>
+            <div class="case-stack">
+              <span>Sensors</span>
+              <span>Alerts</span>
+              <span>Remote monitoring</span>
+            </div>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
   <section id="contact" class="contact anchor">
     <div class="container wrap">
       <div class="info">
-        <h3>Let’s build something reliable together</h3>
-        <p class="section-tag">Tell us about your firmware, IoT, or cloud project and we’ll get back within 1 business day.</p>
+        <div class="section-head">
+          <span class="section-eyebrow">Start a Project</span>
+          <h3>Bring the brief before the device, gateway, and application drift apart.</h3>
+          <p class="section-tag">If the work involves firmware, wireless connectivity, cloud integration, or operator-facing applications that need to behave as one product, send the project context early. We typically respond within 1 business day.</p>
+        </div>
 
         <h4 style="margin:12px 0 6px">Company Address</h4>
         <address style="font-style:normal;line-height:1.5">
           RR Tower IV,<br>Thiru Vi Ka Industrial Estate,<br>SIDCO Industrial Estate, Guindy<br>
           Chennai 600032, IN
         </address>
+        <p class="section-tag" style="margin-top:12px">Share the device constraints, connectivity expectations, target users, and rollout context. That is usually enough to start a useful conversation.</p>
 
         <div class="cta">
-          <a class="btn primary" href="mailto:inquiries@causeve.com">Email: inquiries@causeve.com</a>
+          <a class="btn primary" href="mailto:inquiries@causeve.com?subject=Project%20Inquiry">Email Causeve</a>
           <a class="btn ghost" href="https://wa.me/919962122876" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=13.014417,80.211611" target="_blank" rel="noopener noreferrer">Get Directions</a>
         </div>
       </div>
 
-      <iframe class="map-embed" title="Causeve Technologies LLP — Map"
+      <iframe class="map-embed" title="Causeve Technologies LLP Map"
               src="https://www.google.com/maps?q=13.014417,80.211611&z=16&output=embed"
               loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
@@ -522,8 +2751,8 @@
 
   <footer>
     <div class="container foot">
-      <small>© <span id="year"></span> Causeve Technologies LLP — All rights reserved.</small>
-      <small>Made with ♥ for firmware, IoT, cloud &amp; AI/ML.</small>
+      <small>&copy; <span id="year"></span> Causeve Technologies LLP. All rights reserved.</small>
+      <small>Built for firmware, IoT, cloud, and AI/ML.</small>
     </div>
   </footer>
   <div id="devtoolsGuard" aria-hidden="true">
@@ -570,6 +2799,35 @@
     // Helpers
     const qs = (s, r=document) => r.querySelector(s);
     const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+    const htmlEl = document.documentElement;
+
+    const themeToggles = qsa('.theme-toggle');
+    function getTheme(){
+      return htmlEl.dataset.theme === 'dark' ? 'dark' : 'light';
+    }
+    function updateThemeToggles(){
+      const dark = getTheme() === 'dark';
+      themeToggles.forEach((button) => {
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        const label = qs('.theme-toggle-label', button);
+        if (label) label.textContent = dark ? 'Light mode' : 'Dark mode';
+      });
+    }
+    function applyTheme(theme){
+      const nextTheme = theme === 'dark' ? 'dark' : 'light';
+      htmlEl.dataset.theme = nextTheme;
+      try {
+        localStorage.setItem('causeve-theme', nextTheme);
+      } catch (_) {}
+      updateThemeToggles();
+    }
+    themeToggles.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+      });
+    });
+    updateThemeToggles();
 
     // Header height -> CSS var (in case logo size changes)
     const setHeaderOffset = () => {
@@ -600,369 +2858,825 @@
     // Year
     qs('#year').textContent = new Date().getFullYear();
 
-    // About tabs functionality with deep linking
-    function initAboutTabs() {
-      const tabs = qsa('.about-tab');
-      const panels = qsa('.about-panel');
-      const container = qs('.about-content');
-      
-      function switchTab(targetTab) {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const doSwap = () => {
-          tabs.forEach(t => {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-          });
-          panels.forEach(p => p.classList.remove('active'));
-          const tab = qs(`[data-tab="${targetTab}"]`);
-          const panel = qs(`#${targetTab}-panel`);
-          if (tab && panel) {
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            panel.classList.add('active');
-            history.pushState(null, null, `#${targetTab}`);
-          }
-        };
-
-        if (!container || reduce) { doSwap(); return; }
-        container.classList.add('fade-out');
-        setTimeout(()=>{
-          doSwap();
-          container.classList.remove('fade-out');
-        }, 200);
-      }
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          const targetTab = tab.getAttribute('data-tab');
-          switchTab(targetTab);
-        });
-      });
-      
-      const hash = window.location.hash.replace('#', '');
-      const validTabs = ['overview', 'expertise', 'domains', 'stack', 'highlights'];
-      if (validTabs.includes(hash)) {
-        switchTab(hash);
-      }
-      
-      window.addEventListener('hashchange', () => {
-        const newHash = window.location.hash.replace('#', '');
-        if (validTabs.includes(newHash)) {
-          switchTab(newHash);
-        }
-      });
-    }
-    
-    // === HERO TABS (Home/Product/Digital/About rendered on the hero) ===
-    const hero = qs('main.hero');
-    const heroLead = qs('#heroLead');
-    const heroTitle = qs('#heroTitle');
-    const heroSub = qs('#heroSub');
-    const heroCta = qs('#heroCta');
-    const heroContent = qs('#heroContent');
-    const tabsNote = qs('#tabsNote');
-    const heroHeader = qs('#heroHeader');
-    const htmlEl = document.documentElement;
     const navIndicator = qs('#navIndicator');
-    const tplProduct = qs('#tpl-product');
-    const tplDigital = qs('#tpl-digital');
-    const tplAbout = qs('#tpl-about');
-    let currentMode = 'home';
 
-    const linkMap = new Map();
-    qsa('.menu a, #mobileNav a').forEach(a => {
-      const hash = a.getAttribute('href') || '';
-      const key = (hash.replace('#','') || 'home');
-      linkMap.set(key, a);
-      a.addEventListener('click', (e) => {
-        const m = a.getAttribute('data-mode');
-        if (m === 'home' || m === 'product' || m === 'digital' || m === 'about') {
-          e.preventDefault();
-          setHeroMode(m);
-          const h = (m==='home') ? 'home' : (m==='product' ? 'product-engineering' : (m==='digital' ? 'digital-engineering' : 'about'));
-          history.pushState({mode:m}, '', '#'+h);
-          requestAnimationFrame(()=>{
-            const keyNow = (m==='home') ? 'home' : (m==='product' ? 'product-engineering' : (m==='digital' ? 'digital-engineering' : 'about'));
-            setActiveMenu(keyNow);
-          });
-        }
+    (() => {
+      const hero = qs('main.hero');
+      if (!hero) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        htmlEl.classList.remove('hero-reveal-pending');
+        return;
+      }
+      requestAnimationFrame(() => {
+        window.setTimeout(() => {
+          htmlEl.classList.remove('hero-reveal-pending');
+        }, 220);
       });
-    });
+    })();
 
-    // Immediately reflect click on Portfolio/Contact links so background updates before scroll lands
-    // (Reverted) no special pending state on clicks; scroll spy will update
+    function setupInteractiveRevealCards(cardSelector, sectionSelector) {
+      const cards = qsa(cardSelector);
+      if (!cards.length) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const section = qs(sectionSelector);
+
+      function closeCards(){
+        cards.forEach((card) => {
+          card.classList.remove('is-open');
+          card.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      function openCard(card){
+        cards.forEach((item) => {
+          const isCurrent = item === card;
+          item.classList.toggle('is-open', isCurrent);
+          item.setAttribute('aria-expanded', String(isCurrent));
+        });
+      }
+
+      if (pointerFine) {
+        cards.forEach((card) => {
+          card.addEventListener('click', (event) => {
+            event.preventDefault();
+            closeCards();
+          });
+        });
+      } else {
+        cards.forEach((card) => {
+          card.addEventListener('click', (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (card.classList.contains('is-open')) {
+              closeCards();
+              return;
+            }
+            openCard(card);
+          });
+
+          card.addEventListener('keydown', (event) => {
+            if (event.key !== 'Enter' && event.key !== ' ') return;
+            event.preventDefault();
+            card.click();
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (event.target && event.target.closest && event.target.closest(cardSelector)) return;
+          closeCards();
+        });
+      }
+
+      if (!reduceMotion && section && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          const visible = entries.some((entry) => entry.isIntersecting);
+          if (!visible) closeCards();
+        }, { threshold: 0.18 });
+        observer.observe(section);
+      }
+    }
+
+    setupInteractiveRevealCards('.product-reveal-card', '#product-engineering');
+    setupInteractiveRevealCards('.digital-reveal-card', '#digital-engineering');
+
+    (() => {
+      const section = qs('#about');
+      const grid = qs('.principle-grid', section);
+      if (!section || !grid) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!('IntersectionObserver' in window)) return;
+
+      const cards = qsa('.principle-card', grid);
+      if (!cards.length) return;
+      let principleTimer = 0;
+      let sequenceStartTimer = 0;
+      let sequenceCleanupTimer = 0;
+      let isRevealed = false;
+
+      section.classList.add('is-about-sequence-primed');
+
+      function clearTimers(){
+        if (principleTimer) {
+          window.clearTimeout(principleTimer);
+          principleTimer = 0;
+        }
+        if (sequenceStartTimer) {
+          window.clearTimeout(sequenceStartTimer);
+          sequenceStartTimer = 0;
+        }
+        if (sequenceCleanupTimer) {
+          window.clearTimeout(sequenceCleanupTimer);
+          sequenceCleanupTimer = 0;
+        }
+      }
+
+      function resetStack(){
+        clearTimers();
+        isRevealed = false;
+        grid.classList.remove('is-stack-revealed', 'is-stack-primed', 'is-signal-pass');
+        section.classList.remove('is-about-sequence-active');
+        section.classList.add('is-about-sequence-primed');
+      }
+
+      function revealStack(){
+        if (isRevealed) return;
+        isRevealed = true;
+        clearTimers();
+        grid.classList.remove('is-stack-revealed', 'is-signal-pass');
+        section.classList.remove('is-about-sequence-active');
+        grid.classList.add('is-stack-primed');
+        section.classList.add('is-about-sequence-primed');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            grid.classList.add('is-stack-revealed');
+            grid.classList.add('is-signal-pass');
+          });
+        });
+        principleTimer = window.setTimeout(() => {
+          grid.classList.remove('is-stack-primed', 'is-signal-pass');
+          principleTimer = 0;
+        }, 560);
+        sequenceStartTimer = window.setTimeout(() => {
+          section.classList.add('is-about-sequence-active');
+          sequenceStartTimer = 0;
+        }, 260);
+        sequenceCleanupTimer = window.setTimeout(() => {
+          section.classList.remove('is-about-sequence-primed');
+          sequenceCleanupTimer = 0;
+        }, 980);
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio >= 0.28) {
+            revealStack();
+            return;
+          }
+          if (entry.intersectionRatio <= 0.05) {
+            resetStack();
+          }
+        });
+      }, {
+        threshold: [0, 0.05, 0.28],
+        rootMargin: '0px 0px -6% 0px'
+      });
+
+      observer.observe(section);
+    })();
 
     function setActiveMenu(key){
       qsa('.menu a').forEach(el => el.classList.remove('active-link'));
-      const desktopLink = qs(`.menu a[href="#${key}"]`) || (key==='home' ? qs('.menu a[href="#home"]') : null);
+      const desktopLink = qs(`.menu a[href="#${key}"]`) || qs('.menu a[href="#home"]');
       desktopLink?.classList.add('active-link');
-      // update mode color class on <html>
-      htmlEl.classList.remove('mode-home','mode-product','mode-digital','mode-about','mode-portfolio','mode-contact');
-      const cls = key==='home' ? 'mode-home' :
-                  key==='product-engineering' ? 'mode-product' :
-                  key==='digital-engineering' ? 'mode-digital' :
-                  key==='about' ? 'mode-about' :
-                  key==='portfolio' ? 'mode-portfolio' :
-                  key==='contact' ? 'mode-contact' : 'mode-home';
+
+      htmlEl.classList.remove('mode-home','mode-product','mode-digital','mode-process','mode-about','mode-portfolio','mode-contact');
+      const cls = key === 'home' ? 'mode-home' :
+                  key === 'product-engineering' ? 'mode-product' :
+                  key === 'digital-engineering' ? 'mode-digital' :
+                  key === 'process' ? 'mode-process' :
+                  key === 'about' ? 'mode-about' :
+                  key === 'portfolio' ? 'mode-portfolio' :
+                  key === 'contact' ? 'mode-contact' : 'mode-home';
       htmlEl.classList.add(cls);
-      // move nav indicator to the active link
-      const active = linkMap.get(key);
+
+      const active = desktopLink;
       const menu = qs('ul.menu');
       if (navIndicator && active && menu) {
         const r = active.getBoundingClientRect();
         const mr = menu.getBoundingClientRect();
         const pad = 6;
-        const left = r.left - mr.left - pad;
-        const top = r.top - mr.top - pad;
-        const width = r.width + pad*2;
-        const height = r.height + pad*2;
-        navIndicator.style.transform = `translate(${left}px, ${top}px)`;
-        navIndicator.style.width = width + 'px';
-        navIndicator.style.height = height + 'px';
-      }
-      // no separate tracker label; nav background indicates active page
-    }
-
-    function smoothSwap(container, updateFn){
-      if (!container){ updateFn(); return; }
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduce){ updateFn(); return; }
-      container.classList.add('fade-out');
-      setTimeout(()=>{
-        updateFn();
-        container.classList.remove('fade-out');
-      }, 200);
-    }
-
-    function setHeroMode(mode, opts = {}){
-      // Reset compact mode first
-      hero.classList.remove('about-compact');
-      currentMode = mode;
-
-      if (mode === 'home'){
-        smoothSwap(heroHeader, ()=>{
-          heroLead.textContent = 'Reliable Technology Partner For';
-          heroTitle.innerHTML = 'Firmware Development, IoT Integration, Cloud Integration with <span class="grad">AI &amp; ML</span>';
-          heroSub.textContent = 'From embedded firmware to connected platforms and intelligent analytics, we deliver end-to-end, production-ready products built for reliability.';
-          heroCta.style.display = '';
-          tabsNote.style.display = '';
-        });
-        smoothSwap(heroContent, ()=>{ heroContent.innerHTML = ''; });
-        setActiveMenu('home');
-      } else if (mode === 'product'){
-        smoothSwap(heroHeader, ()=>{
-          heroLead.textContent = 'Product Engineering';
-          heroTitle.textContent = 'Hardware-Close Software that Connects Reliably and Updates Safely.';
-          heroSub.textContent = 'Firmware, Drivers, and Connected Software that is maintainable and production-ready.';
-          heroCta.style.display = '';
-          heroCta.innerHTML = `<a class="btn primary" href="#portfolio">See Related Work</a>
-                               <a class="btn ghost" href="#contact">Start a Project</a>`;
-          tabsNote.style.display = 'none';
-        });
-        smoothSwap(heroContent, ()=>{
-          heroContent.innerHTML = '';
-          heroContent.appendChild(tplProduct.content.cloneNode(true));
-        });
-        setActiveMenu('product-engineering');
-      } else if (mode === 'digital'){
-        smoothSwap(heroHeader, ()=>{
-          heroLead.textContent = 'Digital Engineering';
-          heroTitle.textContent = 'From Device to Cloud to Apps,with Intelligence Built-in.';
-          heroSub.textContent = 'IoT data pipelines, AI/ML insights, and modern apps that scale.';
-          heroCta.style.display = '';
-          heroCta.innerHTML = `<a class="btn primary" href="#portfolio">See Related Work</a>
-                               <a class="btn ghost" href="#contact">Discuss Your Use Case</a>`;
-          tabsNote.style.display = 'none';
-        });
-        smoothSwap(heroContent, ()=>{
-          heroContent.innerHTML = '';
-          heroContent.appendChild(tplDigital.content.cloneNode(true));
-        });
-        setActiveMenu('digital-engineering');
-      } else if (mode === 'about'){
-        hero.classList.add('about-compact'); // compact spacing & fonts
-        smoothSwap(heroHeader, ()=>{
-          heroLead.textContent = 'About Us';
-          heroTitle.textContent = 'Engineering Reliable Connected Products Since 2021';
-          heroSub.textContent = 'We build end-to-end embedded and wireless solutions across IoT and BLE.';
-          heroCta.style.display = 'none';
-          tabsNote.style.display = 'none';
-        });
-        smoothSwap(heroContent, ()=>{
-          heroContent.innerHTML = '';
-          if (tplAbout) {
-            heroContent.appendChild(tplAbout.content.cloneNode(true));
-            initAboutTabs();
-          }
-        });
-        setActiveMenu('about');
-      }
-
-      hero.style.minHeight = '100svh';
-      if (opts.scroll !== false) {
-        window.scrollTo({ top: hero.offsetTop - (document.querySelector('header')?.offsetHeight || 0), behavior: 'auto' });
+        navIndicator.style.transform = `translate(${r.left - mr.left - pad}px, ${r.top - mr.top - pad}px)`;
+        navIndicator.style.width = r.width + pad * 2 + 'px';
+        navIndicator.style.height = r.height + pad * 2 + 'px';
       }
     }
 
-    // Initialize from hash or default to home
-    function initFromHash(initial = false){
-      const raw = location.hash;
-      const hash = (raw && raw.length) ? raw.replace('#','') : (initial ? 'home' : '');
-      if (hash === 'product-engineering') setHeroMode('product', {scroll:false});
-      else if (hash === 'digital-engineering') setHeroMode('digital', {scroll:false});
-      else if (hash === 'about' || hash === 'overview' || hash === 'expertise' || hash === 'domains' || hash === 'stack' || hash === 'highlights') {
-        setHeroMode('about', {scroll:false});
-      }
-      else if (hash === 'home') setHeroMode('home', {scroll:false});
-      else if (initial) setHeroMode('home', {scroll:false});
-    }
-    addEventListener('hashchange', () => { initFromHash(false); requestAnimationFrame(()=>{
-      const raw = location.hash.replace('#','');
-      const key = raw||'home';
-      setActiveMenu(key);
-    }); });
-    initFromHash(true);
-    // Ensure nav indicator is positioned on first paint
-    requestAnimationFrame(()=>{
-      const raw = location.hash.replace('#','') || 'home';
-      const key = (raw==='product-engineering'||raw==='digital-engineering'||raw==='about'||raw==='home') ? raw : 'home';
-      setActiveMenu(key);
-    });
-
-    // SCROLLSPY for only Portfolio + Contact sections (robust viewport check)
     (() => {
-      const ids = ['portfolio','contact'];
-      const sections = ids.map(id => ({ id, el: qs('#'+id) })).filter(s=>s.el);
-      let spy;
-      function headerH(){ return (qs('header')?.offsetHeight || 64); }
+      const ids = ['home', 'product-engineering', 'digital-engineering', 'process', 'about', 'portfolio', 'contact'];
+      const sections = ids.map(id => qs('#' + id)).filter(Boolean);
       let sectionPositions = [];
-      function modeToKey(){
-        return currentMode==='home' ? 'home' :
-               currentMode==='product' ? 'product-engineering' :
-               currentMode==='digital' ? 'digital-engineering' :
-               'about';
+      let ticking = false;
+
+      function headerH(){
+        return (qs('header')?.offsetHeight || 64);
       }
 
       function recomputeOffsets(){
-        sectionPositions = sections.map(s=>({ id:s.id, top: s.el.getBoundingClientRect().top + window.scrollY }));
+        sectionPositions = sections.map(section => ({
+          id: section.id,
+          top: section.getBoundingClientRect().top + window.scrollY
+        }));
       }
 
-      function setActiveByScroll(){
-        const y = window.scrollY + headerH() + 4;
-        let chosen = null;
-        for (const sp of sectionPositions){
-          if (y >= sp.top) chosen = sp.id;
+      function updateActiveSection(){
+        const y = window.scrollY + headerH() + 12;
+        let active = 'home';
+        for (const section of sectionPositions) {
+          if (y >= section.top) active = section.id;
         }
-        if (chosen) setActiveMenu(chosen); else setActiveMenu(modeToKey());
+        setActiveMenu(active);
       }
 
-      function initSpy(){
-        if (spy) sections.forEach(s => spy.unobserve(s.el));
-        spy = new IntersectionObserver(()=>{ setActiveByScroll(); },{
-          root:null, rootMargin:`-${headerH()+6}px 0px 0px 0px`,
-          threshold:[0,0.2,0.4,0.6,0.8,1]
+      function onScroll(){
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
         });
-        sections.forEach(s => spy.observe(s.el));
       }
-      initSpy();
-      let ticking=false;
+
       recomputeOffsets();
-      function onScroll(){ if (!ticking){ ticking=true; requestAnimationFrame(()=>{ setActiveByScroll(); ticking=false; }); } }
+      updateActiveSection();
+
       addEventListener('scroll', onScroll, { passive: true });
-      addEventListener('resize', ()=>{ initSpy(); recomputeOffsets(); setActiveByScroll(); });
-      setTimeout(()=>{ recomputeOffsets(); setActiveByScroll(); }, 0);
+      addEventListener('resize', () => {
+        recomputeOffsets();
+        updateActiveSection();
+      });
+      addEventListener('orientationchange', () => {
+        recomputeOffsets();
+        updateActiveSection();
+      });
+      addEventListener('hashchange', () => {
+        requestAnimationFrame(() => {
+          recomputeOffsets();
+          updateActiveSection();
+        });
+      });
+      setTimeout(() => {
+        recomputeOffsets();
+        updateActiveSection();
+      }, 0);
     })();
 
-    // === Hero Canvas Animation (lighter) ===
+    // === Hero Canvas Background (interactive mesh) ===
     (() => {
       const canvas = document.getElementById('heroCanvas');
       if (!canvas) return;
+      const heroEl = document.querySelector('main.hero') || canvas;
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const ctx = canvas.getContext('2d', { alpha: true });
 
       const BASE = {
-        SPEED: 1.45, DPR_CAP: 1.25, MAX_NODES: 760, MIN_NODES: 200, DENSITY_DIV: 42000,
-        MAX_DIST_MIN: 120, MAX_DIST_MAX: 190, LINE_ALPHA_MAX: 0.24, LINE_W_MIN: 1.2, LINE_W_GAIN: 1.1,
-        NODE_R: 4.8, NODE_FILL: 'rgba(20,160,150,1)', NODE_STROKE: 'rgba(255,255,255,0.95)', NODE_STROKE_W: 2.1
+        DPR_CAP: 1.25,
+        COUNT_DIV: 9800,
+        MIN_NODES: 34,
+        MAX_NODES: 58,
+        MAX_DIST_MIN: 130,
+        MAX_DIST_MAX: 210,
+        SPEED: 0.30,
+        POINTER_RADIUS: 220,
+        POINTER_LINK_RADIUS: 168,
+        POINTER_PULL: 0.015,
+        POINTER_EASE: 0.14,
+        FOCUS_X: 0.74,
+        FOCUS_Y: 0.50
       };
       const MOBILE = {
-        SPEED: 1.0, DPR_CAP: 1.0, MAX_NODES: 400, MIN_NODES: 120, DENSITY_DIV: 52000,
-        MAX_DIST_MIN: 100, MAX_DIST_MAX: 160, LINE_ALPHA_MAX: 0.2, LINE_W_MIN: 1.0, LINE_W_GAIN: 1.0,
-        NODE_R: 3.8, NODE_FILL: 'rgba(20,160,150,1)', NODE_STROKE: 'rgba(255,255,255,0.9)', NODE_STROKE_W: 1.9
+        DPR_CAP: 1.0,
+        COUNT_DIV: 11800,
+        MIN_NODES: 24,
+        MAX_NODES: 38,
+        MAX_DIST_MIN: 110,
+        MAX_DIST_MAX: 170,
+        SPEED: 0.24,
+        POINTER_RADIUS: 150,
+        POINTER_LINK_RADIUS: 120,
+        POINTER_PULL: 0.010,
+        POINTER_EASE: 0.12,
+        FOCUS_X: 0.62,
+        FOCUS_Y: 0.42
       };
 
-      const HALO_R = 14, halo = document.createElement('canvas'); halo.width = halo.height = HALO_R*2;
-      { const hctx = halo.getContext('2d'); const g = hctx.createRadialGradient(HALO_R,HALO_R,0,HALO_R,HALO_R,HALO_R);
-        g.addColorStop(0,'rgba(72,209,204,0.35)'); g.addColorStop(1,'rgba(72,209,204,0)'); hctx.fillStyle=g;
-        hctx.beginPath(); hctx.arc(HALO_R,HALO_R,HALO_R,0,Math.PI*2); hctx.fill(); }
+      let cfg = { ...BASE };
+      let w = 0, h = 0, dpr = 1;
+      let nodes = [];
+      let isDocVisible = document.visibilityState !== 'hidden';
+      let isHeroVisible = true;
+      const intro = reduceMotion ? null : {
+        startedAt: performance.now() + 30,
+        duration: 1180,
+        active: true,
+        direction: 1
+      };
+      let lastIntroAt = reduceMotion ? 0 : performance.now();
+      const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
+      const hotspots = [];
+      const MAX_HOTSPOTS = 10;
 
-      let cfg = {...BASE};
-      let w=0,h=0,dpr=1,N=0,nodes=[];
+      const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+      const hypot = (x, y) => Math.hypot(x, y);
+
+      function startIntro(delay = 0, direction = -1){
+        if (!intro) return;
+        const now = performance.now();
+        if (now - lastIntroAt < 900) return;
+        intro.startedAt = now + delay;
+        intro.active = true;
+        intro.direction = direction;
+        lastIntroAt = now;
+      }
+
+      function setPointerTarget(x, y, active){
+        pointer.tx = x;
+        pointer.ty = y;
+        pointer.active = !!active;
+      }
+
+      function findHotspotIndexAt(x, y){
+        return hotspots.findIndex((hotspot) => hypot(x - hotspot.x, y - hotspot.y) < 22);
+      }
+
+      function addHotspot(x, y){
+        if (hotspots.length >= MAX_HOTSPOTS) hotspots.shift();
+        let nearest = null;
+        let nearestDist = Infinity;
+        nodes.forEach((node) => {
+          const dist = hypot(node.x - x, node.y - y);
+          if (dist < nearestDist) {
+            nearestDist = dist;
+            nearest = node;
+          }
+        });
+        hotspots.push({
+          x,
+          y,
+          vx: nearest ? nearest.vx : (Math.random() - 0.5) * 0.22,
+          vy: nearest ? nearest.vy : (Math.random() - 0.5) * 0.22,
+          accent: nearest ? nearest.accent : hotspots.length % 3 === 0,
+          pointerBoost: 0,
+          pulseStart: performance.now(),
+          links: []
+        });
+      }
+
+      function removeHotspotAt(index){
+        if (index < 0 || index >= hotspots.length) return;
+        hotspots.splice(index, 1);
+      }
+
+      function resetPointer(){
+        setPointerTarget(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, false);
+        pointer.x = pointer.tx;
+        pointer.y = pointer.ty;
+      }
 
       function sizeFromHero(){
-        const rect = (document.querySelector('main.hero') || canvas).getBoundingClientRect();
+        const rect = heroEl.getBoundingClientRect();
         const cw = Math.max(1, Math.floor(rect.width || innerWidth));
         const ch = Math.max(1, Math.floor(rect.height || innerHeight));
-        cfg = (cw <= 640) ? {...MOBILE} : {...BASE};
+        cfg = (cw <= 640) ? { ...MOBILE } : { ...BASE };
         dpr = Math.min(devicePixelRatio || 1, cfg.DPR_CAP);
-        canvas.style.width = cw+'px'; canvas.style.height = ch+'px';
-        canvas.width = Math.floor(cw*dpr); canvas.height = Math.floor(ch*dpr);
-        ctx.setTransform(dpr,0,0,dpr,0,0); w=cw; h=ch;
-        N = Math.max(cfg.MIN_NODES, Math.min(cfg.MAX_NODES, Math.round((w*h)/cfg.DENSITY_DIV)+22));
+        canvas.style.width = cw + 'px';
+        canvas.style.height = ch + 'px';
+        canvas.width = Math.floor(cw * dpr);
+        canvas.height = Math.floor(ch * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        w = cw;
+        h = ch;
       }
-      function initNetwork(){
-        nodes = Array.from({length:N},()=>({x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-0.5)*0.12, vy:(Math.random()-0.5)*0.12 }));
+
+      function createNodes(){
+        const count = Math.max(cfg.MIN_NODES, Math.min(cfg.MAX_NODES, Math.round((w * h) / cfg.COUNT_DIV)));
+        nodes = Array.from({ length: count }, (_, index) => {
+          const rightBias = Math.random() < 0.56;
+          const x = rightBias ? w * (0.30 + Math.random() * 0.70) : Math.random() * w * 0.82;
+          return {
+            x,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.16,
+            vy: (Math.random() - 0.5) * 0.16,
+            accent: index % 6 === 0,
+            pointerBoost: 0
+          };
+        });
       }
-      function drawBg(){
-        const bg = ctx.createLinearGradient(0,0,w,h); bg.addColorStop(0,'#eef9f7'); bg.addColorStop(1,'#e3f4f2');
-        ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
+
+      function resizeMesh(){
+        sizeFromHero();
+        createNodes();
+        resetPointer();
+        refreshHotspotLinks();
+        drawMesh(true);
       }
-      function draw(){
-        drawBg();
-        for(const n of nodes){
-          n.x+=n.vx*cfg.SPEED; n.y+=n.vy*cfg.SPEED;
-          if(n.x<-50)n.x=w+50; else if(n.x>w+50)n.x=-50;
-          if(n.y<-50)n.y=h+50; else if(n.y>h+50)n.y=-50;
+
+      function getIntroState(now = performance.now()){
+        if (!intro || !intro.active) {
+          return {
+            active: false,
+            progress: 1,
+            headX: w * 1.2,
+            band: Math.max(120, w * 0.18)
+          };
         }
-        const maxDist = Math.min(cfg.MAX_DIST_MAX, Math.max(cfg.MAX_DIST_MIN, Math.hypot(w,h)*0.12)), max2=maxDist*maxDist;
-        for(let i=0;i<N;i++){ const a=nodes[i];
-          for(let j=i+1;j<N;j++){ const b=nodes[j]; const dx=a.x-b.x, dy=a.y-b.y, d2=dx*dx+dy*dy;
-            if(d2<max2){ const d=Math.sqrt(d2), t=1-d/maxDist, al=Math.min(cfg.LINE_ALPHA_MAX, 0.10+t*0.22);
-              ctx.strokeStyle=`rgba(15,118,110,${al})`; ctx.lineWidth=cfg.LINE_W_MIN+t*cfg.LINE_W_GAIN; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }
+
+        const progress = clamp((now - intro.startedAt) / intro.duration, 0, 1);
+        if (progress >= 1) intro.active = false;
+        return {
+          active: intro.active,
+          progress,
+          headX: intro.direction === -1
+            ? w * (1.12 - progress * 1.28)
+            : w * (-0.12 + progress * 1.28),
+          band: Math.max(120, w * 0.18)
+        };
+      }
+
+      function revealForX(x, introState){
+        if (!introState.active) return 1;
+        const revealLead = introState.headX + introState.band * 0.76;
+        const revealTrail = introState.band * 2.6;
+        return clamp((revealLead - x) / revealTrail, 0, 1);
+      }
+
+      function pulseForPoint(x, y, introState){
+        if (!introState.active) return 0;
+        const horizontal = clamp(1 - Math.abs(x - introState.headX) / introState.band, 0, 1);
+        const vertical = clamp(1 - Math.abs(y - h * 0.48) / (h * 0.44), 0, 1);
+        return horizontal * vertical;
+      }
+
+      function drawAmbientWash(introState){
+        const glow = ctx.createRadialGradient(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, Math.max(18, w * 0.02), w * cfg.FOCUS_X, h * cfg.FOCUS_Y, Math.max(220, w * 0.32));
+        glow.addColorStop(0, 'rgba(95,230,221,0.14)');
+        glow.addColorStop(0.32, 'rgba(26,183,173,0.11)');
+        glow.addColorStop(0.62, 'rgba(246,182,84,0.08)');
+        glow.addColorStop(1, 'rgba(95,230,221,0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, w, h);
+
+        const fullWash = ctx.createLinearGradient(0, 0, w, 0);
+        fullWash.addColorStop(0, 'rgba(95,230,221,0.045)');
+        fullWash.addColorStop(0.56, 'rgba(255,255,255,0)');
+        fullWash.addColorStop(1, 'rgba(246,182,84,0.035)');
+        ctx.fillStyle = fullWash;
+        ctx.fillRect(0, 0, w, h);
+
+        if (introState.active) {
+          const pulseGlow = ctx.createRadialGradient(
+            introState.headX,
+            h * 0.48,
+            0,
+            introState.headX,
+            h * 0.48,
+            introState.band * 1.4
+          );
+          pulseGlow.addColorStop(0, 'rgba(110,244,233,0.22)');
+          pulseGlow.addColorStop(0.28, 'rgba(110,244,233,0.13)');
+          pulseGlow.addColorStop(0.48, 'rgba(246,182,84,0.12)');
+          pulseGlow.addColorStop(1, 'rgba(110,244,233,0)');
+          ctx.fillStyle = pulseGlow;
+          ctx.fillRect(0, 0, w, h);
+        }
+      }
+
+      function updatePointer(){
+        pointer.x += (pointer.tx - pointer.x) * cfg.POINTER_EASE;
+        pointer.y += (pointer.ty - pointer.y) * cfg.POINTER_EASE;
+      }
+
+      function updateNodes(){
+        const targetX = pointer.active ? pointer.x : w * cfg.FOCUS_X;
+        const targetY = pointer.active ? pointer.y : h * cfg.FOCUS_Y;
+
+        nodes.forEach((node) => {
+          function applyInfluence(originX, originY, radius, pullScale){
+            const dx = originX - node.x;
+            const dy = originY - node.y;
+            const dist = hypot(dx, dy) || 1;
+            const influence = clamp(1 - dist / radius, 0, 1);
+            if (influence > 0) {
+              node.x += (dx / dist) * cfg.POINTER_PULL * pullScale * influence * Math.min(24, dist);
+              node.y += (dy / dist) * cfg.POINTER_PULL * pullScale * influence * Math.min(24, dist);
+            }
+            return influence;
+          }
+
+          const ambientRadius = Math.min(cfg.POINTER_RADIUS * 0.7, Math.max(140, w * 0.18));
+          const ambientBoost = applyInfluence(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, ambientRadius, pointer.active ? 0.14 : 0.30);
+          const pointerBoost = pointer.active ? applyInfluence(targetX, targetY, cfg.POINTER_RADIUS, 1) : 0;
+
+          node.pointerBoost = pointer.active ? pointerBoost : ambientBoost * 0.36;
+
+          node.x += node.vx * cfg.SPEED;
+          node.y += node.vy * cfg.SPEED;
+
+          if (node.x < -20) node.x = w + 20;
+          if (node.x > w + 20) node.x = -20;
+          if (node.y < -20) node.y = h + 20;
+          if (node.y > h + 20) node.y = -20;
+        });
+      }
+
+      function updateHotspots(){
+        const targetX = pointer.active ? pointer.x : w * cfg.FOCUS_X;
+        const targetY = pointer.active ? pointer.y : h * cfg.FOCUS_Y;
+
+        hotspots.forEach((hotspot) => {
+          function applyInfluence(originX, originY, radius, pullScale){
+            const dx = originX - hotspot.x;
+            const dy = originY - hotspot.y;
+            const dist = hypot(dx, dy) || 1;
+            const influence = clamp(1 - dist / radius, 0, 1);
+            if (influence > 0) {
+              hotspot.x += (dx / dist) * cfg.POINTER_PULL * pullScale * influence * Math.min(24, dist);
+              hotspot.y += (dy / dist) * cfg.POINTER_PULL * pullScale * influence * Math.min(24, dist);
+            }
+            return influence;
+          }
+
+          const ambientRadius = Math.min(cfg.POINTER_RADIUS * 0.7, Math.max(140, w * 0.18));
+          const ambientBoost = applyInfluence(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, ambientRadius, pointer.active ? 0.14 : 0.30);
+          const pointerBoost = pointer.active ? applyInfluence(targetX, targetY, cfg.POINTER_RADIUS, 1) : 0;
+          hotspot.pointerBoost = pointer.active ? pointerBoost : ambientBoost * 0.36;
+
+          hotspot.x += hotspot.vx * cfg.SPEED;
+          hotspot.y += hotspot.vy * cfg.SPEED;
+
+          if (hotspot.x < -20) hotspot.x = w + 20;
+          if (hotspot.x > w + 20) hotspot.x = -20;
+          if (hotspot.y < -20) hotspot.y = h + 20;
+          if (hotspot.y > h + 20) hotspot.y = -20;
+        });
+      }
+
+      function refreshHotspotLinks(){
+        if (!hotspots.length) {
+          return;
+        }
+
+        const radius = cfg.POINTER_LINK_RADIUS * 1.06;
+        const maxLinks = w <= 640 ? 8 : 10;
+        hotspots.forEach((hotspot) => {
+          hotspot.links = nodes
+            .map((node, index) => ({
+              index,
+              distance: hypot(node.x - hotspot.x, node.y - hotspot.y)
+            }))
+            .filter((item) => item.distance < radius)
+            .sort((a, b) => a.distance - b.distance)
+            .slice(0, maxLinks)
+            .map((item) => ({
+              index: item.index,
+              strength: clamp(1 - item.distance / radius, 0, 1)
+            }));
+        });
+      }
+
+      function drawPointerField(){
+        if (!pointer.active) return;
+
+        const glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, cfg.POINTER_RADIUS * 0.82);
+        glow.addColorStop(0, 'rgba(95,230,221,0.16)');
+        glow.addColorStop(0.46, 'rgba(246,182,84,0.09)');
+        glow.addColorStop(1, 'rgba(95,230,221,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(pointer.x, pointer.y, cfg.POINTER_RADIUS * 0.82, 0, Math.PI * 2);
+        ctx.fill();
+
+        nodes.forEach((node) => {
+          const dx = node.x - pointer.x;
+          const dy = node.y - pointer.y;
+          const dist = hypot(dx, dy);
+          if (dist >= cfg.POINTER_LINK_RADIUS) return;
+
+          const t = 1 - dist / cfg.POINTER_LINK_RADIUS;
+          ctx.strokeStyle = node.accent
+            ? `rgba(246,182,84,${(0.08 + t * 0.22).toFixed(3)})`
+            : `rgba(95,230,221,${(0.09 + t * 0.26).toFixed(3)})`;
+          ctx.lineWidth = 1 + t * 1.35;
+          ctx.beginPath();
+          ctx.moveTo(pointer.x, pointer.y);
+          ctx.lineTo(node.x, node.y);
+          ctx.stroke();
+        });
+      }
+
+      function drawHotspotField(hotspot, now){
+        if (!hotspot) return;
+
+        const hotspotRadius = cfg.POINTER_RADIUS * 0.96;
+        const glow = ctx.createRadialGradient(hotspot.x, hotspot.y, 0, hotspot.x, hotspot.y, hotspotRadius * 0.9);
+        if (hotspot.accent) {
+          glow.addColorStop(0, 'rgba(246,182,84,0.15)');
+          glow.addColorStop(0.36, 'rgba(246,182,84,0.10)');
+          glow.addColorStop(1, 'rgba(246,182,84,0)');
+        } else {
+          glow.addColorStop(0, 'rgba(95,230,221,0.15)');
+          glow.addColorStop(0.36, 'rgba(95,230,221,0.11)');
+          glow.addColorStop(1, 'rgba(95,230,221,0)');
+        }
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(hotspot.x, hotspot.y, hotspotRadius * 0.9, 0, Math.PI * 2);
+        ctx.fill();
+
+        hotspot.links.forEach((link) => {
+          const node = nodes[link.index];
+          if (!node) return;
+          const t = link.strength;
+          ctx.strokeStyle = node.accent
+            ? `rgba(246,182,84,${(0.12 + t * 0.26).toFixed(3)})`
+            : `rgba(95,230,221,${(0.12 + t * 0.28).toFixed(3)})`;
+          ctx.lineWidth = 1.15 + t * 1.55;
+          ctx.beginPath();
+          ctx.moveTo(hotspot.x, hotspot.y);
+          ctx.lineTo(node.x, node.y);
+          ctx.stroke();
+        });
+
+        const elapsed = hotspot.pulseStart < 0 ? 9999 : now - hotspot.pulseStart;
+        const duration = 900;
+        if (elapsed < duration) {
+          const t = elapsed / duration;
+          const radius = 14 + hotspotRadius * 0.92 * t;
+          const alpha = (1 - t) * 0.34;
+          ctx.strokeStyle = hotspot.accent
+            ? `rgba(246,182,84,${alpha.toFixed(3)})`
+            : `rgba(95,230,221,${alpha.toFixed(3)})`;
+          ctx.lineWidth = 1.4 + (1 - t) * 1.4;
+          ctx.beginPath();
+          ctx.arc(hotspot.x, hotspot.y, radius, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = hotspot.accent ? 'rgba(246,182,84,0.22)' : 'rgba(96,238,228,0.24)';
+        ctx.beginPath();
+        ctx.arc(hotspot.x, hotspot.y, hotspot.accent ? 13.6 : 12.8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = hotspot.accent ? 'rgba(246,182,84,0.92)' : 'rgba(96,238,228,0.94)';
+        ctx.beginPath();
+        ctx.arc(hotspot.x, hotspot.y, hotspot.accent ? 5.2 : 4.9, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function drawMesh(skipMotion, now = performance.now()){
+        ctx.clearRect(0, 0, w, h);
+        const darkTheme = getTheme() === 'dark';
+        const introState = getIntroState(now);
+        drawAmbientWash(introState);
+
+        if (!skipMotion) {
+          updatePointer();
+          updateNodes();
+          updateHotspots();
+        }
+        refreshHotspotLinks();
+
+        const hotspotLinkBoosts = new Map();
+        hotspots.forEach((hotspot) => {
+          hotspot.links.forEach((link) => {
+            const current = hotspotLinkBoosts.get(link.index) || 0;
+            if (link.strength > current) hotspotLinkBoosts.set(link.index, link.strength);
+          });
+        });
+
+        const maxDistance = Math.min(cfg.MAX_DIST_MAX, Math.max(cfg.MAX_DIST_MIN, Math.min(w, h) * 0.3));
+        const maxDistanceSq = maxDistance * maxDistance;
+
+        for (let i = 0; i < nodes.length; i += 1) {
+          const a = nodes[i];
+
+          for (let j = i + 1; j < nodes.length; j += 1) {
+            const b = nodes[j];
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+            const distanceSq = dx * dx + dy * dy;
+            if (distanceSq >= maxDistanceSq) continue;
+
+            const distance = Math.sqrt(distanceSq);
+            const avgX = (a.x + b.x) * 0.5;
+            const avgY = (a.y + b.y) * 0.5;
+            const regionBoost = avgX > w * 0.62 ? 1.24 : avgX > w * 0.34 ? 1.02 : 0.82;
+            const pointerBoost = pointer.active
+              ? clamp(1 - hypot(avgX - pointer.x, avgY - pointer.y) / (cfg.POINTER_RADIUS * 1.16), 0, 1)
+              : 0;
+            const alpha = 0.08 + (1 - distance / maxDistance) * 0.2;
+            const introReveal = revealForX(avgX, introState);
+            const introPulse = pulseForPoint(avgX, avgY, introState);
+            const introVisibility = introState.active
+              ? clamp(introReveal * 1.06 + introPulse * 0.78, 0, 1)
+              : 1;
+            const tunedAlpha = (alpha * regionBoost + pointerBoost * 0.16) * introVisibility + introPulse * 0.12;
+            const hasAccent = a.accent || b.accent;
+
+            ctx.strokeStyle = hasAccent
+              ? `rgba(246,182,84,${Math.min(0.42, tunedAlpha * 0.98).toFixed(3)})`
+              : darkTheme
+                ? `rgba(43,156,189,${Math.min(0.56, tunedAlpha * 1.14).toFixed(3)})`
+                : `rgba(34,129,151,${Math.min(0.52, tunedAlpha * 1.06).toFixed(3)})`;
+            ctx.lineWidth =
+              (0.95 + (1 - distance / maxDistance) * 1.02) * Math.max(0.86, regionBoost) +
+              pointerBoost * 0.7 +
+              introPulse * 0.82;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
           }
         }
-        for(const n of nodes) ctx.drawImage(halo, n.x-HALO_R, n.y-HALO_R);
-        ctx.lineWidth=cfg.NODE_STROKE_W; ctx.strokeStyle=cfg.NODE_STROKE; ctx.fillStyle=cfg.NODE_FILL;
-        for(const n of nodes){ ctx.beginPath(); ctx.arc(n.x,n.y,cfg.NODE_R,0,Math.PI*2); ctx.fill(); ctx.stroke(); }
+
+        drawPointerField();
+        hotspots.forEach((hotspot) => drawHotspotField(hotspot, now));
+
+        nodes.forEach((node, index) => {
+          const regionBoost = node.x > w * 0.62 ? 1.28 : node.x > w * 0.34 ? 1.06 : 0.86;
+          const hoverPulse = pointer.active ? node.pointerBoost * 0.48 : node.pointerBoost * 0.14;
+          const pinPulse = (hotspotLinkBoosts.get(index) || 0) * 0.82;
+          const introReveal = revealForX(node.x, introState);
+          const introPulse = pulseForPoint(node.x, node.y, introState);
+          const introVisibility = introState.active
+            ? clamp(introReveal * 1.08 + introPulse * 0.74, 0, 1)
+            : 1;
+          const outerRadius =
+            (node.accent ? 8.8 : 6.4) * Math.max(0.88, regionBoost) * (0.72 + introVisibility * 0.28) +
+            hoverPulse * 5.1 +
+            pinPulse * 7.1 +
+            introPulse * 2.6;
+          const innerRadius =
+            (node.accent ? 2.35 : 1.85) * Math.max(0.92, regionBoost) * (0.78 + introVisibility * 0.22) +
+            hoverPulse * 1.24 +
+            pinPulse * 1.72 +
+            introPulse * 0.82;
+
+          ctx.beginPath();
+          ctx.fillStyle = node.accent
+            ? `rgba(246,182,84,${Math.min(0.72, (0.14 * regionBoost + hoverPulse * 0.16 + pinPulse * 0.24) * introVisibility + introPulse * 0.22).toFixed(3)})`
+            : darkTheme
+              ? `rgba(74,198,222,${Math.min(0.74, (0.18 * regionBoost + hoverPulse * 0.18 + pinPulse * 0.24) * introVisibility + introPulse * 0.24).toFixed(3)})`
+              : `rgba(79,186,203,${Math.min(0.68, (0.18 * regionBoost + hoverPulse * 0.18 + pinPulse * 0.24) * introVisibility + introPulse * 0.22).toFixed(3)})`;
+          ctx.arc(node.x, node.y, outerRadius, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.fillStyle = node.accent
+            ? `rgba(246,182,84,${Math.min(0.98, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.16).toFixed(3)})`
+            : darkTheme
+              ? `rgba(23,163,193,${Math.min(0.98, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.18).toFixed(3)})`
+              : `rgba(11,143,136,${Math.min(0.96, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.16).toFixed(3)})`;
+          ctx.arc(node.x, node.y, innerRadius, 0, Math.PI * 2);
+          ctx.fill();
+        });
       }
-      function hardResize(){ sizeFromHero(); initNetwork(); drawBg(); }
-      let last=0; const FRAME_MS=1000/60;
-      function loop(now=performance.now()){
+
+      let last = 0;
+      const FRAME_MS = 1000 / 60;
+      function loop(now = performance.now()){
         if (reduceMotion) return;
         requestAnimationFrame(loop);
         if (!isDocVisible || !isHeroVisible) return;
-        if(now-last<FRAME_MS*0.9) return;
-        last=now; ctx.clearRect(0,0,w,h); draw();
+        if (now - last < FRAME_MS * 0.9) return;
+        last = now;
+        drawMesh(false, now);
       }
-      // Visibility-aware throttling
-      let isDocVisible = document.visibilityState !== 'hidden';
-      let isHeroVisible = true;
 
-      // Observe hero visibility
-      const heroEl = document.querySelector('main.hero') || canvas;
       try {
-        const obs = new IntersectionObserver((entries)=>{
-          isHeroVisible = entries.some(e=>e.isIntersecting);
-        }, { root:null, threshold:0.06 });
-        if (heroEl) obs.observe(heroEl);
+        const obs = new IntersectionObserver((entries) => {
+          const nextVisible = entries.some((entry) => entry.isIntersecting);
+          if (nextVisible && !isHeroVisible) {
+            startIntro(40, -1);
+          }
+          isHeroVisible = nextVisible;
+        }, { root: null, threshold: 0.08 });
+        obs.observe(heroEl);
       } catch(_) { /* noop */ }
 
-      hardResize();
+      if (pointerFine && !reduceMotion) {
+        heroEl.addEventListener('pointermove', (event) => {
+          const rect = heroEl.getBoundingClientRect();
+          setPointerTarget(event.clientX - rect.left, event.clientY - rect.top, true);
+        });
+        heroEl.addEventListener('pointerleave', () => {
+          setPointerTarget(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, false);
+        });
+      }
+
+      heroEl.addEventListener('click', (event) => {
+        if (event.target && event.target.closest && event.target.closest('a, button')) return;
+        const rect = heroEl.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const hotspotIndex = findHotspotIndexAt(x, y);
+        if (hotspotIndex !== -1) {
+          removeHotspotAt(hotspotIndex);
+          if (reduceMotion) drawMesh(true, performance.now());
+          return;
+        }
+        addHotspot(x, y);
+        if (reduceMotion) drawMesh(true, performance.now());
+      });
+
+      resizeMesh();
       if (!reduceMotion) requestAnimationFrame(loop);
-      addEventListener('resize', hardResize);
-      document.addEventListener('visibilitychange', ()=>{
+      addEventListener('resize', resizeMesh);
+      document.addEventListener('visibilitychange', () => {
         isDocVisible = (document.visibilityState === 'visible');
-        if(isDocVisible) hardResize();
+        if (isDocVisible) resizeMesh();
       });
     })();
   </script>
