@@ -1828,17 +1828,28 @@
       .about-shell{gap:18px}
       .principle-grid,
       .fit-grid{grid-template-columns:1fr}
+      .js #about .principle-grid.is-stack-primed .principle-card{
+        transform:none;
+      }
       .js #about .principle-grid.is-stack-primed .principle-card:nth-child(1){
-        transform:translate(0, 14px) scale(.99);
+        transform:none;
       }
       .js #about .principle-grid.is-stack-primed .principle-card:nth-child(2){
-        transform:translate(0, 10px) scale(.995);
+        transform:none;
       }
       .js #about .principle-grid.is-stack-primed .principle-card:nth-child(3){
-        transform:translate(0, 12px) scale(.995);
+        transform:none;
       }
       .js #about .principle-grid.is-stack-primed .principle-card:nth-child(4){
-        transform:translate(0, 8px) scale(.995);
+        transform:none;
+      }
+      .js #about.is-about-sequence-primed .founder-card,
+      .js #about.is-about-sequence-primed .about-tech-strip,
+      .js #about.is-about-sequence-primed .fit-card{
+        opacity:1;
+        filter:none;
+        transform:none;
+        pointer-events:auto;
       }
       .principle-card,
       .founder-card,
@@ -2945,7 +2956,11 @@
       const section = qs('#about');
       const grid = qs('.principle-grid', section);
       if (!section || !grid) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const mobileAboutSequenceDisabled =
+        window.matchMedia('(max-width: 900px)').matches ||
+        window.matchMedia('(pointer: coarse)').matches;
+      if (reduceMotion || mobileAboutSequenceDisabled) return;
       if (!('IntersectionObserver' in window)) return;
 
       const cards = qsa('.principle-card', grid);
