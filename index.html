@@ -156,14 +156,15 @@
     .theme-toggle{
       display:inline-flex;
       align-items:center;
-      gap:10px;
+      justify-content:center;
+      width:46px;
+      height:46px;
       min-height:46px;
-      padding:0 14px;
+      padding:0;
       border-radius:999px;
       border:1px solid rgba(16,23,34,.10);
       background:rgba(255,255,255,.74);
       color:var(--text);
-      font-weight:700;
       box-shadow:0 10px 20px rgba(8,18,28,.08);
       position:fixed;
       top:calc(var(--safe-top, 0px) + 12px);
@@ -172,21 +173,66 @@
       z-index:70;
       transition:transform .22s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease, color .22s ease;
     }
-    .theme-toggle::before{
-      content:"";
-      width:9px;
-      height:9px;
-      border-radius:50%;
-      background:linear-gradient(135deg, var(--primary), var(--primary-2));
-      box-shadow:0 0 0 6px rgba(26,183,173,.10);
-      flex:0 0 auto;
-    }
     .theme-toggle:hover{
       transform:translateY(-2px);
       background:rgba(255,255,255,.9);
       box-shadow:0 14px 24px rgba(8,18,28,.10);
     }
-    .theme-toggle-label{display:inline-block;line-height:1}
+    .theme-toggle-icon{
+      position:relative;
+      width:20px;
+      height:20px;
+      color:currentColor;
+      flex:0 0 auto;
+    }
+    .theme-toggle-icon svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .theme-toggle .icon-sun{opacity:0; transform:scale(.82) rotate(-12deg)}
+    .theme-toggle .icon-moon{opacity:1; transform:scale(1) rotate(0)}
+    html[data-theme="dark"] .theme-toggle .icon-sun{opacity:1; transform:scale(1) rotate(0)}
+    html[data-theme="dark"] .theme-toggle .icon-moon{opacity:0; transform:scale(.82) rotate(12deg)}
+    @media (hover:hover){
+      .theme-toggle::after{
+        content:attr(data-tooltip);
+        position:absolute;
+        top:calc(100% + 10px);
+        right:0;
+        padding:8px 10px;
+        border-radius:10px;
+        background:rgba(12,20,28,.90);
+        color:#f6fbfd;
+        font-size:.82rem;
+        font-weight:700;
+        line-height:1;
+        white-space:nowrap;
+        box-shadow:0 12px 24px rgba(8,18,28,.18);
+        opacity:0;
+        pointer-events:none;
+        transform:translateY(-4px);
+        transition:opacity .16s ease, transform .16s ease;
+      }
+      .theme-toggle:hover::after,
+      .theme-toggle:focus-visible::after{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0, 0, 0, 0);
+      white-space:nowrap;
+      border:0;
+    }
 
     /* Mobile menu */
     .hamburger{display:none}
@@ -201,7 +247,7 @@
         background:rgba(248,245,238,.96); border:1px solid rgba(16,23,34,.10); border-radius:18px; padding:12px; box-shadow:0 18px 40px rgba(8,18,28,.12); z-index:60;
       }
       .nav-actions{flex:none;gap:10px}
-      .theme-toggle{min-height:44px;padding:0 12px;position:static;transform:none}
+      .theme-toggle{width:44px;height:44px;min-height:44px;padding:0;position:static;transform:none}
       .theme-toggle:hover{transform:translateY(-2px)}
       .mobile-panel.open{display:block}
       .nav-indicator{display:none}
@@ -2208,8 +2254,17 @@
           <span id="navIndicator" class="nav-indicator" aria-hidden="true"></span>
         </ul>
 
-        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle color theme">
-          <span class="theme-toggle-label">Dark mode</span>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle color theme" data-tooltip="Dark mode">
+          <span class="theme-toggle-icon" aria-hidden="true">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none">
+              <path d="M20 15.4A8.5 8.5 0 1 1 11.6 4 6.8 6.8 0 0 0 20 15.4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="sr-only theme-toggle-label">Dark mode</span>
         </button>
 
         <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
@@ -2819,10 +2874,12 @@
     function updateThemeToggles(){
       const dark = getTheme() === 'dark';
       themeToggles.forEach((button) => {
+        const nextLabel = dark ? 'Light mode' : 'Dark mode';
         button.setAttribute('aria-pressed', String(dark));
         button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        button.setAttribute('data-tooltip', nextLabel);
         const label = qs('.theme-toggle-label', button);
-        if (label) label.textContent = dark ? 'Light mode' : 'Dark mode';
+        if (label) label.textContent = nextLabel;
       });
     }
     function applyTheme(theme){
