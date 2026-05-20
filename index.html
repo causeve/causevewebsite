@@ -3070,7 +3070,7 @@
     // Light client-side deterrents against copying/downloading
     (function(){
       // TEMP: disable guard
-      return;
+      //return;
       function isEditable(el){ return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable); }
       document.addEventListener('contextmenu', (e)=>{ if (!isEditable(e.target)) e.preventDefault(); }, {capture:true});
       document.addEventListener('dragstart', (e)=>{ if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
