@@ -25,6 +25,7 @@
   <link rel="alternate icon" type="image/png" href="./CAUSEVE logo-1.png" />
   <link rel="preload" as="image" href="CAUSEVE logo-1.png" fetchpriority="high" />
   <link rel="preload" as="image" href="asset/hero/3.png" />
+  <link rel="preload" as="image" href="asset/hero/orbit.png" />
 
   <meta property="og:title" content="Causeve Technologies LLP | Firmware, IoT, Cloud, and AI/ML Engineering" />
   <meta property="og:description" content="Firmware, IoT, cloud, and AI/ML engineering for connected products that need to work in the field." />
@@ -268,30 +269,32 @@
       padding:110px 0 12px;
       overflow:hidden;
       background:
-        radial-gradient(circle at 16% 20%, rgba(26,183,173,.14), transparent 28%),
-        radial-gradient(circle at 84% 18%, rgba(246,182,84,.16), transparent 22%),
-        linear-gradient(180deg, #f4efe3 0%, #faf7f0 46%, #edf3f5 100%);
+        radial-gradient(circle at 18% 22%, rgba(24,182,174,.16), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(246,182,84,.14), transparent 22%),
+        linear-gradient(180deg, #081018 0%, #0b1620 52%, #10202d 100%);
     }
     .hero::before{
       content:"";
       position:absolute;
       inset:40px auto auto -110px;
-      z-index:1;
+      z-index:0;
       width:300px;
       height:300px;
       border-radius:50%;
       background:radial-gradient(circle, rgba(26,183,173,.18), transparent 70%);
+      pointer-events:none;
     }
     .hero::after{
       content:"";
       position:absolute;
-      right:-120px;
-      bottom:60px;
-      z-index:1;
-      width:360px;
-      height:360px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(246,182,84,.18), transparent 70%);
+      left:-16%;
+      right:-16%;
+      bottom:-12%;
+      z-index:0;
+      height:38%;
+      border-radius:50% 50% 0 0 / 100% 100% 0 0;
+      background:none;
+      pointer-events:none;
     }
     /* Remove the decorative "picture" orb behind hero */
     .bg-orb{display:none !important}
@@ -308,20 +311,22 @@
     .hero-copy::before{
       content:"";
       position:absolute;
-      inset:-36px -54px -34px -28px;
+      inset:-34px -26px -42px -26px;
       z-index:-1;
       border-radius:42px;
       background:
-        radial-gradient(circle at 22% 30%, rgba(255,255,255,.86) 0%, rgba(255,255,255,.72) 38%, rgba(255,255,255,.30) 66%, rgba(255,255,255,0) 84%),
-        linear-gradient(90deg, rgba(255,255,255,.84) 0%, rgba(255,255,255,.56) 54%, rgba(255,255,255,.12) 78%, rgba(255,255,255,0) 100%);
-      filter:blur(16px);
-      opacity:.96;
+        radial-gradient(circle at 22% 28%, rgba(255,255,255,.84) 0%, rgba(255,255,255,.68) 34%, rgba(255,255,255,.26) 60%, rgba(255,255,255,0) 82%),
+        linear-gradient(90deg, rgba(255,255,255,.90) 0%, rgba(255,255,255,.72) 40%, rgba(255,255,255,.28) 68%, rgba(255,255,255,0) 88%),
+        radial-gradient(ellipse at 24% 88%, rgba(255,255,255,.96) 0%, rgba(255,255,255,.78) 28%, rgba(255,255,255,.38) 54%, rgba(255,255,255,0) 78%),
+        radial-gradient(ellipse at 18% 106%, rgba(255,255,255,.88) 0%, rgba(255,255,255,.50) 30%, rgba(255,255,255,0) 72%);
+      filter:blur(15px);
+      opacity:.97;
       pointer-events:none;
     }
     .hero .lead{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(16,23,34,.10);background:rgba(255,255,255,.74);font-weight:700;color:var(--accent);box-shadow:0 14px 28px rgba(8,18,28,.08)}
     .hero h1{margin:14px 0 10px;max-width:11.5ch;font-size:clamp(24px,5.6vw,46px);line-height:1.12;letter-spacing:-.3px;color:var(--text)}
     .hero h1 .grad{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{margin:0;max-width:35rem;color:var(--muted);font-size:clamp(13px,3.2vw,17px);line-height:1.56;text-shadow:none}
+    .hero p{margin:0;max-width:35rem;color:rgb(0, 0, 0);font-size:clamp(13px,3.2vw,17px);line-height:1.56;font-weight:600;text-shadow:0 1px 0 rgba(255,255,255,.18)}
     .cta{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
     .hero-copy .cta{justify-content:flex-start}
     .hero-copy > *,
@@ -430,11 +435,128 @@
     .hero .btn.ghost:hover{background:rgba(255,255,255,.92)}
 
     .hero-canvas{
-      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;opacity:.92;
+      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;opacity:.97;
+    }
+    .hero-orbit{
+      position:absolute;
+      left:50%;
+      bottom:-22px;
+      z-index:0;
+      width:max(100%, 1240px);
+      max-width:none;
+      height:auto;
+      transform:translateX(-50%);
+      pointer-events:none;
+      user-select:none;
+      -webkit-user-drag:none;
     }
 
     /* Tabs content area */
     .hero-content{position:relative;z-index:2;margin-top:14px}
+
+    .clients-strip{
+      position:relative;
+      padding:18px 0 10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.46), rgba(255,255,255,0));
+      border-top:1px solid rgba(16,23,34,.05);
+      border-bottom:1px solid rgba(16,23,34,.06);
+      overflow:hidden;
+    }
+    .clients-strip[hidden]{display:none !important}
+    .clients-strip .wrap{
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr);
+      align-items:center;
+      gap:18px 28px;
+    }
+    .clients-copy{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:164px;
+    }
+    .clients-eyebrow{
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+    .clients-note{
+      font-size:.95rem;
+      color:var(--muted);
+      line-height:1.35;
+    }
+    .client-rail{
+      position:relative;
+      min-width:0;
+      overflow:hidden;
+      mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+      -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+    }
+    .client-logos{
+      --client-marquee-gap:18px;
+      --client-marquee-duration:32s;
+      display:flex;
+      align-items:center;
+      gap:var(--client-marquee-gap);
+      width:max-content;
+      animation:client-marquee var(--client-marquee-duration) linear infinite;
+      will-change:transform;
+    }
+    .clients-strip:hover .client-logos{
+      animation-play-state:paused;
+    }
+    .client-logo-set{
+      display:flex;
+      align-items:center;
+      gap:var(--client-marquee-gap);
+      flex:0 0 auto;
+    }
+    .client-logo{
+      width:200px;
+      min-width:200px;
+      height:80px;
+      border-radius:16px;
+      border:1px solid rgba(16,23,34,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(247,244,238,.86));
+      box-shadow:0 10px 20px rgba(8,18,28,.06);
+      display:grid;
+      place-items:center;
+      padding:12px 18px;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
+    }
+    .client-logo:hover{
+      transform:translateY(-2px);
+      border-color:rgba(26,183,173,.18);
+      box-shadow:0 14px 24px rgba(8,18,28,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,247,241,.94));
+    }
+    .client-logo img{
+      max-width:100%;
+      max-height:54px;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+    }
+    .client-logo--dark img{
+      transform:scale(1.28);
+      transform-origin:center;
+    }
+    .client-logo.client-logo--dark{
+      border-color:rgba(16,23,34,.12);
+      background:linear-gradient(180deg, rgba(72,86,97,.96), rgba(64,77,88,.94));
+      box-shadow:0 12px 24px rgba(8,18,28,.14);
+    }
+    .client-logo.client-logo--dark:hover{
+      background:linear-gradient(180deg, rgba(78,92,104,.98), rgba(69,82,93,.96));
+      border-color:rgba(26,183,173,.16);
+      box-shadow:0 16px 28px rgba(8,18,28,.18);
+    }
+    @keyframes client-marquee{
+      from{transform:translateX(0)}
+      to{transform:translateX(calc(-50% - (var(--client-marquee-gap) / 2)))}
+    }
 
     /* === ABOUT-COMPACT MODE === */
     .hero.about-compact{padding-top:88px;padding-bottom:24px;min-height:100svh}
@@ -543,7 +665,7 @@
       .hero{padding:92px 0 20px}
       .hero-inner{min-height:auto}
       .hero-shell{grid-template-columns:1fr;gap:18px}
-      .hero-copy{max-width:760px;margin:0 auto;text-align:center}
+      .hero-copy{max-width:min(100%, 760px);margin:0 auto;text-align:center}
       .hero-copy::before{inset:-24px -16px -20px -16px;border-radius:30px;filter:blur(12px)}
       .hero .lead{max-width:min(100%, 420px);line-height:1.35}
       .hero-copy .cta{justify-content:center}
@@ -551,7 +673,15 @@
       .hero p{max-width:34rem;margin:0 auto}
       .hero .cta{max-width:340px;margin-left:auto;margin-right:auto}
       .hero .cta .btn{width:100%;text-align:center;justify-content:center}
-      .hero-visual{justify-self:center;width:min(94vw,580px);max-width:min(94vw,580px)}
+      .hero-visual{justify-self:center;width:min(100%, 580px);max-width:calc(100vw - 40px)}
+      .hero-orbit{width:max(165%, 980px);bottom:-14px}
+      .clients-strip{padding:14px 0 8px}
+      .clients-strip .wrap{grid-template-columns:1fr;gap:12px}
+      .clients-copy{text-align:center;min-width:0}
+      .client-rail{mask-image:none;-webkit-mask-image:none}
+      .client-logos{--client-marquee-gap:12px}
+      .client-logo{width:160px;min-width:160px;height:70px;padding:10px 14px}
+      .client-logo img{max-height:44px}
       #product-engineering{padding-top:14px}
       .hero.about-compact{padding-top:82px;padding-bottom:18px}
       .about-tabs-container{padding:12px;max-width:94vw;max-height:calc(100svh - var(--header-h) - 150px)}
@@ -567,8 +697,9 @@
       .card{padding:14px}
       .hero h1{font-size:clamp(22px, 11vw, 38px)}
       .hero p{font-size:15px;line-height:1.5}
-      .hero-visual{width:min(98vw,500px);max-width:min(98vw,500px)}
+      .hero-visual{width:min(100%, 500px);max-width:calc(100vw - 40px)}
       .hero .lead{font-size:.92rem;padding:7px 11px}
+      .hero-orbit{width:max(188%, 920px);bottom:-10px}
     }
 
     .tabs-note{margin:8px auto 0;text-align:center;color:var(--muted);font-size:.9rem}
@@ -1865,6 +1996,23 @@
       .card-feature,
       .product-support,
       .digital-primary{padding:18px}
+      .product-feature{
+        --card-image-width:min(100%, 420px);
+        --card-image-max-height:290px;
+        --card-image-position:52% 50%;
+        --card-image-scale:1.08;
+        --card-image-open-scale:1.12;
+      }
+      .product-support{
+        --card-image-width:min(100%, 360px);
+        --card-image-max-height:238px;
+        --card-image-position:52% 26%;
+        --card-image-scale:1.06;
+        --card-image-open-scale:1.10;
+      }
+      .product-reveal-card .card-image-reveal{
+        padding:12px;
+      }
       .process-grid{grid-template-columns:1fr}
       .process-card,
       .ops-card{padding:18px}
@@ -1962,6 +2110,40 @@
         radial-gradient(circle at 82% 18%, rgba(246,182,84,.14), transparent 22%),
         linear-gradient(180deg, #081018 0%, #0b1620 52%, #10202d 100%);
     }
+    html[data-theme="dark"] .brand{
+      background:linear-gradient(180deg, rgba(10,22,31,.82), rgba(12,28,40,.72));
+      border-color:rgba(158,232,224,.14);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 10px 22px rgba(0,0,0,.22);
+    }
+    html[data-theme="dark"] .brand::before{
+      background:
+        radial-gradient(circle at 76% 18%, rgba(95,230,221,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(246,182,84,.12) 0 2px, transparent 3px),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 62%);
+      opacity:.86;
+    }
+    html[data-theme="dark"] .brand img.logo-header{
+      filter:brightness(1.06) contrast(1.04);
+    }
+    html[data-theme="dark"] .hero::before{
+      inset:40px auto auto -110px;
+      width:300px;
+      height:300px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(26,183,173,.18), transparent 70%);
+    }
+    html[data-theme="dark"] .hero::after{
+      left:auto;
+      right:-120px;
+      bottom:60px;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(246,182,84,.18), transparent 70%);
+    }
+    html[data-theme="dark"] .hero-orbit{display:none}
     html[data-theme="dark"] .hero-copy::before{
       background:
         radial-gradient(circle at 22% 30%, rgba(8,16,24,.84) 0%, rgba(8,16,24,.58) 38%, rgba(8,16,24,.22) 64%, rgba(8,16,24,0) 84%),
@@ -1992,6 +2174,33 @@
     }
     html[data-theme="dark"] .hero .btn.ghost:hover{background:rgba(12,28,40,.68)}
     html[data-theme="dark"] .hero-canvas{opacity:.97}
+    html[data-theme="dark"] .clients-strip{
+      background:
+        linear-gradient(180deg, #0c1824 0%, #101d2a 100%);
+      border-top:1px solid rgba(158,232,224,.08);
+      border-bottom:1px solid rgba(158,232,224,.08);
+    }
+    html[data-theme="dark"] .clients-note{color:rgba(231,241,246,.82)}
+    html[data-theme="dark"] .client-logo{
+      border-color:rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.94), rgba(243,247,249,.90));
+      box-shadow:0 12px 24px rgba(0,0,0,.22);
+    }
+    html[data-theme="dark"] .client-logo:hover{
+      background:linear-gradient(180deg, rgba(255,255,255,.99), rgba(248,250,251,.96));
+      border-color:rgba(158,232,224,.18);
+      box-shadow:0 16px 28px rgba(0,0,0,.28);
+    }
+    html[data-theme="dark"] .client-logo.client-logo--dark{
+      border-color:rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(72,86,97,.96), rgba(64,77,88,.94));
+      box-shadow:0 12px 24px rgba(0,0,0,.24);
+    }
+    html[data-theme="dark"] .client-logo.client-logo--dark:hover{
+      background:linear-gradient(180deg, rgba(78,92,104,.98), rgba(69,82,93,.96));
+      border-color:rgba(158,232,224,.16);
+      box-shadow:0 16px 28px rgba(0,0,0,.30);
+    }
     html[data-theme="dark"] #product-engineering,
     html[data-theme="dark"] #digital-engineering,
     html[data-theme="dark"] #process,
@@ -2237,7 +2446,7 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Causeve Technologies LLP home">
-        <img class="logo-header" src="CAUSEVE logo-1.png" alt="Causeve Technologies LLP"
+        <img class="logo-header" src="CAUSEVE logo-1.png" data-light-src="CAUSEVE logo-1.png" data-dark-src="CAUSEVE logo-2.png" alt="Causeve Technologies LLP"
              onerror="this.style.display='none'" loading="lazy" decoding="async"/>
       </a>
 
@@ -2294,13 +2503,14 @@
 
   <main id="home" class="hero anchor">
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+    <img class="hero-orbit" src="asset/hero/orbit.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
 
     <div class="container hero-inner" id="heroHeader">
       <div class="hero-shell">
         <div class="hero-copy">
           <span class="lead" id="heroLead">Embedded systems, connected platforms, and field-ready apps</span>
           <h1 id="heroTitle">Engineering connected products that stay <span class="grad">reliable after deployment.</span></h1>
-          <p id="heroSub">Causeve Technologies builds firmware, gateways, cloud integrations, and operator-facing applications for teams shipping real devices into real environments. The focus is practical: stable releases, maintainable architecture, and systems that work beyond the lab demo.</p>
+          <p id="heroSub">Causeve Technologies builds firmware, gateways, cloud integrations, and operator-facing applications for teams shipping real devices into real environments. The focus stays practical, with stable releases, maintainable architecture, and systems that work beyond the lab demo.</p>
           <div class="cta" id="heroCta">
             <a class="btn primary" href="#contact">Discuss a Project</a>
             <a class="btn ghost" href="#portfolio">See Selected Work</a>
@@ -2313,6 +2523,18 @@
       </div>
     </div>
   </main>
+
+  <section id="clients" class="clients-strip" hidden aria-labelledby="clients-title">
+    <div class="container wrap">
+      <div class="clients-copy">
+        <span class="clients-eyebrow">Selected Clients</span>
+        <span class="clients-note" id="clients-title">Teams that trust Causeve in connected product and platform work.</span>
+      </div>
+      <div class="client-rail" aria-label="Client logos">
+        <div class="client-logos" id="clientLogos"></div>
+      </div>
+    </div>
+  </section>
 
   <section id="product-engineering" class="anchor">
     <div class="container">
@@ -2521,7 +2743,7 @@
       <div class="about-content">
         <div class="about-panel active" id="overview-panel" role="tabpanel" aria-labelledby="overview-tab">
           <h3>About Causeve Technologies</h3>
-          <p style="text-align: justify;">Since 2021, Causeve has focused on building connected products with more engineering continuity across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis is practical: build systems that can be deployed, updated, monitored, and operated with confidence.</p>
+          <p style="text-align: justify;">Since 2021, Causeve has focused on building connected products with more engineering continuity across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis stays practical, with systems that can be deployed, updated, monitored, and operated with confidence.</p>
           <p style="text-align: justify;">Founded by Ilango Thavamani and Parthipan Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, and connected product delivery.</p>
         </div>
         
@@ -2588,7 +2810,7 @@
         <div class="section-copy">
           <span class="section-eyebrow">Company Approach</span>
           <h2>Connected systems with more engineering continuity.</h2>
-          <p class="section-tag">Since 2021, Causeve has focused on building connected products across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis is practical: build systems that can be deployed, updated, monitored, and operated with confidence.</p>
+          <p class="section-tag">Since 2021, Causeve has focused on building connected products across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis stays practical, with systems that can be deployed, updated, monitored, and operated with confidence.</p>
         </div>
 
         <figure class="about-visual">
@@ -2813,7 +3035,7 @@
 
         <h4 style="margin:12px 0 6px">Company Address</h4>
         <address style="font-style:normal;line-height:1.5">
-          RR Tower IV,<br>Thiru Vi Ka Industrial Estate,<br>SIDCO Industrial Estate, Guindy<br>
+          RR Tower IV,7th Floor,<br>Thiru Vi Ka Industrial Estate,<br>SIDCO Industrial Estate, Guindy<br>
           Chennai 600032, IN
         </address>
         <p class="section-tag" style="margin-top:12px">Share the device constraints, connectivity expectations, target users, and rollout context. That is usually enough to start a useful conversation.</p>
@@ -2848,7 +3070,7 @@
     // Light client-side deterrents against copying/downloading
     (function(){
       // TEMP: disable guard
-      //return;
+      return;
       function isEditable(el){ return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable); }
       document.addEventListener('contextmenu', (e)=>{ if (!isEditable(e.target)) e.preventDefault(); }, {capture:true});
       document.addEventListener('dragstart', (e)=>{ if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
@@ -2884,8 +3106,19 @@
     const htmlEl = document.documentElement;
 
     const themeToggles = qsa('.theme-toggle');
+    const headerLogo = qs('.logo-header');
     function getTheme(){
       return htmlEl.dataset.theme === 'dark' ? 'dark' : 'light';
+    }
+    function syncThemeLogo(){
+      if (!headerLogo) return;
+      const nextSrc = getTheme() === 'dark'
+        ? (headerLogo.dataset.darkSrc || headerLogo.dataset.lightSrc || headerLogo.src)
+        : (headerLogo.dataset.lightSrc || headerLogo.src);
+      if (headerLogo.getAttribute('src') !== nextSrc) {
+        headerLogo.src = nextSrc;
+      }
+      headerLogo.style.display = '';
     }
     function updateThemeToggles(){
       const dark = getTheme() === 'dark';
@@ -2904,6 +3137,7 @@
       try {
         localStorage.setItem('causeve-theme', nextTheme);
       } catch (_) {}
+      syncThemeLogo();
       updateThemeToggles();
     }
     themeToggles.forEach((button) => {
@@ -2911,7 +3145,88 @@
         applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
       });
     });
+    syncThemeLogo();
     updateThemeToggles();
+
+    async function initClientLogos(){
+      const section = qs('#clients');
+      const rail = qs('#clientLogos');
+      if (!section || !rail) return;
+
+      const realignHashTarget = () => {
+        if (!location.hash) return;
+        const target = qs(location.hash);
+        if (!target) return;
+        const headerOffset = (qs('header')?.offsetHeight || 64) + 8;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+      };
+
+      const probeLogo = (src) => new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve({ ok: true, src });
+        img.onerror = () => resolve({ ok: false, src });
+        img.src = src;
+      });
+
+      const logos = [];
+      const maxLogos = 40;
+      let missStreak = 0;
+
+      for (let index = 1; index <= maxLogos; index += 1) {
+        const src = `asset/client/${index}.png`;
+        const result = await probeLogo(src);
+        if (result.ok) {
+          logos.push(result.src);
+          missStreak = 0;
+        } else {
+          missStreak += 1;
+          if (logos.length && missStreak >= 4) break;
+        }
+      }
+
+      if (!logos.length) {
+        section.hidden = true;
+        return;
+      }
+
+      const createLogoItem = (src, idx, hidden=false) => {
+        const item = document.createElement('figure');
+        item.className = 'client-logo';
+        if (hidden) item.setAttribute('aria-hidden', 'true');
+        if (/\/2\.png$/i.test(src.replace(/\\/g, '/'))) {
+          item.classList.add('client-logo--dark');
+        }
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = hidden ? '' : `Client logo ${idx + 1}`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        if (hidden) img.setAttribute('aria-hidden', 'true');
+
+        item.appendChild(img);
+        return item;
+      };
+
+      const createLogoSet = (hidden=false) => {
+        const group = document.createElement('div');
+        group.className = 'client-logo-set';
+        if (hidden) group.setAttribute('aria-hidden', 'true');
+        group.replaceChildren(...logos.map((src, idx) => createLogoItem(src, idx, hidden)));
+        return group;
+      };
+
+      rail.style.setProperty('--client-marquee-duration', `${Math.max(24, logos.length * 4.8)}s`);
+      rail.replaceChildren(createLogoSet(false), createLogoSet(true));
+
+      section.hidden = false;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(realignHashTarget);
+      });
+    }
+
+    initClientLogos();
 
     // Header height -> CSS var (in case logo size changes)
     const setHeaderOffset = () => {
@@ -3160,6 +3475,11 @@
 
       function updateActiveSection(){
         const y = window.scrollY + headerH() + 12;
+        const nearBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+        if (nearBottom) {
+          setActiveMenu('contact');
+          return;
+        }
         let active = 'home';
         for (const section of sectionPositions) {
           if (y >= section.top) active = section.id;
@@ -3205,6 +3525,7 @@
       const canvas = document.getElementById('heroCanvas');
       if (!canvas) return;
       const heroEl = document.querySelector('main.hero') || canvas;
+      const orbitEl = heroEl.querySelector('.hero-orbit');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const ctx = canvas.getContext('2d', { alpha: true });
@@ -3252,12 +3573,98 @@
         direction: 1
       };
       let lastIntroAt = reduceMotion ? 0 : performance.now();
+      let lightCurveSamples = [];
+      let lightCurveLength = 1;
+      let orbitProfileSamples = [];
+      let orbitLayout = null;
+      const ORBIT_PROFILE_SAMPLES = [
+        { u:0.0000, yNorm:0.7407 },
+        { u:0.0312, yNorm:0.7117 },
+        { u:0.0625, yNorm:0.7034 },
+        { u:0.0938, yNorm:0.6841 },
+        { u:0.1250, yNorm:0.6703 },
+        { u:0.1562, yNorm:0.6483 },
+        { u:0.1875, yNorm:0.6414 },
+        { u:0.2188, yNorm:0.6303 },
+        { u:0.2500, yNorm:0.6193 },
+        { u:0.2812, yNorm:0.6055 },
+        { u:0.3125, yNorm:0.5793 },
+        { u:0.3438, yNorm:0.5931 },
+        { u:0.3750, yNorm:0.5697 },
+        { u:0.4062, yNorm:0.5641 },
+        { u:0.4375, yNorm:0.5793 },
+        { u:0.4688, yNorm:0.5766 },
+        { u:0.5000, yNorm:0.5710 },
+        { u:0.5312, yNorm:0.5710 },
+        { u:0.5625, yNorm:0.5669 },
+        { u:0.5938, yNorm:0.5793 },
+        { u:0.6250, yNorm:0.5793 },
+        { u:0.6562, yNorm:0.5931 },
+        { u:0.6875, yNorm:0.5986 },
+        { u:0.7188, yNorm:0.6014 },
+        { u:0.7500, yNorm:0.6234 },
+        { u:0.7812, yNorm:0.6359 },
+        { u:0.8125, yNorm:0.6469 },
+        { u:0.8438, yNorm:0.6648 },
+        { u:0.8750, yNorm:0.6814 },
+        { u:0.9062, yNorm:0.6979 },
+        { u:0.9375, yNorm:0.7172 },
+        { u:0.9688, yNorm:0.7366 },
+        { u:1.0000, yNorm:0.7572 }
+      ];
       const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
       const hotspots = [];
       const MAX_HOTSPOTS = 10;
 
       const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
       const hypot = (x, y) => Math.hypot(x, y);
+
+      function getFallbackLightSkyBoundaryY(x){
+        const normalizedX = (x - w * 0.5) / (w * 0.5 || 0.5);
+        const bow = normalizedX * normalizedX;
+        return h * (0.680 + bow * 0.149);
+      }
+
+      function sampleOrbitProfile(){
+        if (!orbitEl || orbitProfileSamples.length) return;
+        orbitProfileSamples = ORBIT_PROFILE_SAMPLES;
+      }
+
+      function updateOrbitLayout(){
+        if (!orbitEl) {
+          orbitLayout = null;
+          return;
+        }
+
+        const heroRect = heroEl.getBoundingClientRect();
+        const orbitRect = orbitEl.getBoundingClientRect();
+        if (!orbitRect.width || !orbitRect.height) {
+          orbitLayout = null;
+          return;
+        }
+
+        orbitLayout = {
+          left: orbitRect.left - heroRect.left,
+          top: orbitRect.top - heroRect.top,
+          width: orbitRect.width,
+          height: orbitRect.height
+        };
+      }
+
+      function getOrbitProfileYNorm(u){
+        if (!orbitProfileSamples.length) return null;
+        const clampedU = clamp(u, 0, 1);
+        for (let i = 1; i < orbitProfileSamples.length; i += 1) {
+          const a = orbitProfileSamples[i - 1];
+          const b = orbitProfileSamples[i];
+          if (clampedU <= b.u) {
+            const span = Math.max(0.0001, b.u - a.u);
+            const t = (clampedU - a.u) / span;
+            return a.yNorm + (b.yNorm - a.yNorm) * t;
+          }
+        }
+        return orbitProfileSamples[orbitProfileSamples.length - 1].yNorm;
+      }
 
       function startIntro(delay = 0, direction = -1){
         if (!intro) return;
@@ -3326,6 +3733,8 @@
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         w = cw;
         h = ch;
+        sampleOrbitProfile();
+        updateOrbitLayout();
       }
 
       function createNodes(){
@@ -3338,7 +3747,7 @@
             y: Math.random() * h,
             vx: (Math.random() - 0.5) * 0.16,
             vy: (Math.random() - 0.5) * 0.16,
-            accent: index % 6 === 0,
+            accent: index % 7 === 0,
             pointerBoost: 0
           };
         });
@@ -3346,6 +3755,7 @@
 
       function resizeMesh(){
         sizeFromHero();
+        rebuildLightCurveMap();
         createNodes();
         resetPointer();
         refreshHotspotLinks();
@@ -3353,29 +3763,63 @@
       }
 
       function getIntroState(now = performance.now()){
+        const darkTheme = getTheme() === 'dark';
         if (!intro || !intro.active) {
           return {
             active: false,
             progress: 1,
             headX: w * 1.2,
-            band: Math.max(120, w * 0.18)
+            headY: darkTheme ? h * 0.48 : getLightSkyBoundaryY(w * 1.2),
+            headS: darkTheme ? 0 : lightCurveLength,
+            band: Math.max(120, w * 0.18),
+            curved: !darkTheme
           };
         }
 
         const progress = clamp((now - intro.startedAt) / intro.duration, 0, 1);
         if (progress >= 1) intro.active = false;
+        const band = Math.max(120, w * 0.18);
+        if (!darkTheme) {
+          const headS = intro.direction === -1
+            ? lightCurveLength * (1 - progress)
+            : lightCurveLength * progress;
+          const point = getLightCurvePointAtArc(headS);
+          return {
+            active: intro.active,
+            progress,
+            headX: point.x,
+            headY: point.y,
+            headS,
+            band,
+            curved: true
+          };
+        }
+
+        const headX = intro.direction === -1
+          ? w * (1.12 - progress * 1.28)
+          : w * (-0.12 + progress * 1.28);
         return {
           active: intro.active,
           progress,
-          headX: intro.direction === -1
-            ? w * (1.12 - progress * 1.28)
-            : w * (-0.12 + progress * 1.28),
-          band: Math.max(120, w * 0.18)
+          headX,
+          headY: darkTheme ? h * 0.48 : getLightSkyBoundaryY(headX),
+          headS: 0,
+          band,
+          curved: false
         };
       }
 
       function revealForX(x, introState){
         if (!introState.active) return 1;
+        if (introState.curved) {
+          const pointS = getLightCurveArcAtX(x);
+          const sweepDir = intro.direction === -1 ? -1 : 1;
+          const revealLead = introState.headS + sweepDir * introState.band * 0.76;
+          const revealTrail = introState.band * 2.6;
+          return sweepDir === -1
+            ? clamp((pointS - revealLead) / revealTrail, 0, 1)
+            : clamp((revealLead - pointS) / revealTrail, 0, 1);
+        }
         const revealLead = introState.headX + introState.band * 0.76;
         const revealTrail = introState.band * 2.6;
         return clamp((revealLead - x) / revealTrail, 0, 1);
@@ -3383,9 +3827,138 @@
 
       function pulseForPoint(x, y, introState){
         if (!introState.active) return 0;
+        if (introState.curved) {
+          const pointS = getLightCurveArcAtX(x);
+          const along = clamp(1 - Math.abs(pointS - introState.headS) / (introState.band * 0.95), 0, 1);
+          const normal = clamp(1 - Math.abs(y - getLightSkyBoundaryY(x)) / (h * 0.08), 0, 1);
+          return along * normal;
+        }
         const horizontal = clamp(1 - Math.abs(x - introState.headX) / introState.band, 0, 1);
-        const vertical = clamp(1 - Math.abs(y - h * 0.48) / (h * 0.44), 0, 1);
+        const vertical = clamp(1 - Math.abs(y - introState.headY) / (h * 0.44), 0, 1);
         return horizontal * vertical;
+      }
+
+      function getLightSkyBoundaryY(x){
+        if (orbitLayout && orbitProfileSamples.length) {
+          const u = (x - orbitLayout.left) / Math.max(1, orbitLayout.width);
+          const yNorm = getOrbitProfileYNorm(u);
+          if (yNorm !== null) {
+            return orbitLayout.top + orbitLayout.height * yNorm + 2;
+          }
+        }
+        return getFallbackLightSkyBoundaryY(x);
+      }
+
+      function rebuildLightCurveMap(){
+        const samples = [];
+        const count = 240;
+        let total = 0;
+        let prevX = 0;
+        let prevY = getLightSkyBoundaryY(0);
+
+        for (let i = 0; i <= count; i += 1) {
+          const x = (i / count) * w;
+          const y = getLightSkyBoundaryY(x);
+          if (i > 0) total += hypot(x - prevX, y - prevY);
+          samples.push({ x, y, s: total });
+          prevX = x;
+          prevY = y;
+        }
+
+        lightCurveSamples = samples;
+        lightCurveLength = Math.max(total, 1);
+      }
+
+      function getLightCurveArcAtX(x){
+        if (!lightCurveSamples.length) return 0;
+        const clampedX = clamp(x, 0, w);
+        for (let i = 1; i < lightCurveSamples.length; i += 1) {
+          const a = lightCurveSamples[i - 1];
+          const b = lightCurveSamples[i];
+          if (clampedX <= b.x) {
+            const span = Math.max(1, b.x - a.x);
+            const t = (clampedX - a.x) / span;
+            return a.s + (b.s - a.s) * t;
+          }
+        }
+        return lightCurveLength;
+      }
+
+      function getLightCurvePointAtArc(targetS){
+        if (!lightCurveSamples.length) {
+          return { x: 0, y: 0, s: 0 };
+        }
+
+        const clampedS = clamp(targetS, 0, lightCurveLength);
+        for (let i = 1; i < lightCurveSamples.length; i += 1) {
+          const a = lightCurveSamples[i - 1];
+          const b = lightCurveSamples[i];
+          if (clampedS <= b.s) {
+            const span = Math.max(0.001, b.s - a.s);
+            const t = (clampedS - a.s) / span;
+            return {
+              x: a.x + (b.x - a.x) * t,
+              y: a.y + (b.y - a.y) * t,
+              s: clampedS
+            };
+          }
+        }
+
+        const last = lightCurveSamples[lightCurveSamples.length - 1];
+        return { x: last.x, y: last.y, s: lightCurveLength };
+      }
+
+      function clipToLightSky(){
+        const samples = 96;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(w, 0);
+        for (let i = samples; i >= 0; i -= 1) {
+          const x = (i / samples) * w;
+          ctx.lineTo(x, getLightSkyBoundaryY(x));
+        }
+        ctx.closePath();
+        ctx.clip();
+      }
+
+      function getLightCurveSegment(centerS, halfLength){
+        if (!lightCurveSamples.length) return [];
+        return lightCurveSamples.filter((sample) => Math.abs(sample.s - centerS) <= halfLength);
+      }
+
+      function strokeCurve(samples){
+        if (!samples.length) return;
+        ctx.beginPath();
+        samples.forEach((sample, index) => {
+          if (index === 0) ctx.moveTo(sample.x, sample.y);
+          else ctx.lineTo(sample.x, sample.y);
+        });
+      }
+
+      function drawLightOrbitRim(introState){
+        if (!lightCurveSamples.length || !introState.curved || !introState.active) return;
+
+        ctx.save();
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        const visible = getLightCurveSegment(introState.headS, introState.band * 0.9);
+        if (visible.length > 1) {
+          strokeCurve(visible);
+          ctx.strokeStyle = 'rgba(110,244,233,0.20)';
+          ctx.lineWidth = Math.max(7, w * 0.0052);
+          ctx.shadowColor = 'rgba(110,244,233,0.28)';
+          ctx.shadowBlur = 16;
+          ctx.stroke();
+
+          strokeCurve(visible);
+          ctx.strokeStyle = 'rgba(246,250,249,0.64)';
+          ctx.lineWidth = Math.max(2, w * 0.0019);
+          ctx.shadowBlur = 0;
+          ctx.stroke();
+        }
+
+        ctx.restore();
       }
 
       function drawAmbientWash(introState){
@@ -3407,11 +3980,11 @@
         if (introState.active) {
           const pulseGlow = ctx.createRadialGradient(
             introState.headX,
-            h * 0.48,
+            introState.headY,
             0,
             introState.headX,
-            h * 0.48,
-            introState.band * 1.4
+            introState.headY,
+            introState.curved ? introState.band * 0.9 : introState.band * 1.4
           );
           pulseGlow.addColorStop(0, 'rgba(110,244,233,0.22)');
           pulseGlow.addColorStop(0.28, 'rgba(110,244,233,0.13)');
@@ -3420,6 +3993,7 @@
           ctx.fillStyle = pulseGlow;
           ctx.fillRect(0, 0, w, h);
         }
+
       }
 
       function updatePointer(){
@@ -3607,6 +4181,10 @@
         ctx.clearRect(0, 0, w, h);
         const darkTheme = getTheme() === 'dark';
         const introState = getIntroState(now);
+        if (!darkTheme) {
+          ctx.save();
+          clipToLightSky();
+        }
         drawAmbientWash(introState);
 
         if (!skipMotion) {
@@ -3644,7 +4222,7 @@
             const pointerBoost = pointer.active
               ? clamp(1 - hypot(avgX - pointer.x, avgY - pointer.y) / (cfg.POINTER_RADIUS * 1.16), 0, 1)
               : 0;
-            const alpha = 0.08 + (1 - distance / maxDistance) * 0.2;
+            const alpha = 0.04 + (1 - distance / maxDistance) * 0.14;
             const introReveal = revealForX(avgX, introState);
             const introPulse = pulseForPoint(avgX, avgY, introState);
             const introVisibility = introState.active
@@ -3654,14 +4232,12 @@
             const hasAccent = a.accent || b.accent;
 
             ctx.strokeStyle = hasAccent
-              ? `rgba(246,182,84,${Math.min(0.42, tunedAlpha * 0.98).toFixed(3)})`
-              : darkTheme
-                ? `rgba(43,156,189,${Math.min(0.56, tunedAlpha * 1.14).toFixed(3)})`
-                : `rgba(34,129,151,${Math.min(0.52, tunedAlpha * 1.06).toFixed(3)})`;
+              ? `rgba(246,182,84,${Math.min(0.28, tunedAlpha * 0.74).toFixed(3)})`
+              : `rgba(92,208,230,${Math.min(0.30, tunedAlpha * 0.78).toFixed(3)})`;
             ctx.lineWidth =
-              (0.95 + (1 - distance / maxDistance) * 1.02) * Math.max(0.86, regionBoost) +
-              pointerBoost * 0.7 +
-              introPulse * 0.82;
+              (0.42 + (1 - distance / maxDistance) * 0.54) * Math.max(0.88, regionBoost) +
+              pointerBoost * 0.34 +
+              introPulse * 0.48;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -3682,34 +4258,35 @@
             ? clamp(introReveal * 1.08 + introPulse * 0.74, 0, 1)
             : 1;
           const outerRadius =
-            (node.accent ? 8.8 : 6.4) * Math.max(0.88, regionBoost) * (0.72 + introVisibility * 0.28) +
-            hoverPulse * 5.1 +
-            pinPulse * 7.1 +
-            introPulse * 2.6;
+            (node.accent ? 5.8 : 4.2) * Math.max(0.88, regionBoost) * (0.70 + introVisibility * 0.30) +
+            hoverPulse * 2.8 +
+            pinPulse * 3.8 +
+            introPulse * 1.4;
           const innerRadius =
-            (node.accent ? 2.35 : 1.85) * Math.max(0.92, regionBoost) * (0.78 + introVisibility * 0.22) +
-            hoverPulse * 1.24 +
-            pinPulse * 1.72 +
-            introPulse * 0.82;
+            (node.accent ? 1.85 : 1.35) * Math.max(0.92, regionBoost) * (0.78 + introVisibility * 0.22) +
+            hoverPulse * 0.82 +
+            pinPulse * 1.06 +
+            introPulse * 0.46;
 
           ctx.beginPath();
           ctx.fillStyle = node.accent
-            ? `rgba(246,182,84,${Math.min(0.72, (0.14 * regionBoost + hoverPulse * 0.16 + pinPulse * 0.24) * introVisibility + introPulse * 0.22).toFixed(3)})`
-            : darkTheme
-              ? `rgba(74,198,222,${Math.min(0.74, (0.18 * regionBoost + hoverPulse * 0.18 + pinPulse * 0.24) * introVisibility + introPulse * 0.24).toFixed(3)})`
-              : `rgba(79,186,203,${Math.min(0.68, (0.18 * regionBoost + hoverPulse * 0.18 + pinPulse * 0.24) * introVisibility + introPulse * 0.22).toFixed(3)})`;
+            ? `rgba(246,182,84,${Math.min(0.40, (0.08 * regionBoost + hoverPulse * 0.10 + pinPulse * 0.16) * introVisibility + introPulse * 0.14).toFixed(3)})`
+            : `rgba(110,224,238,${Math.min(0.38, (0.10 * regionBoost + hoverPulse * 0.10 + pinPulse * 0.15) * introVisibility + introPulse * 0.16).toFixed(3)})`;
           ctx.arc(node.x, node.y, outerRadius, 0, Math.PI * 2);
           ctx.fill();
 
           ctx.beginPath();
           ctx.fillStyle = node.accent
-            ? `rgba(246,182,84,${Math.min(0.98, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.16).toFixed(3)})`
-            : darkTheme
-              ? `rgba(23,163,193,${Math.min(0.98, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.18).toFixed(3)})`
-              : `rgba(11,143,136,${Math.min(0.96, (0.56 + regionBoost * 0.34 + hoverPulse * 0.24 + pinPulse * 0.18) * introVisibility + introPulse * 0.16).toFixed(3)})`;
+            ? `rgba(249,209,128,${Math.min(0.96, (0.42 + regionBoost * 0.22 + hoverPulse * 0.16 + pinPulse * 0.12) * introVisibility + introPulse * 0.12).toFixed(3)})`
+            : `rgba(188,247,255,${Math.min(0.94, (0.38 + regionBoost * 0.22 + hoverPulse * 0.16 + pinPulse * 0.12) * introVisibility + introPulse * 0.14).toFixed(3)})`;
           ctx.arc(node.x, node.y, innerRadius, 0, Math.PI * 2);
           ctx.fill();
         });
+
+        if (!darkTheme) {
+          ctx.restore();
+          drawLightOrbitRim(introState);
+        }
       }
 
       let last = 0;
@@ -3760,6 +4337,12 @@
       });
 
       resizeMesh();
+      if (orbitEl && !orbitEl.complete) {
+        orbitEl.addEventListener('load', () => {
+          orbitProfileSamples = [];
+          resizeMesh();
+        }, { once: true });
+      }
       if (!reduceMotion) requestAnimationFrame(loop);
       addEventListener('resize', resizeMesh);
       document.addEventListener('visibilitychange', () => {
