@@ -9,6 +9,9 @@
     (() => {
       const root = document.documentElement;
       root.classList.add('js');
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
       try {
         const savedTheme = localStorage.getItem('causeve-theme');
         root.dataset.theme = savedTheme === 'dark' ? 'dark' : 'light';
@@ -49,7 +52,7 @@
       --safe-top: env(safe-area-inset-top);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;scroll-behavior:smooth;background:var(--bg);color:var(--text)}
+    html,body{margin:0;height:100%;scroll-behavior:auto;background:var(--bg);color:var(--text)}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
       padding-top:calc(var(--header-h) + var(--safe-top,0px));
@@ -307,7 +310,7 @@
       align-items:center;
       gap:32px;
     }
-    .hero-copy{position:relative;z-index:1;max-width:640px;text-align:left;isolation:isolate}
+    .hero-copy{position:relative;z-index:4;max-width:640px;text-align:left;isolation:isolate}
     .hero-copy::before{
       content:"";
       position:absolute;
@@ -328,7 +331,7 @@
     .hero h1 .grad{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero p{margin:0;max-width:35rem;color:rgb(0, 0, 0);font-size:clamp(13px,3.2vw,17px);line-height:1.56;font-weight:600;text-shadow:0 1px 0 rgba(255,255,255,.18)}
     .cta{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
-    .hero-copy .cta{justify-content:flex-start}
+    .hero-copy .cta{justify-content:flex-start;position:relative;z-index:5}
     .hero-copy > *,
     .hero-visual{
       will-change:opacity, transform, filter;
@@ -490,6 +493,9 @@
     .client-rail{
       position:relative;
       min-width:0;
+      min-height:80px;
+      display:flex;
+      align-items:center;
       overflow:hidden;
       mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
       -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
@@ -1923,6 +1929,7 @@
     section h2{font-size:clamp(22px,5vw,32px);margin:0 0 14px}
     section p.section-tag{margin:0 0 18px;color:var(--muted);line-height:1.72}
     .contact{
+      min-height:calc(100svh - var(--header-h) - 20px);
       background:
         radial-gradient(circle at 18% 22%, rgba(24,182,174,.12), transparent 22%),
         radial-gradient(circle at 86% 18%, rgba(246,182,84,.12), transparent 18%),
@@ -2524,7 +2531,7 @@
     </div>
   </main>
 
-  <section id="clients" class="clients-strip" hidden aria-labelledby="clients-title">
+  <section id="clients" class="clients-strip" aria-labelledby="clients-title">
     <div class="container wrap">
       <div class="clients-copy">
         <span class="clients-eyebrow">Selected Clients</span>
@@ -3153,15 +3160,6 @@
       const rail = qs('#clientLogos');
       if (!section || !rail) return;
 
-      const realignHashTarget = () => {
-        if (!location.hash) return;
-        const target = qs(location.hash);
-        if (!target) return;
-        const headerOffset = (qs('header')?.offsetHeight || 64) + 8;
-        const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
-        window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
-      };
-
       const probeLogo = (src) => new Promise((resolve) => {
         const img = new Image();
         img.onload = () => resolve({ ok: true, src });
@@ -3221,9 +3219,6 @@
       rail.replaceChildren(createLogoSet(false), createLogoSet(true));
 
       section.hidden = false;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(realignHashTarget);
-      });
     }
 
     initClientLogos();
@@ -3456,35 +3451,192 @@
       }
     }
 
+    function syncActiveHash(key){
+      if (!key || !window.history || !window.history.replaceState) return;
+      const nextHash = `#${key}`;
+      if (window.location.hash === nextHash) return;
+      const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+      window.history.replaceState(null, '', nextUrl);
+    }
+
     (() => {
       const ids = ['home', 'product-engineering', 'digital-engineering', 'process', 'about', 'portfolio', 'contact'];
       const sections = ids.map(id => qs('#' + id)).filter(Boolean);
-      let sectionPositions = [];
       let ticking = false;
+      const initialHash = window.location.hash;
+      let hashSyncReady = !initialHash;
+      let navigationTargetId = null;
+      let navigationFrame = 0;
+      let navigationStartedAt = 0;
+      let ignoreNavigationCancelUntil = 0;
+      const NAVIGATION_TIMEOUT = 5200;
+      const NAVIGATION_CANCEL_GRACE = 900;
+      let hashSyncTimer = 0;
+      const HASH_SYNC_DELAY = 180;
 
       function headerH(){
         return (qs('header')?.offsetHeight || 64);
       }
 
+      function targetScrollTop(id){
+        const target = qs('#' + id);
+        if (!target) return null;
+        const top = target.getBoundingClientRect().top + window.scrollY - headerH() - 8;
+        const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        return Math.min(maxTop, Math.max(0, top));
+      }
+
+      function alignToHashTarget(hash = window.location.hash){
+        if (!hash) return;
+        const target = qs(hash);
+        if (!target) return;
+        const top = targetScrollTop(target.id);
+        if (top == null) return;
+        window.scrollTo({ top, behavior: 'auto' });
+      }
+
+      function clearNavigationTarget(){
+        navigationTargetId = null;
+        ignoreNavigationCancelUntil = 0;
+        if (navigationFrame) {
+          cancelAnimationFrame(navigationFrame);
+          navigationFrame = 0;
+        }
+        hashSyncReady = true;
+      }
+
+      function clearQueuedHashSync(){
+        if (!hashSyncTimer) return;
+        clearTimeout(hashSyncTimer);
+        hashSyncTimer = 0;
+      }
+
+      function queueActiveHash(key){
+        if (!key || !hashSyncReady || navigationTargetId) return;
+        clearQueuedHashSync();
+        hashSyncTimer = window.setTimeout(() => {
+          hashSyncTimer = 0;
+          if (!hashSyncReady || navigationTargetId) return;
+          syncActiveHash(key);
+        }, HASH_SYNC_DELAY);
+      }
+
+      function completeNavigationTarget(id, force=false){
+        clearQueuedHashSync();
+        if (force) {
+          const top = targetScrollTop(id);
+          if (top != null && Math.abs(window.scrollY - top) > 14) {
+            window.scrollTo({ top, behavior: 'auto' });
+          }
+        }
+        clearNavigationTarget();
+        setActiveMenu(id);
+        syncActiveHash(id);
+      }
+
+      function monitorNavigationTarget(id){
+        if (navigationFrame) cancelAnimationFrame(navigationFrame);
+        const tick = () => {
+          if (navigationTargetId !== id) return;
+          if (hasReachedNavigationTarget(id)) {
+            completeNavigationTarget(id);
+            return;
+          }
+          if (performance.now() - navigationStartedAt > NAVIGATION_TIMEOUT) {
+            completeNavigationTarget(id, true);
+            return;
+          }
+          navigationFrame = requestAnimationFrame(tick);
+        };
+        navigationFrame = requestAnimationFrame(tick);
+      }
+
+      function startNavigationTarget(id){
+        if (!id || !ids.includes(id)) return;
+        clearQueuedHashSync();
+        navigationTargetId = id;
+        navigationStartedAt = performance.now();
+        ignoreNavigationCancelUntil = navigationStartedAt + NAVIGATION_CANCEL_GRACE;
+        hashSyncReady = false;
+        monitorNavigationTarget(id);
+      }
+
+      function hasReachedNavigationTarget(id){
+        if (!id) return false;
+        const top = targetScrollTop(id);
+        if (top != null && Math.abs(window.scrollY - top) <= 14) return true;
+        if (id === 'contact') {
+          return window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+        }
+        return false;
+      }
+
+      function scrollToNavigationTarget(id, behavior='auto'){
+        const top = targetScrollTop(id);
+        if (top == null) return false;
+        window.scrollTo({ top, behavior });
+        return true;
+      }
+
+      function keepNavigationTargetAligned(id){
+        [420, 1100, 1900].forEach((delay) => {
+          setTimeout(() => {
+            if (navigationTargetId !== id) return;
+            const top = targetScrollTop(id);
+            if (top == null || Math.abs(window.scrollY - top) <= 14) return;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }, delay);
+        });
+      }
+
+      function navigateToSection(id, { behavior = 'smooth' } = {}){
+        recomputeOffsets();
+        const top = targetScrollTop(id);
+        if (top == null) return;
+        clearQueuedHashSync();
+        const nextHash = `#${id}`;
+        const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+        if (window.history && typeof window.history.replaceState === 'function') {
+          window.history.replaceState(null, '', nextUrl);
+        } else {
+          window.location.hash = nextHash;
+        }
+        startNavigationTarget(id);
+        setActiveMenu(id);
+        scrollToNavigationTarget(id, behavior);
+        keepNavigationTargetAligned(id);
+      }
+
       function recomputeOffsets(){
-        sectionPositions = sections.map(section => ({
-          id: section.id,
-          top: section.getBoundingClientRect().top + window.scrollY
-        }));
+        setHeaderOffset();
       }
 
       function updateActiveSection(){
+        if (navigationTargetId) {
+          if (hasReachedNavigationTarget(navigationTargetId)) {
+            const key = navigationTargetId;
+            clearNavigationTarget();
+            setActiveMenu(key);
+            syncActiveHash(key);
+            return;
+          }
+          setActiveMenu(navigationTargetId);
+          return;
+        }
         const y = window.scrollY + headerH() + 12;
         const nearBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
         if (nearBottom) {
           setActiveMenu('contact');
+          queueActiveHash('contact');
           return;
         }
         let active = 'home';
-        for (const section of sectionPositions) {
-          if (y >= section.top) active = section.id;
+        for (const section of sections) {
+          const top = section.getBoundingClientRect().top + window.scrollY;
+          if (y >= top) active = section.id;
         }
         setActiveMenu(active);
+        queueActiveHash(active);
       }
 
       function onScroll(){
@@ -3496,10 +3648,56 @@
         });
       }
 
+      function cancelProgrammaticNavigation(){
+        if (!navigationTargetId) return;
+        if (performance.now() < ignoreNavigationCancelUntil) return;
+        clearNavigationTarget();
+        recomputeOffsets();
+        updateActiveSection();
+      }
+
+      function cancelNavigationOnKey(event){
+        const scrollKeys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '];
+        if (!scrollKeys.includes(event.key)) return;
+        cancelProgrammaticNavigation();
+      }
+
+      function restoreInitialHashTarget(){
+        if (!initialHash || window.location.hash !== initialHash) return;
+        const id = initialHash.slice(1);
+        if (!ids.includes(id)) return;
+        recomputeOffsets();
+        alignToHashTarget(initialHash);
+        startNavigationTarget(id);
+        setActiveMenu(id);
+      }
+
+      document.addEventListener('click', (event) => {
+        const link = event.target?.closest?.('a[href^="#"]');
+        if (!link) return;
+        const hash = link.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const id = hash.slice(1);
+        if (!ids.includes(id)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        toggleMobile(false);
+        navigateToSection(id, { behavior: 'smooth' });
+      }, true);
+
       recomputeOffsets();
       updateActiveSection();
 
       addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('wheel', cancelProgrammaticNavigation, { passive: true });
+      addEventListener('touchstart', cancelProgrammaticNavigation, { passive: true });
+      addEventListener('keydown', cancelNavigationOnKey);
+      addEventListener('scrollend', () => {
+        if (!navigationTargetId) return;
+        if (!hasReachedNavigationTarget(navigationTargetId)) return;
+        const key = navigationTargetId;
+        completeNavigationTarget(key);
+      });
       addEventListener('resize', () => {
         recomputeOffsets();
         updateActiveSection();
@@ -3510,10 +3708,34 @@
       });
       addEventListener('hashchange', () => {
         requestAnimationFrame(() => {
+          if (window.location.hash) startNavigationTarget(window.location.hash.slice(1));
+          alignToHashTarget();
           recomputeOffsets();
           updateActiveSection();
         });
       });
+      addEventListener('load', () => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            restoreInitialHashTarget();
+            recomputeOffsets();
+            if (!navigationTargetId) hashSyncReady = true;
+            updateActiveSection();
+          });
+        });
+      }, { once: true });
+      requestAnimationFrame(() => {
+        restoreInitialHashTarget();
+        updateActiveSection();
+      });
+      setTimeout(() => {
+        restoreInitialHashTarget();
+        updateActiveSection();
+      }, 250);
+      setTimeout(() => {
+        restoreInitialHashTarget();
+        updateActiveSection();
+      }, 900);
       setTimeout(() => {
         recomputeOffsets();
         updateActiveSection();
@@ -3578,39 +3800,39 @@
       let orbitProfileSamples = [];
       let orbitLayout = null;
       const ORBIT_PROFILE_SAMPLES = [
-        { u:0.0000, yNorm:0.7407 },
-        { u:0.0312, yNorm:0.7117 },
-        { u:0.0625, yNorm:0.7034 },
-        { u:0.0938, yNorm:0.6841 },
-        { u:0.1250, yNorm:0.6703 },
-        { u:0.1562, yNorm:0.6483 },
-        { u:0.1875, yNorm:0.6414 },
-        { u:0.2188, yNorm:0.6303 },
-        { u:0.2500, yNorm:0.6193 },
-        { u:0.2812, yNorm:0.6055 },
-        { u:0.3125, yNorm:0.5793 },
-        { u:0.3438, yNorm:0.5931 },
-        { u:0.3750, yNorm:0.5697 },
-        { u:0.4062, yNorm:0.5641 },
-        { u:0.4375, yNorm:0.5793 },
-        { u:0.4688, yNorm:0.5766 },
-        { u:0.5000, yNorm:0.5710 },
-        { u:0.5312, yNorm:0.5710 },
-        { u:0.5625, yNorm:0.5669 },
-        { u:0.5938, yNorm:0.5793 },
-        { u:0.6250, yNorm:0.5793 },
-        { u:0.6562, yNorm:0.5931 },
-        { u:0.6875, yNorm:0.5986 },
-        { u:0.7188, yNorm:0.6014 },
-        { u:0.7500, yNorm:0.6234 },
-        { u:0.7812, yNorm:0.6359 },
-        { u:0.8125, yNorm:0.6469 },
-        { u:0.8438, yNorm:0.6648 },
-        { u:0.8750, yNorm:0.6814 },
-        { u:0.9062, yNorm:0.6979 },
-        { u:0.9375, yNorm:0.7172 },
-        { u:0.9688, yNorm:0.7366 },
-        { u:1.0000, yNorm:0.7572 }
+        { u:0.0000, yNorm:0.7420 },
+        { u:0.0312, yNorm:0.7258 },
+        { u:0.0625, yNorm:0.7108 },
+        { u:0.0938, yNorm:0.6972 },
+        { u:0.1250, yNorm:0.6848 },
+        { u:0.1562, yNorm:0.6733 },
+        { u:0.1875, yNorm:0.6627 },
+        { u:0.2188, yNorm:0.6528 },
+        { u:0.2500, yNorm:0.6436 },
+        { u:0.2812, yNorm:0.6350 },
+        { u:0.3125, yNorm:0.6270 },
+        { u:0.3438, yNorm:0.6196 },
+        { u:0.3750, yNorm:0.6128 },
+        { u:0.4062, yNorm:0.6068 },
+        { u:0.4375, yNorm:0.6017 },
+        { u:0.4688, yNorm:0.5978 },
+        { u:0.5000, yNorm:0.5956 },
+        { u:0.5312, yNorm:0.5957 },
+        { u:0.5625, yNorm:0.5975 },
+        { u:0.5938, yNorm:0.6006 },
+        { u:0.6250, yNorm:0.6051 },
+        { u:0.6562, yNorm:0.6111 },
+        { u:0.6875, yNorm:0.6184 },
+        { u:0.7188, yNorm:0.6272 },
+        { u:0.7500, yNorm:0.6373 },
+        { u:0.7812, yNorm:0.6488 },
+        { u:0.8125, yNorm:0.6616 },
+        { u:0.8438, yNorm:0.6757 },
+        { u:0.8750, yNorm:0.6912 },
+        { u:0.9062, yNorm:0.7081 },
+        { u:0.9375, yNorm:0.7264 },
+        { u:0.9688, yNorm:0.7461 },
+        { u:1.0000, yNorm:0.7670 }
       ];
       const pointer = { x: 0, y: 0, tx: 0, ty: 0, active: false };
       const hotspots = [];
@@ -3627,7 +3849,16 @@
 
       function sampleOrbitProfile(){
         if (!orbitEl || orbitProfileSamples.length) return;
-        orbitProfileSamples = ORBIT_PROFILE_SAMPLES;
+        orbitProfileSamples = ORBIT_PROFILE_SAMPLES.map((sample, index, source) => {
+          if (index === 0 || index === source.length - 1) return sample;
+          const prev = source[index - 1].yNorm;
+          const curr = sample.yNorm;
+          const next = source[index + 1].yNorm;
+          return {
+            u: sample.u,
+            yNorm: prev * 0.2 + curr * 0.6 + next * 0.2
+          };
+        });
       }
 
       function updateOrbitLayout(){
@@ -3659,7 +3890,8 @@
           const b = orbitProfileSamples[i];
           if (clampedU <= b.u) {
             const span = Math.max(0.0001, b.u - a.u);
-            const t = (clampedU - a.u) / span;
+            const rawT = (clampedU - a.u) / span;
+            const t = rawT * rawT * (3 - 2 * rawT);
             return a.yNorm + (b.yNorm - a.yNorm) * t;
           }
         }
@@ -3843,7 +4075,7 @@
           const u = (x - orbitLayout.left) / Math.max(1, orbitLayout.width);
           const yNorm = getOrbitProfileYNorm(u);
           if (yNorm !== null) {
-            return orbitLayout.top + orbitLayout.height * yNorm + 2;
+            return orbitLayout.top + orbitLayout.height * yNorm -2;
           }
         }
         return getFallbackLightSkyBoundaryY(x);
@@ -3851,7 +4083,7 @@
 
       function rebuildLightCurveMap(){
         const samples = [];
-        const count = 240;
+        const count = 420;
         let total = 0;
         let prevX = 0;
         let prevY = getLightSkyBoundaryY(0);
@@ -3909,7 +4141,7 @@
       }
 
       function clipToLightSky(){
-        const samples = 96;
+        const samples = 180;
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(w, 0);
