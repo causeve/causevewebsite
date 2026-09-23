@@ -10,9 +10,6 @@
     { src: 'asset/Digi/2.png', title: 'AI & Operational Analytics', alt: 'Analytics and intelligence for connected operations' },
     { src: 'asset/Digi/3.png', title: 'Web & Mobile Applications', alt: 'Web and mobile interfaces for connected systems' },
     { src: 'asset/process/1.png', title: 'Research to Implementation', alt: 'Engineering workflow from research to implementation' },
-    { src: 'asset/about/1.png', title: 'Engineering Expertise', alt: 'Causeve connected technology and engineering capabilities' },
-    { src: 'asset/portfolio_img/Indoor_Navigation.png', title: 'Indoor Navigation', alt: 'Phone using Bluetooth beacons for indoor navigation', photo: true },
-    { src: 'asset/portfolio_img/Solar_tracking.png', title: 'Solar IoT Networks', alt: 'Connected solar trackers, wireless gateway, and monitoring dashboard', photo: true },
   ];
   const interval = 5000;
   const images = [...carousel.querySelectorAll('.hero-slide')];
@@ -98,6 +95,7 @@
     }
   }
 
+  count.textContent = `01 / ${slides.length}`;
   controls.hidden = false;
   carousel.dataset.slide = '1';
   carousel.querySelector('[data-carousel="previous"]').addEventListener('click', () => show(-1));
