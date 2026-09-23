@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
+  <meta name="color-scheme" content="dark" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Causeve Technologies LLP | Firmware, IoT, Cloud, and AI/ML Engineering</title>
-  <meta name="description" content="Causeve Technologies LLP engineers reliable connected products across firmware, IoT integration, cloud platforms, and AI/ML-enabled applications." />
+  <title>Causeve Technologies LLP | IoT, Embedded Software, and R&D Engineering</title>
+  <meta name="description" content="Causeve Technologies LLP helps clients solve difficult IoT, embedded software, and integration problems through R&D, prototyping, and practical engineering implementation." />
   <script>
     (() => {
       const root = document.documentElement;
       root.classList.add('js');
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
-      }
-      try {
-        const savedTheme = localStorage.getItem('causeve-theme');
-        root.dataset.theme = savedTheme === 'dark' ? 'dark' : 'light';
-      } catch (_) {
-        root.dataset.theme = 'light';
       }
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         root.classList.add('hero-reveal-pending');
@@ -26,12 +21,12 @@
 
   <link rel="icon" type="image/svg+xml" href="./causeve-logo.svg" />
   <link rel="alternate icon" type="image/png" href="./CAUSEVE logo-1.png" />
-  <link rel="preload" as="image" href="CAUSEVE logo-1.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="CAUSEVE logo-2.png" fetchpriority="high" />
   <link rel="preload" as="image" href="asset/hero/3.png" />
   <link rel="preload" as="image" href="asset/hero/orbit.png" />
 
-  <meta property="og:title" content="Causeve Technologies LLP | Firmware, IoT, Cloud, and AI/ML Engineering" />
-  <meta property="og:description" content="Firmware, IoT, cloud, and AI/ML engineering for connected products that need to work in the field." />
+  <meta property="og:title" content="Causeve Technologies LLP | IoT, Embedded Software, and R&D Engineering" />
+  <meta property="og:description" content="R&D-led engineering for difficult IoT, embedded software, and integration problems that need a practical path to implementation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://causeve.com" />
   <meta property="og:image" content="https://causeve.com/CAUSEVE%20logo-1.png" />
@@ -44,9 +39,11 @@
 
   <style>
     :root{
-      --bg:#f5f1e6; --surface:rgba(255,255,255,.82); --card:rgba(255,255,255,.84); --card-2:rgba(248,245,238,.84);
-      --text:#101722; --muted:#526070; --muted-2:#708093; --border:rgba(16,23,34,.10);
-      --primary:#1ab7ad; --primary-2:#f6b654; --accent:#0b8f88; --chip-bg:#dff7f3;
+      color-scheme:dark;
+      --bg:#f4f8fb; --surface:rgba(255,255,255,.82); --card:rgba(255,255,255,.84); --card-2:rgba(248,250,252,.84);
+      --text:#122637; --muted:#526777; --muted-2:#657b8d; --border:rgba(16,23,34,.10);
+      --primary:#14b8a6; --primary-2:#38bdf8; --accent:#087e79; --teal-deep:#087e79; --chip-bg:#e0f5f1;
+      --hero-ink:#f1f8fc; --hero-muted:#b8cdda; --hero-accent:#64e5d5;
       --shadow:0 18px 40px rgba(8,18,28,.08);
       --radius:16px; --radius-sm:12px; --maxw:1200px; --header-h:64px;
       --safe-top: env(safe-area-inset-top);
@@ -56,40 +53,24 @@
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
       padding-top:calc(var(--header-h) + var(--safe-top,0px));
-      background:
-        radial-gradient(circle at top left, rgba(26,183,173,.18), transparent 32%),
-        radial-gradient(circle at 85% 12%, rgba(246,182,84,.18), transparent 24%),
-        linear-gradient(180deg, #f3efe3 0%, #faf7f0 44%, #edf3f5 100%);
+      background:var(--bg);
     }
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
     img{max-width:100%;display:block}
-    /* Deter copying/dragging */
-    .no-select, .no-select *:not(input):not(textarea){
-      -webkit-user-select:none; user-select:none; -ms-user-select:none; -webkit-touch-callout:none;
-    }
     img, img.thumb{ -webkit-user-drag: none; }
-    /* Devtools guard overlay */
-    #devtoolsGuard{
-      position:fixed; inset:0; background:rgba(15,23,42,.92); color:#e2e8f0;
-      display:none; align-items:center; justify-content:center; z-index:9999;
-      backdrop-filter: blur(4px);
-    }
-    #devtoolsGuard .inner{ max-width:800px; padding:22px; text-align:center }
-    #devtoolsGuard h3{ margin:0 0 8px; font-size:1.25rem }
-    body.guard-active{ overflow:hidden }
 
     /* Fixed header */
     header{
       position:fixed; top:0; left:0; right:0; z-index:50;
-      background:rgba(248,245,238,.84);
+      background:rgba(248,250,252,.96);
       -webkit-backdrop-filter:saturate(160%) blur(8px);
       backdrop-filter:saturate(160%) blur(8px);
       border-bottom:1px solid rgba(16,23,34,.08);
     }
     header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--mode-color, var(--accent));opacity:.35;pointer-events:none;transition:background-color .2s ease, opacity .2s ease}
-    .nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 5px 12px 0}
-    .nav-actions{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:20px}
+    .nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 16px}
+    .nav-actions{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:12px}
     .brand{
       display:flex;
       align-items:center;
@@ -99,13 +80,12 @@
       overflow:hidden;
       font-weight:800;
       letter-spacing:.2px;
-      padding:6px 14px 6px 8px;
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(245,240,231,.78));
-      border:1px solid rgba(16,23,34,.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.26),
-        0 8px 18px rgba(8,18,28,.08);
+      padding:4px 8px;
+      border-radius:12px;
+      flex-shrink:0;
+      background:transparent;
+      border:1px solid transparent;
+      box-shadow:none;
       transition:transform .28s cubic-bezier(.22,.61,.36,1), box-shadow .28s ease, border-color .28s ease;
     }
     .brand::before{
@@ -115,7 +95,7 @@
       border-radius:inherit;
       background:
         radial-gradient(circle at 76% 18%, rgba(95,230,221,.12) 0 2px, transparent 3px),
-        radial-gradient(circle at 86% 28%, rgba(246,182,84,.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(56,189,248,.12) 0 2px, transparent 3px),
         linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.05) 30%, rgba(255,255,255,0) 62%);
       opacity:.74;
       pointer-events:none;
@@ -130,8 +110,8 @@
       height:156%;
       background:
         radial-gradient(circle at 56% 18%, rgba(110,244,233,.42) 0 2px, transparent 3px),
-        radial-gradient(circle at 64% 54%, rgba(246,182,84,.30) 0 2px, transparent 3px),
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.30) 26%, rgba(255,255,255,.42) 50%, rgba(246,182,84,.30) 60%, rgba(110,244,233,.24) 74%, rgba(255,255,255,0) 100%);
+        radial-gradient(circle at 64% 54%, rgba(56,189,248,.30) 0 2px, transparent 3px),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.30) 26%, rgba(255,255,255,.42) 50%, rgba(56,189,248,.30) 60%, rgba(110,244,233,.24) 74%, rgba(255,255,255,0) 100%);
       transform:translateX(-150%) rotate(18deg);
       opacity:0;
       mix-blend-mode:screen;
@@ -143,89 +123,20 @@
     .brand img.logo-header{
       position:relative;
       z-index:1;
-      height:clamp(38px,5vw,75px);
+      height:clamp(32px,4vw,44px);
       width:auto;
       border-radius:14px;
       filter:brightness(1.08) contrast(1.06);
     }
-    .menu{display:flex;align-items:center;gap:4px;position:relative}
+    .menu{display:flex;align-items:center;gap:2px;position:relative;margin:0;padding:0}
     .menu li{list-style:none}
-    .menu a{padding:12px 14px;border-radius:12px;font-weight:600;border:1px solid transparent;display:inline-block;position:relative;z-index:1;white-space:nowrap;transition:background-color .2s ease, color .2s ease}
+    .menu a{padding:10px;border-radius:10px;font-size:.9rem;font-weight:600;border:1px solid transparent;display:inline-block;position:relative;z-index:1;white-space:nowrap;transition:background-color .2s ease, color .2s ease}
     header .menu a{color:var(--text)}
     .menu a:hover{background:rgba(26,183,173,.12)}
     .active-link{background:var(--nav-bg) !important}
     .menu a.active-link:hover{background:var(--nav-bg) !important}
     .menu a.active-link::after{content:none}
     .nav-indicator{display:none}
-    .theme-toggle{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:46px;
-      height:46px;
-      min-height:46px;
-      padding:0;
-      border-radius:999px;
-      border:1px solid rgba(16,23,34,.10);
-      background:rgba(255,255,255,.74);
-      color:var(--text);
-      box-shadow:0 10px 20px rgba(8,18,28,.08);
-      position:fixed;
-      top:calc(var(--safe-top, 0px) + 12px);
-      right:20px;
-      transform:none;
-      z-index:70;
-      transition:transform .22s ease, box-shadow .22s ease, background-color .22s ease, border-color .22s ease, color .22s ease;
-    }
-    .theme-toggle:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.9);
-      box-shadow:0 14px 24px rgba(8,18,28,.10);
-    }
-    .theme-toggle-icon{
-      position:relative;
-      width:20px;
-      height:20px;
-      color:currentColor;
-      flex:0 0 auto;
-    }
-    .theme-toggle-icon svg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      transition:opacity .18s ease, transform .18s ease;
-    }
-    .theme-toggle .icon-sun{opacity:0; transform:scale(.82) rotate(-12deg)}
-    .theme-toggle .icon-moon{opacity:1; transform:scale(1) rotate(0)}
-    html[data-theme="dark"] .theme-toggle .icon-sun{opacity:1; transform:scale(1) rotate(0)}
-    html[data-theme="dark"] .theme-toggle .icon-moon{opacity:0; transform:scale(.82) rotate(12deg)}
-    @media (hover:hover){
-      .theme-toggle::after{
-        content:attr(data-tooltip);
-        position:absolute;
-        top:calc(100% + 10px);
-        right:0;
-        padding:8px 10px;
-        border-radius:10px;
-        background:rgba(12,20,28,.90);
-        color:#f6fbfd;
-        font-size:.82rem;
-        font-weight:700;
-        line-height:1;
-        white-space:nowrap;
-        box-shadow:0 12px 24px rgba(8,18,28,.18);
-        opacity:0;
-        pointer-events:none;
-        transform:translateY(-4px);
-        transition:opacity .16s ease, transform .16s ease;
-      }
-      .theme-toggle:hover::after,
-      .theme-toggle:focus-visible::after{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
     .sr-only{
       position:absolute;
       width:1px;
@@ -242,17 +153,16 @@
     .hamburger{display:none}
     .mobile-panel{display:none}
     .scrim{display:none}
-    @media (max-width:900px){
-      .nav{padding-right:0}
+    @media (max-width:1080px){
+      .nav{gap:8px}
       .menu{display:none}
       .hamburger{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(16,23,34,.10);padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.78);font-weight:700;color:var(--text)}
       .mobile-panel{
         display:none; position:fixed; inset:calc(var(--header-h) + 12px) 12px auto 12px;
-        background:rgba(248,245,238,.96); border:1px solid rgba(16,23,34,.10); border-radius:18px; padding:12px; box-shadow:0 18px 40px rgba(8,18,28,.12); z-index:60;
+        max-height:calc(100dvh - var(--header-h) - 24px); overflow-y:auto; overscroll-behavior:contain;
+        background:rgba(248,250,252,.96); border:1px solid rgba(16,23,34,.10); border-radius:18px; padding:12px; box-shadow:0 18px 40px rgba(8,18,28,.12); z-index:60;
       }
       .nav-actions{flex:none;gap:10px}
-      .theme-toggle{width:44px;height:44px;min-height:44px;padding:0;position:static;transform:none}
-      .theme-toggle:hover{transform:translateY(-2px)}
       .mobile-panel.open{display:block}
       .nav-indicator{display:none}
       .mobile-links a{display:block;padding:14px 12px;border-radius:12px;font-weight:600;color:var(--text)}
@@ -261,19 +171,19 @@
       .mobile-section h4{margin:6px 8px 8px;font-size:1rem;color:var(--muted)}
 
       /* Scrim behind mobile panel */
-      .scrim{display:none; position:fixed; inset:0; background:rgba(16,23,34,.18); z-index:55}
+      .scrim{display:none; position:fixed; inset:0; width:100vw; height:100dvh; background:rgba(16,23,34,.18); z-index:55}
       .scrim.open{display:block}
     }
 
     /* Hero (acts like a tabbed surface) */
     .hero{
       position:relative;
-      min-height:calc(100svh - var(--header-h));
-      padding:110px 0 12px;
+      min-height:min(640px, calc(100svh - var(--header-h)));
+      padding:24px 0 12px;
       overflow:hidden;
       background:
         radial-gradient(circle at 18% 22%, rgba(24,182,174,.16), transparent 26%),
-        radial-gradient(circle at 82% 18%, rgba(246,182,84,.14), transparent 22%),
+        radial-gradient(circle at 82% 18%, rgba(56,189,248,.14), transparent 22%),
         linear-gradient(180deg, #081018 0%, #0b1620 52%, #10202d 100%);
     }
     .hero::before{
@@ -301,7 +211,7 @@
     }
     /* Remove the decorative "picture" orb behind hero */
     .bg-orb{display:none !important}
-    .hero-inner{position:relative;z-index:2;display:grid;align-items:center;min-height:calc(100svh - var(--header-h) - 122px)}
+    .hero-inner{position:relative;z-index:2;display:grid;align-items:start}
     .hero-shell{
       position:relative;
       isolation:isolate;
@@ -311,25 +221,10 @@
       gap:32px;
     }
     .hero-copy{position:relative;z-index:4;max-width:640px;text-align:left;isolation:isolate}
-    .hero-copy::before{
-      content:"";
-      position:absolute;
-      inset:-34px -26px -42px -26px;
-      z-index:-1;
-      border-radius:42px;
-      background:
-        radial-gradient(circle at 22% 28%, rgba(255,255,255,.84) 0%, rgba(255,255,255,.68) 34%, rgba(255,255,255,.26) 60%, rgba(255,255,255,0) 82%),
-        linear-gradient(90deg, rgba(255,255,255,.90) 0%, rgba(255,255,255,.72) 40%, rgba(255,255,255,.28) 68%, rgba(255,255,255,0) 88%),
-        radial-gradient(ellipse at 24% 88%, rgba(255,255,255,.96) 0%, rgba(255,255,255,.78) 28%, rgba(255,255,255,.38) 54%, rgba(255,255,255,0) 78%),
-        radial-gradient(ellipse at 18% 106%, rgba(255,255,255,.88) 0%, rgba(255,255,255,.50) 30%, rgba(255,255,255,0) 72%);
-      filter:blur(15px);
-      opacity:.97;
-      pointer-events:none;
-    }
-    .hero .lead{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(16,23,34,.10);background:rgba(255,255,255,.74);font-weight:700;color:var(--accent);box-shadow:0 14px 28px rgba(8,18,28,.08)}
-    .hero h1{margin:14px 0 10px;max-width:11.5ch;font-size:clamp(24px,5.6vw,46px);line-height:1.12;letter-spacing:-.3px;color:var(--text)}
-    .hero h1 .grad{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .hero p{margin:0;max-width:35rem;color:rgb(0, 0, 0);font-size:clamp(13px,3.2vw,17px);line-height:1.56;font-weight:600;text-shadow:0 1px 0 rgba(255,255,255,.18)}
+    .hero .lead{display:inline-block;padding:7px 12px;border-radius:999px;border:1px solid rgba(100,229,213,.24);background:rgba(20,184,166,.09);font-size:.85rem;line-height:1.5;font-weight:600;color:var(--hero-accent);letter-spacing:.015em}
+    .hero h1{margin:18px 0 16px;max-width:17ch;font-size:clamp(24px,5.6vw,46px);line-height:1.14;letter-spacing:-1.1px;color:var(--hero-ink);text-wrap:balance}
+    .hero h1 .grad{background:linear-gradient(110deg,#79f0d9 0%,#45d7d2 48%,#78caff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{margin:0;max-width:35rem;color:var(--hero-muted);font-size:clamp(13px,3.2vw,16px);line-height:1.75;font-weight:400}
     .cta{display:flex;gap:10px;margin-top:16px;justify-content:center;flex-wrap:wrap}
     .hero-copy .cta{justify-content:flex-start;position:relative;z-index:5}
     .hero-copy > *,
@@ -349,8 +244,8 @@
       position:relative;
       z-index:1;
       justify-self:end;
-      width:min(56vw,760px);
-      max-width:min(56vw,760px);
+      width:100%;
+      max-width:100%;
       aspect-ratio:1.36/1;
       padding:0;
       border:0;
@@ -360,13 +255,14 @@
       cursor:default;
       pointer-events:auto;
       -webkit-tap-highlight-color:transparent;
+      margin-bottom:54px;
     }
     .hero-visual::before{
       content:"";
       position:absolute;
       inset:12% 12% 14%;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(26,183,173,.20) 0%, rgba(246,182,84,.16) 36%, rgba(255,255,255,.06) 58%, rgba(72,209,204,0) 76%);
+      background:radial-gradient(circle, rgba(26,183,173,.20) 0%, rgba(56,189,248,.16) 36%, rgba(255,255,255,.06) 58%, rgba(72,209,204,0) 76%);
       filter:blur(20px);
       z-index:0;
     }
@@ -379,7 +275,7 @@
       height:18%;
       border-radius:50%;
       background:
-        radial-gradient(ellipse at center, rgba(110,244,233,.14) 0%, rgba(246,182,84,.10) 34%, rgba(255,255,255,.06) 58%, rgba(255,255,255,0) 74%);
+        radial-gradient(ellipse at center, rgba(110,244,233,.14) 0%, rgba(56,189,248,.10) 34%, rgba(255,255,255,.06) 58%, rgba(255,255,255,0) 74%);
       filter:blur(18px);
       transform:perspective(620px) rotateX(72deg);
       transform-origin:center top;
@@ -410,11 +306,20 @@
     }
     .hero-slide{
       z-index:2;
-      opacity:1;
-      transform:translateY(-4px) scale(1.20);
-      transition:transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
+      opacity:0;
+      transform:translateY(-4px) scale(1.04);
+      transition:opacity .7s ease, transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
       filter:drop-shadow(0 28px 42px rgba(2,8,12,.38));
     }
+    .hero-slide.is-active{opacity:1}
+    .hero-echo[hidden]{display:none}
+    .hero-slide--photo{object-fit:cover;object-position:center;border-radius:22px}
+    .hero-controls{position:absolute;left:0;right:0;bottom:-52px;z-index:5;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--hero-muted)}
+    .hero-controls[hidden]{display:none}
+    .hero-controls button{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;padding:0;border:1px solid rgba(160,207,225,.26);border-radius:50%;background:#102331;color:#e4f2fa;font:inherit;cursor:pointer}
+    .hero-controls button:hover{background:#173b44;border-color:var(--hero-accent)}
+    .hero-slide-caption{min-width:0;flex:1;max-width:270px;text-align:center;font-size:.76rem;line-height:1.5}
+    .hero-slide-caption strong{display:block;color:var(--hero-accent);font-size:.8rem;font-weight:600}
     .js.hero-reveal-pending .hero-copy > *{
       opacity:0;
       transform:translateY(22px);
@@ -432,13 +337,15 @@
     /* Smooth swap for hero header/content */
     .hero-inner, .hero-content{transition:opacity .2s ease, transform .2s ease; will-change:opacity, transform}
     .fade-out{opacity:0 !important; transform:translateY(12px)}
-    .btn{padding:12px 14px;border-radius:12px;border:1px solid var(--border);font-weight:700}
-    .btn.primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#05343a;border-color:transparent;box-shadow:0 10px 18px rgba(15,118,110,.18)}
-    .hero .btn.ghost{background:rgba(255,255,255,.76);border-color:rgba(16,23,34,.10);color:var(--text);box-shadow:0 10px 20px rgba(8,18,28,.08)}
-    .hero .btn.ghost:hover{background:rgba(255,255,255,.92)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 16px;border-radius:10px;border:1px solid var(--border);font-size:.9rem;font-weight:700;transition:background-color .2s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+    .btn.primary{background:linear-gradient(120deg,#5de1c9,#39c9cb);color:#062d35;border-color:rgba(100,229,213,.35);box-shadow:0 6px 22px rgba(20,184,166,.16)}
+    .btn.primary:hover{background:linear-gradient(120deg,#80efda,#62dedb);box-shadow:0 8px 26px rgba(20,184,166,.24);transform:translateY(-2px)}
+    .hero .btn.ghost{background:rgba(12,29,44,.76);border-color:rgba(160,207,225,.32);color:#e4f2fa;box-shadow:none}
+    .hero .btn.ghost:hover{background:rgba(23,53,69,.92);border-color:var(--hero-accent)}
+    :where(a,button,[tabindex]):focus-visible{outline:3px solid #38bdf8;outline-offset:4px}
 
     .hero-canvas{
-      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;opacity:.97;
+      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;opacity:.46;
     }
     .hero-orbit{
       position:absolute;
@@ -449,6 +356,7 @@
       max-width:none;
       height:auto;
       transform:translateX(-50%);
+      opacity:.58;
       pointer-events:none;
       user-select:none;
       -webkit-user-drag:none;
@@ -525,7 +433,7 @@
       height:80px;
       border-radius:16px;
       border:1px solid rgba(16,23,34,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(247,244,238,.86));
+      background:linear-gradient(180deg, rgba(255,255,255,.90), rgba(241,246,250,.86));
       box-shadow:0 10px 20px rgba(8,18,28,.06);
       display:grid;
       place-items:center;
@@ -536,7 +444,7 @@
       transform:translateY(-2px);
       border-color:rgba(26,183,173,.18);
       box-shadow:0 14px 24px rgba(8,18,28,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(250,247,241,.94));
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,250,252,.94));
     }
     .client-logo img{
       max-width:100%;
@@ -575,18 +483,18 @@
 
     :root{
       --about-bg:rgba(255,255,255,.86); --about-surface:rgba(255,255,255,.88); --about-border:rgba(16,23,34,.10);
-      --about-text:#101722; --about-muted:#526070; --about-accent:#1ab7ad;
+      --about-text:#122637; --about-muted:#526777; --about-accent:#14b8a6;
       --about-glow:rgba(26,183,173,0.18); --about-shadow:rgba(8,18,28,0.10);
     }
     /* Mode color mapping (used by header accent and nav underline) */
-    :root{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-home{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-product{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-digital{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-process{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-about{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-portfolio{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
-    html.mode-contact{ --mode-color:#19B5BD; --nav-bg: rgba(26,183,173,.14); }
+    :root{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-home{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-product{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-digital{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-process{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-about{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-portfolio{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
+    html.mode-contact{ --mode-color:#19B5BD; --nav-bg: rgba(20,184,166,.11); }
     .about-tabs-container{
       max-width:900px;margin:0 auto;padding:14px 14px 12px;
       background:var(--about-bg);border-radius:14px;
@@ -668,11 +576,10 @@
     @keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
     @media (max-width:768px){
-      .hero{padding:92px 0 20px}
+      .hero{padding:20px 0}
       .hero-inner{min-height:auto}
       .hero-shell{grid-template-columns:1fr;gap:18px}
       .hero-copy{max-width:min(100%, 760px);margin:0 auto;text-align:center}
-      .hero-copy::before{inset:-24px -16px -20px -16px;border-radius:30px;filter:blur(12px)}
       .hero .lead{max-width:min(100%, 420px);line-height:1.35}
       .hero-copy .cta{justify-content:center}
       .hero h1{max-width:none}
@@ -702,7 +609,7 @@
       section{padding:38px 0}
       .card{padding:14px}
       .hero h1{font-size:clamp(22px, 11vw, 38px)}
-      .hero p{font-size:15px;line-height:1.5}
+      .hero p{font-size:15px;line-height:1.7}
       .hero-visual{width:min(100%, 500px);max-width:calc(100vw - 40px)}
       .hero .lead{font-size:.92rem;padding:7px 11px}
       .hero-orbit{width:max(188%, 920px);bottom:-10px}
@@ -737,7 +644,7 @@
       border-radius:inherit;
       background:
         radial-gradient(circle at 78% 18%, rgba(95,230,221,.18) 0 2px, transparent 3px),
-        radial-gradient(circle at 86% 28%, rgba(246,182,84,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(56,189,248,.16) 0 2px, transparent 3px),
         radial-gradient(circle at 70% 34%, rgba(95,230,221,.12) 0 1.5px, transparent 2.5px),
         linear-gradient(146deg, rgba(255,255,255,0) 0 58%, rgba(95,230,221,.07) 58.5%, rgba(95,230,221,0) 60.5%),
         linear-gradient(128deg, rgba(255,255,255,0) 0 64%, rgba(95,230,221,.05) 64.5%, rgba(95,230,221,0) 66.5%),
@@ -758,8 +665,8 @@
       height:156%;
       background:
         radial-gradient(circle at 56% 18%, rgba(110,244,233,.24) 0 2px, transparent 3px),
-        radial-gradient(circle at 64% 54%, rgba(246,182,84,.20) 0 2px, transparent 3px),
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.12) 30%, rgba(246,182,84,.18) 50%, rgba(110,244,233,.12) 70%, rgba(255,255,255,0) 100%),
+        radial-gradient(circle at 64% 54%, rgba(56,189,248,.20) 0 2px, transparent 3px),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.12) 30%, rgba(56,189,248,.18) 50%, rgba(110,244,233,.12) 70%, rgba(255,255,255,0) 100%),
         repeating-linear-gradient(30deg, rgba(110,244,233,.10) 0 1.5px, transparent 1.5px 22px);
       background-repeat:no-repeat;
       transform:translateX(-150%) rotate(18deg);
@@ -799,7 +706,7 @@
       border-radius:inherit;
       background:
         radial-gradient(circle at 30% 24%, rgba(110,244,233,.14), transparent 26%),
-        radial-gradient(circle at 76% 22%, rgba(246,182,84,.12), transparent 22%),
+        radial-gradient(circle at 76% 22%, rgba(56,189,248,.12), transparent 22%),
         linear-gradient(180deg, rgba(6,15,22,.94) 0%, rgba(9,22,31,.88) 100%);
       transition:
         opacity .68s cubic-bezier(.22,.61,.36,1),
@@ -840,8 +747,8 @@
       width:7px;
       height:7px;
       border-radius:50%;
-      background:#f6b756;
-      box-shadow:0 0 0 5px rgba(246,182,84,.10);
+      background:#38bdf8;
+      box-shadow:0 0 0 5px rgba(56,189,248,.10);
     }
     .card-image-caption h3{
       position:absolute;
@@ -861,7 +768,7 @@
       inset:0;
       background:
         radial-gradient(circle at 72% 22%, rgba(95,230,221,.20) 0 2px, transparent 3px),
-        radial-gradient(circle at 82% 30%, rgba(246,182,84,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 30%, rgba(56,189,248,.18) 0 2px, transparent 3px),
         linear-gradient(146deg, rgba(255,255,255,0) 0 56%, rgba(95,230,221,.09) 56.5%, rgba(95,230,221,0) 58.5%),
         linear-gradient(124deg, rgba(255,255,255,0) 0 62%, rgba(95,230,221,.07) 62.5%, rgba(95,230,221,0) 64.5%);
       opacity:.86;
@@ -874,7 +781,7 @@
       width:42%;
       height:148%;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.10) 34%, rgba(246,182,84,.14) 50%, rgba(110,244,233,.10) 66%, rgba(255,255,255,0) 100%);
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.10) 34%, rgba(56,189,248,.14) 50%, rgba(110,244,233,.10) 66%, rgba(255,255,255,0) 100%);
       transform:translateX(-140%) rotate(18deg);
       opacity:.0;
       transition:transform .78s cubic-bezier(.22,.61,.36,1), opacity .34s ease;
@@ -942,7 +849,7 @@
       width:2px;
       height:calc(100% - 1.2rem);
       border-radius:999px;
-      background:linear-gradient(180deg, rgba(110,244,233,.92) 0%, rgba(246,182,84,.58) 100%);
+      background:linear-gradient(180deg, rgba(110,244,233,.92) 0%, rgba(56,189,248,.58) 100%);
       opacity:.78;
     }
     .section-eyebrow{
@@ -961,8 +868,8 @@
       width:8px;
       height:8px;
       border-radius:50%;
-      background:#f6b756;
-      box-shadow:0 0 0 6px rgba(246,182,84,.10);
+      background:#38bdf8;
+      box-shadow:0 0 0 6px rgba(56,189,248,.10);
     }
     .section-copy{max-width:46rem;margin-bottom:30px}
     .section-copy h2{max-width:14ch;line-height:1.14}
@@ -1057,8 +964,8 @@
       padding-top:18px;
       background:
         radial-gradient(circle at 10% 18%, rgba(24,182,174,.12), transparent 24%),
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.12), transparent 20%),
-        linear-gradient(180deg, rgba(250,247,240,.98) 0%, rgba(242,247,248,.96) 100%);
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.12), transparent 20%),
+        linear-gradient(180deg, rgba(248,251,253,.98) 0%, rgba(242,247,248,.96) 100%);
     }
     #product-engineering::before,
     #digital-engineering::before,
@@ -1074,7 +981,7 @@
     #product-engineering::before{
       background:
         radial-gradient(circle at 8% 18%, rgba(32,178,170,.06), transparent 26%),
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.05), transparent 22%),
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.05), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
     }
     #product-engineering::after{
@@ -1089,7 +996,7 @@
       pointer-events:none;
       background-image:
         radial-gradient(circle, rgba(53,178,199,.24) 0 3px, transparent 4px),
-        radial-gradient(circle, rgba(246,182,84,.16) 0 3px, transparent 4px),
+        radial-gradient(circle, rgba(56,189,248,.16) 0 3px, transparent 4px),
         repeating-linear-gradient(28deg, rgba(53,178,199,.08) 0 2px, transparent 2px 96px),
         repeating-linear-gradient(-34deg, rgba(53,178,199,.06) 0 2px, transparent 2px 108px);
       background-size:118px 118px, 176px 176px, 180px 152px, 220px 166px;
@@ -1099,13 +1006,13 @@
     #digital-engineering{
       background:
         radial-gradient(circle at 16% 14%, rgba(24,182,174,.10), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(246,182,84,.09), transparent 18%),
-        linear-gradient(180deg, rgba(245,241,230,.98) 0%, rgba(239,246,248,.96) 100%);
+        radial-gradient(circle at 82% 18%, rgba(56,189,248,.09), transparent 18%),
+        linear-gradient(180deg, rgba(238,245,249,.98) 0%, rgba(239,246,248,.96) 100%);
     }
     #digital-engineering::before{
       background:
         radial-gradient(circle at 14% 14%, rgba(32,178,170,.05), transparent 24%),
-        radial-gradient(circle at 78% 18%, rgba(246,182,84,.05), transparent 18%),
+        radial-gradient(circle at 78% 18%, rgba(56,189,248,.05), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
     }
     #digital-engineering::after{
@@ -1120,7 +1027,7 @@
       pointer-events:none;
       background-image:
         radial-gradient(circle, rgba(59,192,214,.24) 0 3px, transparent 4px),
-        radial-gradient(circle, rgba(246,182,84,.14) 0 3px, transparent 4px),
+        radial-gradient(circle, rgba(56,189,248,.14) 0 3px, transparent 4px),
         repeating-linear-gradient(24deg, rgba(59,192,214,.09) 0 2px, transparent 2px 92px),
         repeating-linear-gradient(-26deg, rgba(59,192,214,.07) 0 2px, transparent 2px 100px);
       background-size:124px 124px, 186px 186px, 170px 142px, 206px 160px;
@@ -1130,13 +1037,13 @@
     #process{
       background:
         radial-gradient(circle at 18% 18%, rgba(24,182,174,.10), transparent 24%),
-        radial-gradient(circle at 86% 14%, rgba(246,182,84,.12), transparent 20%),
-        linear-gradient(180deg, rgba(250,247,240,.98) 0%, rgba(240,246,247,.96) 100%);
+        radial-gradient(circle at 86% 14%, rgba(56,189,248,.12), transparent 20%),
+        linear-gradient(180deg, rgba(248,251,253,.98) 0%, rgba(240,246,247,.96) 100%);
     }
     #process::before{
       background:
         radial-gradient(circle at 18% 18%, rgba(32,178,170,.05), transparent 24%),
-        radial-gradient(circle at 84% 14%, rgba(246,182,84,.05), transparent 20%),
+        radial-gradient(circle at 84% 14%, rgba(56,189,248,.05), transparent 20%),
         linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
     }
     #process::after{
@@ -1151,7 +1058,7 @@
       pointer-events:none;
       background-image:
         radial-gradient(circle, rgba(70,188,208,.18) 0 2.5px, transparent 3.5px),
-        radial-gradient(circle, rgba(246,182,84,.14) 0 2.5px, transparent 3.5px),
+        radial-gradient(circle, rgba(56,189,248,.14) 0 2.5px, transparent 3.5px),
         repeating-linear-gradient(24deg, rgba(70,188,208,.06) 0 2px, transparent 2px 102px),
         repeating-linear-gradient(-30deg, rgba(70,188,208,.05) 0 2px, transparent 2px 114px);
       background-size:122px 122px, 178px 178px, 182px 148px, 214px 170px;
@@ -1159,13 +1066,13 @@
     }
     #about{
       background:
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.12), transparent 22%),
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.12), transparent 22%),
         radial-gradient(circle at 14% 80%, rgba(24,182,174,.08), transparent 24%),
-        linear-gradient(180deg, rgba(245,241,230,.98) 0%, rgba(242,247,248,.96) 100%);
+        linear-gradient(180deg, rgba(238,245,249,.98) 0%, rgba(242,247,248,.96) 100%);
     }
     #about::before{
       background:
-        radial-gradient(circle at 84% 10%, rgba(246,182,84,.06), transparent 24%),
+        radial-gradient(circle at 84% 10%, rgba(56,189,248,.06), transparent 24%),
         radial-gradient(circle at 10% 82%, rgba(32,178,170,.04), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0));
     }
@@ -1280,7 +1187,7 @@
       border:1px solid rgba(16,23,34,.08);
       border-radius:24px;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(246,182,84,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(56,189,248,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
         linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(245,249,250,.90) 100%);
       background-repeat:no-repeat;
       background-size:240% 240%, 100% 100%;
@@ -1297,7 +1204,7 @@
       border-radius:inherit;
       background:
         radial-gradient(circle at 84% 18%, rgba(95,230,221,.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 91% 26%, rgba(246,182,84,.14) 0 2px, transparent 3px),
+        radial-gradient(circle at 91% 26%, rgba(56,189,248,.14) 0 2px, transparent 3px),
         linear-gradient(146deg, rgba(255,255,255,0) 0 60%, rgba(95,230,221,.06) 60.5%, rgba(95,230,221,0) 62.5%),
         linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04) 30%, rgba(255,255,255,0) 60%);
       opacity:.72;
@@ -1364,7 +1271,7 @@
       height:50px;
       margin-bottom:18px;
       border-radius:16px;
-      background:linear-gradient(135deg, rgba(26,183,173,.18), rgba(246,182,84,.26));
+      background:linear-gradient(135deg, rgba(26,183,173,.18), rgba(56,189,248,.26));
       color:var(--text);
       font-family:"Space Grotesk",sans-serif;
       font-size:1.06rem;
@@ -1462,8 +1369,8 @@
           rgba(95,230,221,0) 0 36%,
           rgba(95,230,221,.18) 42%,
           rgba(255,255,255,.12) 49%,
-          rgba(246,182,84,.14) 55%,
-          rgba(246,182,84,0) 64%
+          rgba(56,189,248,.14) 55%,
+          rgba(56,189,248,0) 64%
         );
       mix-blend-mode:screen;
       filter:blur(14px);
@@ -1478,7 +1385,7 @@
       border:1px solid rgba(16,23,34,.08);
       border-radius:24px;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(246,182,84,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.06) 34%, rgba(56,189,248,.10) 50%, rgba(110,244,233,.06) 66%, rgba(255,255,255,0) 100%),
         linear-gradient(180deg, rgba(255,255,255,.94) 0%, rgba(245,248,250,.90) 100%);
       background-repeat:no-repeat;
       background-size:240% 240%, 100% 100%;
@@ -1497,7 +1404,7 @@
       border-radius:inherit;
       background:
         radial-gradient(circle at 84% 18%, rgba(95,230,221,.18) 0 2px, transparent 3px),
-        radial-gradient(circle at 91% 26%, rgba(246,182,84,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 91% 26%, rgba(56,189,248,.16) 0 2px, transparent 3px),
         linear-gradient(146deg, rgba(255,255,255,0) 0 60%, rgba(95,230,221,.06) 60.5%, rgba(95,230,221,0) 62.5%),
         linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.04) 30%, rgba(255,255,255,0) 60%);
       opacity:.74;
@@ -1612,7 +1519,7 @@
       right:20px;
       bottom:18px;
       height:1px;
-      background:linear-gradient(90deg, rgba(95,230,221,0), rgba(95,230,221,.58), rgba(246,182,84,.34), rgba(246,182,84,0));
+      background:linear-gradient(90deg, rgba(95,230,221,0), rgba(95,230,221,.58), rgba(56,189,248,.34), rgba(56,189,248,0));
       transform:scaleX(.28);
       transform-origin:left center;
     }
@@ -1624,8 +1531,8 @@
           rgba(95,230,221,0) 0 40%,
           rgba(95,230,221,.18) 46%,
           rgba(255,255,255,.14) 50%,
-          rgba(246,182,84,.14) 56%,
-          rgba(246,182,84,0) 62%
+          rgba(56,189,248,.14) 56%,
+          rgba(56,189,248,0) 62%
         );
       mix-blend-mode:screen;
       filter:blur(12px);
@@ -1703,8 +1610,8 @@
       width:7px;
       height:7px;
       border-radius:50%;
-      background:#f6b756;
-      box-shadow:0 0 0 5px rgba(246,182,84,.10);
+      background:#38bdf8;
+      box-shadow:0 0 0 5px rgba(56,189,248,.10);
     }
     .founder-card h3{
       position:relative;
@@ -1751,6 +1658,7 @@
       color:#f4fafc;
       overflow:hidden;
     }
+    .section-dark .section-eyebrow{color:#64e5d5}
     .section-dark h2,
     .section-dark .eyebrow{color:#f4fafc}
     .section-dark p,
@@ -1760,9 +1668,9 @@
     .work-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
     .case-card{
       grid-column:span 4;
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:28px;
-      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(141,187,209,.16);
+      border-radius:20px;
+      background:#102331;
       box-shadow:0 18px 34px rgba(0,0,0,0.14);
       backdrop-filter:blur(10px);
     }
@@ -1791,7 +1699,7 @@
       width:8px;
       height:8px;
       border-radius:50%;
-      background:#f6b756;
+      background:#38bdf8;
     }
     .case-body h3{margin:0;max-width:18ch;font-size:1.35rem;line-height:1.3}
     .case-body p{margin-top:14px;max-width:34ch;font-size:.98rem;line-height:1.72}
@@ -1799,7 +1707,7 @@
     .case-stack span{
       padding:8px 11px;
       border-radius:999px;
-      background:rgba(255,255,255,0.08);
+      background:rgba(100,229,213,.08);
       font-size:.82rem;
       font-weight:800;
     }
@@ -1876,7 +1784,7 @@
         filter:blur(15px) brightness(1.1) saturate(1.08);
       }
       .hero-visual:hover .hero-slide{
-        transform:translateY(-6px) scale(1.215);
+        transform:translateY(-6px) scale(1.055);
       }
       .process-visual:hover img,
       .about-visual:hover img{
@@ -1932,13 +1840,13 @@
       min-height:calc(100svh - var(--header-h) - 20px);
       background:
         radial-gradient(circle at 18% 22%, rgba(24,182,174,.12), transparent 22%),
-        radial-gradient(circle at 86% 18%, rgba(246,182,84,.12), transparent 18%),
-        linear-gradient(180deg, rgba(247,243,234,.98) 0%, rgba(240,246,248,.96) 100%);
+        radial-gradient(circle at 86% 18%, rgba(56,189,248,.12), transparent 18%),
+        linear-gradient(180deg, rgba(241,247,250,.98) 0%, rgba(240,246,248,.96) 100%);
     }
     #contact::before{
       background:
         radial-gradient(circle at 16% 22%, rgba(32,178,170,.06), transparent 22%),
-        radial-gradient(circle at 88% 18%, rgba(246,182,84,.06), transparent 18%),
+        radial-gradient(circle at 88% 18%, rgba(56,189,248,.06), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0));
     }
     #contact::after{
@@ -1976,7 +1884,7 @@
     .map-embed{flex:1 1 520px;min-height:320px;width:100%;border:0;border-radius:14px;box-shadow:var(--shadow)}
     @media (max-width:520px){ .map-embed{min-height:240px} }
     footer{
-      margin-top:32px;
+      margin-top:0;
       border-top:1px solid rgba(16,23,34,.08);
       background:transparent;
     }
@@ -2064,18 +1972,22 @@
 
     /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
-      .hero{background:linear-gradient(180deg, #f4efe3 0%, #faf7f0 46%, #edf3f5 100%)}
+      *, *::before, *::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
       .hero-canvas{display:none}
       .hero-inner, .hero-content{transition:none !important}
       .about-content{transition:none !important}
     }
     html[data-theme="dark"]{
       --nav-bg: rgba(25,181,189,.38);
+      --bg:#08131f; --surface:#102331; --card:#102331; --card-2:#132a39;
+      --text:#edf6fc; --muted:#b6cbd9; --muted-2:#9db5c6;
+      --accent:#64e5d5; --teal-deep:#64e5d5; --border:rgba(141,187,209,.16);
+      --chip-bg:#173b44;
     }
     html[data-theme="dark"] body{
       background:
         radial-gradient(circle at top left, rgba(26,183,173,.12), transparent 32%),
-        radial-gradient(circle at 85% 12%, rgba(246,182,84,.10), transparent 24%),
+        radial-gradient(circle at 85% 12%, rgba(56,189,248,.10), transparent 24%),
         linear-gradient(180deg, #081018 0%, #0b1620 48%, #101e2b 100%);
     }
     html[data-theme="dark"] header{
@@ -2101,20 +2013,10 @@
     }
     html[data-theme="dark"] .mobile-section h4{color:rgba(225,237,244,.78)}
     html[data-theme="dark"] .scrim{background:rgba(15,23,42,.28)}
-    html[data-theme="dark"] .theme-toggle{
-      border-color:rgba(158,232,224,.12);
-      background:rgba(10,22,31,.68);
-      color:#eef8fb;
-      box-shadow:0 10px 20px rgba(0,0,0,.20);
-    }
-    html[data-theme="dark"] .theme-toggle:hover{
-      background:rgba(12,28,40,.78);
-      box-shadow:0 14px 24px rgba(0,0,0,.24);
-    }
     html[data-theme="dark"] .hero{
       background:
         radial-gradient(circle at 18% 22%, rgba(24,182,174,.16), transparent 26%),
-        radial-gradient(circle at 82% 18%, rgba(246,182,84,.14), transparent 22%),
+        radial-gradient(circle at 82% 18%, rgba(56,189,248,.14), transparent 22%),
         linear-gradient(180deg, #081018 0%, #0b1620 52%, #10202d 100%);
     }
     html[data-theme="dark"] .brand{
@@ -2127,7 +2029,7 @@
     html[data-theme="dark"] .brand::before{
       background:
         radial-gradient(circle at 76% 18%, rgba(95,230,221,.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 86% 28%, rgba(246,182,84,.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 28%, rgba(56,189,248,.12) 0 2px, transparent 3px),
         linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02) 30%, rgba(255,255,255,0) 62%);
       opacity:.86;
     }
@@ -2148,16 +2050,9 @@
       width:360px;
       height:360px;
       border-radius:50%;
-      background:radial-gradient(circle, rgba(246,182,84,.18), transparent 70%);
+      background:radial-gradient(circle, rgba(56,189,248,.18), transparent 70%);
     }
     html[data-theme="dark"] .hero-orbit{display:none}
-    html[data-theme="dark"] .hero-copy::before{
-      background:
-        radial-gradient(circle at 22% 30%, rgba(8,16,24,.84) 0%, rgba(8,16,24,.58) 38%, rgba(8,16,24,.22) 64%, rgba(8,16,24,0) 84%),
-        linear-gradient(90deg, rgba(8,16,24,.78) 0%, rgba(8,16,24,.48) 54%, rgba(8,16,24,.12) 78%, rgba(8,16,24,0) 100%);
-      filter:blur(18px);
-      opacity:.94;
-    }
     html[data-theme="dark"] .hero .lead{
       border-color:rgba(158,232,224,.22);
       background:rgba(10,22,31,.58);
@@ -2165,12 +2060,12 @@
       box-shadow:0 14px 28px rgba(5,10,16,.22);
     }
     html[data-theme="dark"] .hero h1{color:#f5fbff}
-    html[data-theme="dark"] .hero p{color:rgba(225,237,244,.84)}
+    html[data-theme="dark"] .hero p{color:var(--hero-muted)}
     html[data-theme="dark"] .hero-visual::before{
-      background:radial-gradient(circle, rgba(26,183,173,.34) 0%, rgba(246,182,84,.18) 36%, rgba(15,23,42,.08) 58%, rgba(72,209,204,0) 76%);
+      background:radial-gradient(circle, rgba(26,183,173,.34) 0%, rgba(56,189,248,.18) 36%, rgba(15,23,42,.08) 58%, rgba(72,209,204,0) 76%);
     }
     html[data-theme="dark"] .hero-visual::after{
-      background:radial-gradient(ellipse at center, rgba(110,244,233,.18) 0%, rgba(246,182,84,.10) 34%, rgba(4,9,14,.06) 58%, rgba(4,9,14,0) 74%);
+      background:radial-gradient(ellipse at center, rgba(110,244,233,.18) 0%, rgba(56,189,248,.10) 34%, rgba(4,9,14,.06) 58%, rgba(4,9,14,0) 74%);
       opacity:.92;
     }
     html[data-theme="dark"] .hero .btn.ghost{
@@ -2180,7 +2075,7 @@
       box-shadow:0 10px 20px rgba(2,8,12,.14);
     }
     html[data-theme="dark"] .hero .btn.ghost:hover{background:rgba(12,28,40,.68)}
-    html[data-theme="dark"] .hero-canvas{opacity:.97}
+    html[data-theme="dark"] .hero-canvas{opacity:.46}
     html[data-theme="dark"] .clients-strip{
       background:
         linear-gradient(180deg, #0c1824 0%, #101d2a 100%);
@@ -2220,51 +2115,51 @@
     html[data-theme="dark"] #product-engineering{
       background:
         radial-gradient(circle at 10% 18%, rgba(24,182,174,.16), transparent 24%),
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.11), transparent 20%),
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.11), transparent 20%),
         linear-gradient(180deg, #081018 0%, #0d1822 100%);
     }
     html[data-theme="dark"] #product-engineering::before{
       background:
         radial-gradient(circle at 8% 18%, rgba(32,178,170,.08), transparent 26%),
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.06), transparent 22%),
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.06), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
     }
     html[data-theme="dark"] #product-engineering::after{opacity:.78}
     html[data-theme="dark"] #digital-engineering{
       background:
         radial-gradient(circle at 16% 14%, rgba(24,182,174,.14), transparent 24%),
-        radial-gradient(circle at 82% 18%, rgba(246,182,84,.09), transparent 18%),
+        radial-gradient(circle at 82% 18%, rgba(56,189,248,.09), transparent 18%),
         linear-gradient(180deg, #09121b 0%, #0e1b27 100%);
     }
     html[data-theme="dark"] #digital-engineering::before{
       background:
         radial-gradient(circle at 14% 14%, rgba(32,178,170,.08), transparent 24%),
-        radial-gradient(circle at 78% 18%, rgba(246,182,84,.05), transparent 18%),
+        radial-gradient(circle at 78% 18%, rgba(56,189,248,.05), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
     }
     html[data-theme="dark"] #digital-engineering::after{opacity:.84}
     html[data-theme="dark"] #process{
       background:
         radial-gradient(circle at 18% 18%, rgba(24,182,174,.13), transparent 24%),
-        radial-gradient(circle at 86% 14%, rgba(246,182,84,.10), transparent 20%),
+        radial-gradient(circle at 86% 14%, rgba(56,189,248,.10), transparent 20%),
         linear-gradient(180deg, #09141f 0%, #0f1c28 100%);
     }
     html[data-theme="dark"] #process::before{
       background:
         radial-gradient(circle at 18% 18%, rgba(32,178,170,.07), transparent 24%),
-        radial-gradient(circle at 84% 14%, rgba(246,182,84,.05), transparent 20%),
+        radial-gradient(circle at 84% 14%, rgba(56,189,248,.05), transparent 20%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
     }
     html[data-theme="dark"] #process::after{opacity:.62}
     html[data-theme="dark"] #about{
       background:
-        radial-gradient(circle at 84% 12%, rgba(246,182,84,.11), transparent 22%),
+        radial-gradient(circle at 84% 12%, rgba(56,189,248,.11), transparent 22%),
         radial-gradient(circle at 14% 80%, rgba(24,182,174,.10), transparent 24%),
         linear-gradient(180deg, #09131d 0%, #101e2b 100%);
     }
     html[data-theme="dark"] #about::before{
       background:
-        radial-gradient(circle at 84% 10%, rgba(246,182,84,.07), transparent 24%),
+        radial-gradient(circle at 84% 10%, rgba(56,189,248,.07), transparent 24%),
         radial-gradient(circle at 10% 82%, rgba(32,178,170,.05), transparent 22%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
     }
@@ -2272,13 +2167,13 @@
     html[data-theme="dark"] #contact{
       background:
         radial-gradient(circle at 18% 22%, rgba(24,182,174,.14), transparent 22%),
-        radial-gradient(circle at 86% 18%, rgba(246,182,84,.10), transparent 18%),
+        radial-gradient(circle at 86% 18%, rgba(56,189,248,.10), transparent 18%),
         linear-gradient(180deg, #09131d 0%, #101e2b 100%);
     }
     html[data-theme="dark"] #contact::before{
       background:
         radial-gradient(circle at 16% 22%, rgba(32,178,170,.08), transparent 22%),
-        radial-gradient(circle at 88% 18%, rgba(246,182,84,.06), transparent 18%),
+        radial-gradient(circle at 88% 18%, rgba(56,189,248,.06), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
     }
     html[data-theme="dark"] #contact::after{opacity:.56}
@@ -2337,7 +2232,7 @@
     html[data-theme="dark"] .ops-card{
       border-color:rgba(120,212,229,.14);
       background:
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(246,182,84,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(56,189,248,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
         linear-gradient(180deg, rgba(11,27,40,.72) 0%, rgba(9,20,31,.60) 100%);
       box-shadow:0 18px 38px rgba(0,0,0,.20);
     }
@@ -2357,7 +2252,7 @@
     html[data-theme="dark"] .about-tech-strip{
       border-color:rgba(170,224,236,.10);
       background:
-        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(246,182,84,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(110,244,233,.08) 34%, rgba(56,189,248,.12) 50%, rgba(110,244,233,.08) 66%, rgba(255,255,255,0) 100%),
         linear-gradient(180deg, rgba(14,23,35,.74) 0%, rgba(10,18,29,.58) 100%);
       box-shadow:0 18px 38px rgba(0,0,0,.18);
     }
@@ -2449,17 +2344,17 @@
     }
   </style>
 </head>
-<body class="no-select">
+<body>
   <header>
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Causeve Technologies LLP home">
-        <img class="logo-header" src="CAUSEVE logo-1.png" data-light-src="CAUSEVE logo-1.png" data-dark-src="CAUSEVE logo-2.png" alt="Causeve Technologies LLP"
-             onerror="this.style.display='none'" loading="lazy" decoding="async"/>
+        <img class="logo-header" src="CAUSEVE logo-2.png" alt="Causeve Technologies LLP"
+             onerror="this.style.display='none'" loading="eager" decoding="async"/>
       </a>
 
-      <div class="nav-actions">
+      <nav class="nav-actions" aria-label="Main navigation">
         <!-- SIMPLE NAV -->
-        <ul class="menu" role="menubar">
+        <ul class="menu" aria-label="Main navigation">
           <li><a href="#home">Home</a></li>
           <li><a href="#product-engineering">Product Engineering</a></li>
           <li><a href="#digital-engineering">Digital Engineering</a></li>
@@ -2467,27 +2362,14 @@
           <li><a href="#about">About</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
-          <span id="navIndicator" class="nav-indicator" aria-hidden="true"></span>
+          <li id="navIndicator" class="nav-indicator" aria-hidden="true"></li>
         </ul>
-
-        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle color theme" data-tooltip="Dark mode">
-          <span class="theme-toggle-icon" aria-hidden="true">
-            <svg class="icon-moon" viewBox="0 0 24 24" fill="none">
-              <path d="M20 15.4A8.5 8.5 0 1 1 11.6 4 6.8 6.8 0 0 0 20 15.4Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <svg class="icon-sun" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </span>
-          <span class="sr-only theme-toggle-label">Dark mode</span>
-        </button>
 
         <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Menu
         </button>
-      </div>
+      </nav>
     </div>
 
     <!-- Mobile nav -->
@@ -2508,34 +2390,42 @@
     <div id="scrim" class="scrim" aria-hidden="true"></div>
   </header>
 
-  <main id="home" class="hero anchor">
+  <main>
+  <section id="home" class="hero anchor" aria-labelledby="heroTitle">
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
     <img class="hero-orbit" src="asset/hero/orbit.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
 
     <div class="container hero-inner" id="heroHeader">
       <div class="hero-shell">
         <div class="hero-copy">
-          <span class="lead" id="heroLead">Embedded systems, connected platforms, and field-ready apps</span>
-          <h1 id="heroTitle">Engineering connected products that stay <span class="grad">reliable after deployment.</span></h1>
-          <p id="heroSub">Causeve Technologies builds firmware, gateways, cloud integrations, and operator-facing applications for teams shipping real devices into real environments. The focus stays practical, with stable releases, maintainable architecture, and systems that work beyond the lab demo.</p>
+          <span class="lead" id="heroLead">R&D for IoT, embedded software, and integration</span>
+          <h1 id="heroTitle">Stuck with an IoT or embedded problem? <span class="grad">We turn it into a working solution.</span></h1>
+          <p id="heroSub">Bring us the difficult idea, field issue, or development challenge your team is trying to solve. Causeve researches the problem, shapes the architecture, prototypes the approach, and develops the firmware, gateway, cloud, and application layers needed to make it work.</p>
           <div class="cta" id="heroCta">
-            <a class="btn primary" href="#contact">Discuss a Project</a>
-            <a class="btn ghost" href="#portfolio">See Selected Work</a>
+            <a class="btn primary" href="#contact">Share Your Technical Problem</a>
+            <a class="btn ghost" href="#portfolio">See Problem Explorations</a>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <img class="hero-echo" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
-          <img class="hero-slide" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
+        <div class="hero-visual" role="group" aria-roledescription="carousel" aria-label="Engineering capabilities">
+          <img class="hero-echo" src="asset/hero/3.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+          <img class="hero-slide is-active" src="asset/hero/3.png" alt="Connected devices, gateways, and embedded engineering" loading="eager" decoding="async" />
+          <img class="hero-slide" src="asset/hero/3.png" alt="" aria-hidden="true" decoding="async" />
+          <div class="hero-controls" hidden>
+            <button type="button" data-carousel="previous" aria-label="Previous engineering image">&#8592;</button>
+            <div class="hero-slide-caption" aria-live="off"><strong data-carousel="title">Connected Engineering</strong><span data-carousel="count">01 / 7</span></div>
+            <button type="button" data-carousel="next" aria-label="Next engineering image">&#8594;</button>
+            <button type="button" data-carousel="pause" aria-label="Pause image slideshow">&#10074;&#10074;</button>
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </section>
 
   <section id="clients" class="clients-strip" aria-labelledby="clients-title">
     <div class="container wrap">
       <div class="clients-copy">
         <span class="clients-eyebrow">Selected Clients</span>
-        <span class="clients-note" id="clients-title">Teams that trust Causeve in connected product and platform work.</span>
+        <span class="clients-note" id="clients-title">Teams that bring Causeve difficult connected-device and integration challenges.</span>
       </div>
       <div class="client-rail" aria-label="Client logos">
         <div class="client-logos" id="clientLogos"></div>
@@ -2546,27 +2436,27 @@
   <section id="product-engineering" class="anchor">
     <div class="container">
       <div class="section-copy">
-        <span class="section-eyebrow">Embedded Systems</span>
+        <span class="section-eyebrow">Embedded R&D</span>
         <h2>Product Engineering</h2>
-        <p class="section-tag">Connected hardware needs stable device behavior, clean interfaces, repeatable releases, and update paths that do not become a support risk later.</p>
+        <p class="section-tag">When the problem lives inside a device, the first need is clarity: behavior, constraints, connectivity, updates, diagnostics, and the path from prototype to dependable firmware.</p>
       </div>
       <div class="product-layout">
         <article class="card card-feature product-feature interactive-reveal-card product-reveal-card" tabindex="0" role="button" aria-expanded="false">
           <div class="card-image-reveal" aria-hidden="true">
             <img src="asset/Product/1.png" alt="" loading="lazy" decoding="async" />
             <div class="card-image-caption">
-              <span class="eyebrow">Firmware Engineering</span>
-              <h3>Firmware and device behavior</h3>
+              <span class="eyebrow">Firmware R&D</span>
+              <h3>Turn device uncertainty into stable firmware</h3>
             </div>
           </div>
           <div class="card-copy">
-            <span class="kicker">Firmware Engineering</span>
-            <h3>Firmware and device behavior</h3>
-            <p>Battery-aware software, radio stability, sensor pipelines, and field-safe update paths for connected hardware.</p>
+            <span class="kicker">Firmware R&D</span>
+            <h3>Turn device uncertainty into stable firmware</h3>
+            <p>We investigate sensor behavior, battery constraints, radio stability, and edge cases, then build embedded software that can move from prototype toward rollout.</p>
             <ul class="clean-list">
-              <li>MCUs, drivers, RTOS, BLE, and Mesh connectivity</li>
-              <li>Provisioning, diagnostics, OTA, and DFU planning</li>
-              <li>Production-minded build discipline for rollout readiness</li>
+              <li>MCUs, drivers, RTOS, BLE, and Mesh problem solving</li>
+              <li>Provisioning, diagnostics, OTA, and DFU paths</li>
+              <li>Field-oriented firmware decisions before scale</li>
             </ul>
             <span class="chip">MCUs | Drivers | RTOS | BLE | Mesh</span>
           </div>
@@ -2575,18 +2465,18 @@
           <div class="card-image-reveal" aria-hidden="true">
             <img src="asset/Product/2.png" alt="" loading="lazy" decoding="async" />
             <div class="card-image-caption">
-              <span class="eyebrow">Connected Software</span>
-              <h3>Secure movement from device to platform</h3>
+              <span class="eyebrow">Integration Engineering</span>
+              <h3>Connect the device, gateway, and platform</h3>
             </div>
           </div>
           <div class="card-copy">
-            <span class="kicker">Connected Software Development</span>
-            <h3>Secure movement from device to platform</h3>
-            <p>Linux gateways, broker integrations, site networking, and resilient data forwarding built for real operations.</p>
+            <span class="kicker">Integration Engineering</span>
+            <h3>Connect the device, gateway, and platform</h3>
+            <p>We design the handoff from hardware to gateway to cloud so data movement, monitoring, and support behavior are practical from the start.</p>
             <ul class="clean-list">
               <li>MQTT and HTTP pipelines across device and gateway layers</li>
               <li>Dockerized services, monitoring, and support visibility</li>
-              <li>Site orchestration and fleet tools built for field conditions</li>
+              <li>Site orchestration and fleet tools for field conditions</li>
             </ul>
             <span class="chip">Python | Node | Docker | MQTT | Azure / AWS</span>
           </div>
@@ -2598,23 +2488,23 @@
   <section id="digital-engineering" class="anchor section-surface">
     <div class="container">
       <div class="section-copy">
-        <span class="section-eyebrow">Platform Delivery</span>
+        <span class="section-eyebrow">IoT Platforms</span>
         <h2>Digital Engineering</h2>
-        <p class="section-tag">Reliable telemetry needs transport, storage, alerting, and application surfaces that behave consistently in real operations.</p>
+        <p class="section-tag">After the device works, the system still needs transport, storage, alerts, dashboards, and operator flows that make the data useful in real decisions.</p>
       </div>
       <div class="digital-layout">
         <article class="card card-feature digital-primary interactive-reveal-card digital-reveal-card" tabindex="0" role="button" aria-expanded="false">
           <div class="card-image-reveal" aria-hidden="true">
             <img src="asset/Digi/1.png" alt="" loading="lazy" decoding="async" />
             <div class="card-image-caption">
-              <span class="eyebrow">IoT</span>
-              <h3>Secure device-to-cloud transport</h3>
+              <span class="eyebrow">IoT Integration</span>
+              <h3>Make device data usable in operations</h3>
             </div>
           </div>
           <div class="card-copy">
-            <span class="kicker">IoT</span>
-            <h3>Secure device-to-cloud transport</h3>
-            <p>Provisioning, fleet administration, audit history, alerting, and monitoring pipelines across device, gateway, and cloud layers.</p>
+            <span class="kicker">IoT Integration</span>
+            <h3>Make device data usable in operations</h3>
+            <p>We build the platform layer around provisioning, fleet administration, audit history, alerting, and monitoring across device, gateway, and cloud layers.</p>
             <ul class="clean-list">
               <li>Linux gateways and containerized services</li>
               <li>Secure transport, alerting, and monitoring pipelines</li>
@@ -2629,13 +2519,13 @@
               <img src="asset/Digi/2.png" alt="" loading="lazy" decoding="async" />
               <div class="card-image-caption">
                 <span class="eyebrow">AI / ML</span>
-                <h3>Analytics where operations actually benefit</h3>
+                <h3>Analytics for stuck operational questions</h3>
               </div>
             </div>
             <div class="card-copy">
               <span class="kicker">AI / ML</span>
-              <h3>Analytics where operations actually benefit</h3>
-              <p>Anomaly detection, thresholding, classification, and predictive signals are applied where they improve maintenance, monitoring, or response time.</p>
+              <h3>Analytics for stuck operational questions</h3>
+              <p>Anomaly detection, thresholding, classification, and predictive signals are applied only where they improve maintenance, monitoring, or response time.</p>
               <ul class="clean-list">
                 <li>Anomaly detection for operational exceptions</li>
                 <li>Classification and thresholding for response workflows</li>
@@ -2649,13 +2539,13 @@
               <img src="asset/Digi/3.png" alt="" loading="lazy" decoding="async" />
               <div class="card-image-caption">
                 <span class="eyebrow">Web / Mobile Apps</span>
-                <h3>Operator views that reduce ambiguity</h3>
+                <h3>Interfaces for decisions and response</h3>
               </div>
             </div>
             <div class="card-copy">
               <span class="kicker">Web / Mobile Apps</span>
-              <h3>Operator views that reduce ambiguity</h3>
-              <p>Dashboards, alerts, mobile apps, and application flows that make device data usable for field and operations teams.</p>
+              <h3>Interfaces for decisions and response</h3>
+              <p>Dashboards, alerts, mobile apps, and workflows that turn connected-device data into clear action for field and operations teams.</p>
               <ul class="clean-list">
                 <li>Dashboards, alerts, and audit-friendly workflows</li>
                 <li>Mobile and web interfaces for operators and supervisors</li>
@@ -2673,9 +2563,9 @@
     <div class="container">
       <div class="process-head">
         <div class="section-copy">
-          <span class="section-eyebrow">Delivery Model</span>
-          <h2>A process built to de-risk architecture before scale increases cost.</h2>
-          <p class="section-tag">The best results come from exposing hardware, connectivity, platform, and user-flow decisions early. The engagement model is designed to make those tradeoffs explicit before they become release friction.</p>
+          <span class="section-eyebrow">Problem To Implementation</span>
+          <h2>A process for unclear problems that still need working outcomes.</h2>
+          <p class="section-tag">You do not need to arrive with a finished specification. The engagement starts by understanding the technical difficulty, testing the risky assumptions, and building a practical path toward implementation.</p>
         </div>
 
         <figure class="process-visual">
@@ -2687,35 +2577,40 @@
         <div class="process-grid">
           <article class="process-card">
             <span class="process-number">01</span>
-            <h3>Discover</h3>
-            <p>Define the device behavior, environment, data path, integration surfaces, and the operational decisions the product must support.</p>
+            <h3>Bring the Problem</h3>
+            <p>Share the idea, field issue, failed attempt, integration gap, or development challenge that needs technical clarity.</p>
           </article>
           <article class="process-card">
             <span class="process-number">02</span>
-            <h3>Prototype</h3>
-            <p>De-risk the radio layer, gateway path, provisioning assumptions, and the primary workflow before the build hardens.</p>
+            <h3>Research & Feasibility</h3>
+            <p>Study constraints, device behavior, connectivity, data paths, platform needs, and the assumptions most likely to affect success.</p>
           </article>
           <article class="process-card">
             <span class="process-number">03</span>
-            <h3>Build</h3>
-            <p>Implement firmware, services, dashboards, and apps with observability, release structure, and supportability built in.</p>
+            <h3>Prototype the Path</h3>
+            <p>De-risk the firmware, radio layer, gateway path, cloud contract, or operator workflow before the build hardens.</p>
           </article>
           <article class="process-card">
             <span class="process-number">04</span>
-            <h3>Deploy</h3>
-            <p>Prepare the system for rollout with update paths, field feedback loops, issue visibility, and operational refinement.</p>
+            <h3>Develop & Integrate</h3>
+            <p>Implement firmware, gateways, services, dashboards, and apps with observability, release structure, and supportability built in.</p>
+          </article>
+          <article class="process-card">
+            <span class="process-number">05</span>
+            <h3>Deploy & Improve</h3>
+            <p>Prepare the system for rollout with update paths, field feedback loops, issue visibility, and practical refinements.</p>
           </article>
         </div>
 
         <aside class="ops-card">
           <span class="kicker">Operating Model</span>
-          <h3>What a healthy engagement usually needs.</h3>
-          <p>Teams typically bring Causeve in when the product spans hardware constraints, field connectivity, and downstream application behavior that cannot be solved in isolation.</p>
+          <h3>Best-fit work starts with a real technical problem.</h3>
+          <p>Teams typically bring Causeve in when an idea or product challenge spans hardware constraints, embedded behavior, connectivity, cloud integration, and downstream application workflows.</p>
           <ul class="ops-list">
             <li>Architecture review before implementation reduces complexity</li>
-            <li>Provisioning, OTA, diagnostics, and fleet support accounted for early</li>
+            <li>Feasibility, prototyping, and technical risk are handled early</li>
             <li>Clear contracts between firmware, gateway, backend, and app surfaces</li>
-            <li>Leadership-level involvement through the technical decisions that matter</li>
+            <li>Founder-level involvement through the decisions that matter</li>
           </ul>
         </aside>
       </div>
@@ -2750,27 +2645,27 @@
       <div class="about-content">
         <div class="about-panel active" id="overview-panel" role="tabpanel" aria-labelledby="overview-tab">
           <h3>About Causeve Technologies</h3>
-          <p style="text-align: justify;">Since 2021, Causeve has focused on building connected products with more engineering continuity across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis stays practical, with systems that can be deployed, updated, monitored, and operated with confidence.</p>
-          <p style="text-align: justify;">Founded by Ilango Thavamani and Parthipan Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, and connected product delivery.</p>
+          <p style="text-align: justify;">Since 2021, Causeve has worked as an R&D-led engineering partner for clients facing difficult IoT, embedded software, and integration problems. The work starts with the problem and moves toward feasibility, prototyping, development, and practical implementation.</p>
+          <p style="text-align: justify;">Founded by Ilango Thavamani and Parthipan Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, system integration, and connected product delivery.</p>
         </div>
         
         <div class="about-panel" id="expertise-panel" role="tabpanel" aria-labelledby="expertise-tab">
           <h3>Our Expertise</h3>
           <ul>
-            <li>Product engineering across firmware, wireless systems, Linux gateways, cloud services, and operator applications</li>
-            <li>Architecture and prototyping that can still support a later production path</li>
+            <li>R&D and engineering across firmware, wireless systems, Linux gateways, cloud services, and operator applications</li>
+            <li>Feasibility checks and prototypes for ideas that are not yet fully defined</li>
             <li>Provisioning, OTA, diagnostics, and observability designed into delivery early</li>
-            <li>Senior technical leadership kept close to discovery, build, validation, and rollout</li>
+            <li>Senior technical leadership kept close to research, build, validation, and rollout</li>
           </ul>
         </div>
         
         <div class="about-panel" id="domains-panel" role="tabpanel" aria-labelledby="domains-tab">
           <h3>Application Domains</h3>
           <ul>
-            <li>Fire safety monitoring with maintenance visibility, tamper awareness, and compliance support</li>
-            <li>Indoor navigation, attendance, and asset tracking with BLE, GNSS, and RFID infrastructure</li>
+            <li>Fire safety monitoring concepts with maintenance visibility, tamper awareness, and compliance support</li>
+            <li>Indoor navigation, attendance, and asset tracking ideas using BLE, GNSS, and RFID infrastructure</li>
             <li>Connected health systems with real-time dashboards and continuous monitoring flows</li>
-            <li>Environmental and water-quality monitoring for distributed sensing deployments</li>
+            <li>Environmental and water-quality monitoring concepts for distributed sensing deployments</li>
           </ul>
         </div>
         
@@ -2801,10 +2696,10 @@
         <div class="about-panel" id="highlights-panel" role="tabpanel" aria-labelledby="highlights-tab">
           <h3>Key Highlights</h3>
           <ul>
-            <li>Reliability before novelty, with decisions judged against field behavior rather than prototype polish</li>
+            <li>Problem-first R&D before committing to the full build path</li>
             <li>System thinking across device, gateway, backend, and application layers</li>
             <li>Clear release paths with provisioning, updates, diagnostics, and observability built in</li>
-            <li>Hands-on leadership through architecture, delivery, and rollout</li>
+            <li>Hands-on leadership through feasibility, architecture, delivery, and rollout</li>
           </ul>
         </div>
       </div>
@@ -2815,9 +2710,9 @@
     <div class="container">
       <div class="about-head">
         <div class="section-copy">
-          <span class="section-eyebrow">Company Approach</span>
-          <h2>Connected systems with more engineering continuity.</h2>
-          <p class="section-tag">Since 2021, Causeve has focused on building connected products across embedded software, wireless systems, Linux gateways, cloud services, and operator applications. The emphasis stays practical, with systems that can be deployed, updated, monitored, and operated with confidence.</p>
+          <span class="section-eyebrow">R&D-Led Engineering</span>
+          <h2>Built for technical problems that do not arrive neatly defined.</h2>
+          <p class="section-tag">Since 2021, Causeve has helped clients move difficult IoT, embedded software, and integration challenges from idea or uncertainty toward feasible architecture, prototypes, and working implementation.</p>
         </div>
 
         <figure class="about-visual">
@@ -2826,25 +2721,25 @@
       </div>
       <div class="about-shell">
         <div class="about-copy">
-          <p>Founded by Ilango Thavamani and Parthiban Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, and connected product delivery.</p>
-          <p>We keep device, gateway, backend, and application decisions aligned from prototype through rollout so the product behaves as one system instead of a collection of disconnected layers.</p>
+          <p>Founded by Ilango Thavamani and Parthiban Balaraman, the company brings 22+ years of combined experience across automotive embedded software, IoT devices, electronics, system integration, and connected product delivery.</p>
+          <p>We help when a team has a problem to solve, an idea to validate, or a development path that is stuck between device behavior, connectivity, cloud logic, and user workflows.</p>
 
           <div class="principle-grid">
             <article class="principle-card">
-              <strong>Reliability before novelty</strong>
-              <p>Decisions are judged against field behavior, not only prototype speed or interface polish.</p>
+              <strong>Problem-first R&D</strong>
+              <p>We clarify constraints and risky assumptions before committing the project to a costly build path.</p>
             </article>
             <article class="principle-card">
               <strong>System thinking</strong>
-              <p>Device, gateway, backend, and operator workflows are designed as one coordinated system for the product.</p>
+              <p>Device, gateway, backend, and operator workflows are designed as one coordinated system instead of disconnected layers.</p>
             </article>
             <article class="principle-card">
-              <strong>Clear release paths</strong>
-              <p>Provisioning, updates, diagnostics, and observability are part of delivery instead of deferred cleanup.</p>
+              <strong>Practical implementation</strong>
+              <p>Research and prototypes are shaped so they can support real firmware, integration, deployment, and support needs.</p>
             </article>
             <article class="principle-card">
               <strong>Hands-on leadership</strong>
-              <p>Senior technical context stays close to the work through discovery, build, validation, and rollout.</p>
+              <p>Senior technical context stays close to the work through feasibility, architecture, build, validation, and rollout.</p>
             </article>
           </div>
 
@@ -2884,24 +2779,24 @@
 
           <article class="founder-card">
             <span class="role">Why teams engage</span>
-            <h3>Best fit projects tend to span more than one layer.</h3>
-            <p>Projects are strongest where success depends on coordination across firmware, wireless behavior, gateway logic, cloud integration, and the workflows used by actual operators.</p>
+            <h3>Best-fit projects start with a difficult technical question.</h3>
+            <p>Projects are strongest where success depends on turning an idea, integration gap, or stuck development challenge into a practical engineering path.</p>
           </article>
         </div>
       </div>
 
       <div class="fit-grid">
         <article class="fit-card">
-          <strong>Early-stage connected products</strong>
-          <p>Where the team needs architecture and prototyping that can still support a later production path.</p>
+          <strong>Difficult IoT ideas</strong>
+          <p>Where the team has a problem to solve, but the technical approach still needs research, feasibility checks, and prototyping.</p>
         </article>
         <article class="fit-card">
-          <strong>Operational monitoring platforms</strong>
-          <p>Where telemetry, alerting, visibility, and field action need to work together without ambiguity.</p>
+          <strong>Stuck connected systems</strong>
+          <p>Where firmware, wireless behavior, gateway logic, cloud integration, or operator workflows are blocking progress.</p>
         </article>
         <article class="fit-card">
-          <strong>Complex integration programs</strong>
-          <p>Where success depends on coordination across firmware, wireless behavior, gateway logic, cloud integration, and operator workflows.</p>
+          <strong>R&D to implementation</strong>
+          <p>Where success depends on shaping an idea into architecture, prototype, software, integration, and rollout readiness.</p>
         </article>
       </div>
     </div>
@@ -2910,9 +2805,9 @@
   <section id="portfolio" class="anchor section-dark portfolio-showcase">
     <div class="container">
       <div class="section-head">
-        <span class="section-eyebrow">Selected Work</span>
-        <h2>Portfolio</h2>
-        <p class="section-tag">Connected systems shaped around real devices, real environments, and real monitoring needs.</p>
+        <span class="section-eyebrow">Problem Explorations</span>
+        <h2>Selected Work</h2>
+        <p class="section-tag">Examples of client problems, idea-level proposals, and engineering programs shaped into practical IoT, embedded, and integration paths.</p>
       </div>
 
       <div class="work-grid">
@@ -2921,9 +2816,9 @@
             <img src="asset/portfolio_img/Indoor_Navigation.png" data-alt-src="assets/portfolio_img/Indoor_Navigation.png" alt="Indoor Navigation and Attendance project" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Featured Program</span>
+            <span class="case-tag">Idea To System</span>
             <h3>BLE-based Indoor Navigation and Attendance</h3>
-            <p>A system designed around beacon infrastructure, mobile interaction, and attendance workflows for indoor environments where location clarity and movement visibility matter.</p>
+            <p>An indoor movement and attendance problem shaped into a BLE beacon architecture, mobile workflow, and synchronization approach for location-aware environments.</p>
             <div class="case-stack">
               <span>BLE beacons</span>
               <span>Mobile app</span>
@@ -2937,9 +2832,9 @@
             <img src="asset/portfolio_img/Fire_extingusher.png" data-alt-src="assets/portfolio_img/Fire_extingusher.png" alt="Fire extinguisher monitoring system" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Fire Safety</span>
+            <span class="case-tag">Monitoring Challenge</span>
             <h3>Fire Extinguisher Monitoring</h3>
-            <p>BLE tags, docking stations, gateway transport, and dashboards for status, tamper, and maintenance visibility.</p>
+            <p>A safety inspection and visibility challenge explored through BLE tags, docking stations, gateway transport, and dashboards for status, tamper, and maintenance signals.</p>
             <div class="case-stack">
               <span>BLE tags</span>
               <span>Gateway</span>
@@ -2953,9 +2848,9 @@
             <img src="asset/portfolio_img/Gun_Point_Tracking.png" data-alt-src="assets/portfolio_img/Gun_Point_Tracking.png" alt="Sensitive asset tracking platform" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Asset Control</span>
+            <span class="case-tag">Accountability Problem</span>
             <h3>Sensitive Asset Tracking</h3>
-            <p>Tracking flows, movement history, and zone-oriented alerts for assets that require tighter accountability.</p>
+            <p>A tighter accountability requirement shaped into tracking flows, movement history, and zone-oriented alerts for assets that need controlled visibility.</p>
             <div class="case-stack">
               <span>Tracking</span>
               <span>Audit trail</span>
@@ -2969,9 +2864,9 @@
             <img src="asset/portfolio_img/GNSS_RFID_Infra_Monitoring.png" data-alt-src="assets/portfolio_img/GNSS_RFID_Infra_Monitoring.png" alt="GNSS and RFID infrastructure monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Infrastructure</span>
+            <span class="case-tag">Hybrid Location</span>
             <h3>GNSS and RFID Infrastructure Monitoring</h3>
-            <p>Hybrid location and event visibility for large sites where infrastructure state and asset movement intersect.</p>
+            <p>A large-site visibility problem explored through hybrid GNSS, RFID, and event telemetry where infrastructure state and asset movement intersect.</p>
             <div class="case-stack">
               <span>GNSS</span>
               <span>RFID</span>
@@ -2985,9 +2880,9 @@
             <img src="asset/portfolio_img/Solar_tracking.png" data-alt-src="assets/portfolio_img/Solar_tracking.png" alt="Solar IoT networking for solar trackers" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Solar IoT Networking</span>
+            <span class="case-tag">Network Capacity</span>
             <h3>LoRa Capacity Engine for Solar Trackers</h3>
-            <p>Gateway-side scheduling and slot allocation logic that enables high-density telemetry from large solar tracker networks.</p>
+            <p>A high-density telemetry challenge shaped into gateway-side scheduling and slot allocation logic for large solar tracker networks.</p>
             <div class="case-stack">
               <span>LoRa</span>
               <span>Slot scheduling</span>
@@ -3001,9 +2896,9 @@
             <img src="asset/portfolio_img/ECG_Real_time.png" data-alt-src="assets/portfolio_img/ECG_Real_time.png" alt="Real-time ECG monitoring platform" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Connected Health</span>
+            <span class="case-tag">Real-Time Signals</span>
             <h3>Real-time Health Monitoring</h3>
-            <p>Continuous streaming, visualization, and monitoring flows for health-sensitive data that needs timely interpretation.</p>
+            <p>A health-signal visibility problem explored through continuous streaming, visualization, and monitoring flows for timely interpretation.</p>
             <div class="case-stack">
               <span>Streaming</span>
               <span>Dashboards</span>
@@ -3017,9 +2912,9 @@
             <img src="asset/portfolio_img/Aquarium_Health.png" data-alt-src="assets/portfolio_img/Aquarium_Health.png" alt="Aquarium health monitoring" loading="lazy" decoding="async" onerror="if(!this.dataset.triedAlt){this.dataset.triedAlt=1;this.src=this.dataset.altSrc;}else{this.style.display='none';}" />
           </div>
           <div class="case-body">
-            <span class="case-tag">Environment</span>
+            <span class="case-tag">Remote Sensing</span>
             <h3>Water Quality Monitoring</h3>
-            <p>Water-quality sensing, alerting, and guided response flows for remote environmental monitoring use cases.</p>
+            <p>An environmental monitoring idea shaped into sensing, alerting, and guided response flows for remote water-quality visibility.</p>
             <div class="case-stack">
               <span>Sensors</span>
               <span>Alerts</span>
@@ -3035,9 +2930,9 @@
     <div class="container wrap">
       <div class="info">
         <div class="section-head">
-          <span class="section-eyebrow">Start a Project</span>
-          <h3>Bring the brief before the device, gateway, and application drift apart.</h3>
-          <p class="section-tag">If the work involves firmware, wireless connectivity, cloud integration, or operator-facing applications that need to behave as one product, send the project context early. We typically respond within 1 business day.</p>
+          <span class="section-eyebrow">Start With The Problem</span>
+          <h3>Tell us what is stuck, unclear, or difficult to implement.</h3>
+          <p class="section-tag">If the challenge involves IoT, embedded software, firmware, wireless connectivity, gateways, cloud integration, or operator-facing applications, send the problem context early. We typically respond within 1 business day.</p>
         </div>
 
         <h4 style="margin:12px 0 6px">Company Address</h4>
@@ -3045,11 +2940,11 @@
           RR Tower IV,7th Floor,<br>Thiru Vi Ka Industrial Estate,<br>SIDCO Industrial Estate, Guindy<br>
           Chennai 600032, IN
         </address>
-        <p class="section-tag" style="margin-top:12px">Share the device constraints, connectivity expectations, target users, and rollout context. That is usually enough to start a useful conversation.</p>
+        <p class="section-tag" style="margin-top:12px">Share what problem is stuck, what has already been tried, the device or system involved, and the outcome you want. That is usually enough to start a useful conversation.</p>
 
         <div class="cta">
-          <a class="btn primary" href="mailto:inquiries@causeve.com?subject=Project%20Inquiry">Email Causeve</a>
-          <a class="btn ghost" href="https://wa.me/919962122876" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a class="btn primary" href="mailto:inquiries@causeve.com?subject=Technical%20Problem%20Inquiry">Share Your Technical Problem</a>
+          <a class="btn ghost" href="https://wa.me/918925177503" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&destination=13.014417,80.211611" target="_blank" rel="noopener noreferrer">Get Directions</a>
         </div>
       </div>
@@ -3060,133 +2955,27 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="container foot">
       <small>&copy; <span id="year"></span> Causeve Technologies LLP. All rights reserved.</small>
-      <small>Built for firmware, IoT, cloud, and AI/ML.</small>
+      <small>R&D for IoT, embedded software, and integration.</small>
     </div>
   </footer>
-  <div id="devtoolsGuard" aria-hidden="true">
-    <div class="inner">
-      <h3>Developer tools are disabled on this site</h3>
-      <p>For security reasons, developer tools and keyboard shortcuts are blocked here.</p>
-    </div>
-  </div>
-
-  <script>
-    // Light client-side deterrents against copying/downloading
-    (function(){
-      // TEMP: disable guard
-      //return;
-      function isEditable(el){ return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable); }
-      document.addEventListener('contextmenu', (e)=>{ if (!isEditable(e.target)) e.preventDefault(); }, {capture:true});
-      document.addEventListener('dragstart', (e)=>{ if (e.target && e.target.tagName === 'IMG') e.preventDefault(); });
-      document.addEventListener('copy', (e)=>{ if (!isEditable(e.target)) e.preventDefault(); });
-      document.addEventListener('keydown', (e)=>{
-        if (isEditable(e.target)) return;
-        const k = (e.key||'').toLowerCase();
-        if ((e.ctrlKey||e.metaKey) && (k==='s' || k==='p' || k==='u' || k==='c' || k==='shift' || k==='i' || k==='j')) { e.preventDefault(); }
-        if ((e.ctrlKey||e.metaKey) && e.shiftKey && (k==='i' || k==='j' || k==='c')) { e.preventDefault(); }
-        if (k==='f12') { e.preventDefault(); }
-      });
-      // crude devtools detection (layout size jump when devtools docked)
-      let guardShown = false;
-      function showGuard(){ if(guardShown) return; guardShown=true; document.body.classList.add('guard-active'); const g=document.getElementById('devtoolsGuard'); if(g) g.style.display='flex'; }
-      function hideGuard(){ if(!guardShown) return; guardShown=false; document.body.classList.remove('guard-active'); const g=document.getElementById('devtoolsGuard'); if(g) g.style.display='none'; }
-      function detect(){
-        const thresh = 140;
-        const wDiff = Math.abs(window.outerWidth - window.innerWidth);
-        const hDiff = Math.abs(window.outerHeight - window.innerHeight);
-        //if (wDiff > thresh || hDiff > thresh) showGuard(); else hideGuard();
-      }
-      detect();
-      window.addEventListener('resize', detect);
-      // also poll occasionally in case of undetected open
-      setInterval(detect, 1200);
-    })();
-  </script>
-
   <script>
     // Helpers
     const qs = (s, r=document) => r.querySelector(s);
     const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
     const htmlEl = document.documentElement;
 
-    const themeToggles = qsa('.theme-toggle');
-    const headerLogo = qs('.logo-header');
-    function getTheme(){
-      return htmlEl.dataset.theme === 'dark' ? 'dark' : 'light';
-    }
-    function syncThemeLogo(){
-      if (!headerLogo) return;
-      const nextSrc = getTheme() === 'dark'
-        ? (headerLogo.dataset.darkSrc || headerLogo.dataset.lightSrc || headerLogo.src)
-        : (headerLogo.dataset.lightSrc || headerLogo.src);
-      if (headerLogo.getAttribute('src') !== nextSrc) {
-        headerLogo.src = nextSrc;
-      }
-      headerLogo.style.display = '';
-    }
-    function updateThemeToggles(){
-      const dark = getTheme() === 'dark';
-      themeToggles.forEach((button) => {
-        const nextLabel = dark ? 'Light mode' : 'Dark mode';
-        button.setAttribute('aria-pressed', String(dark));
-        button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-        button.setAttribute('data-tooltip', nextLabel);
-        const label = qs('.theme-toggle-label', button);
-        if (label) label.textContent = nextLabel;
-      });
-    }
-    function applyTheme(theme){
-      const nextTheme = theme === 'dark' ? 'dark' : 'light';
-      htmlEl.dataset.theme = nextTheme;
-      try {
-        localStorage.setItem('causeve-theme', nextTheme);
-      } catch (_) {}
-      syncThemeLogo();
-      updateThemeToggles();
-    }
-    themeToggles.forEach((button) => {
-      button.addEventListener('click', () => {
-        applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
-      });
-    });
-    syncThemeLogo();
-    updateThemeToggles();
-
-    async function initClientLogos(){
+    function initClientLogos(){
       const section = qs('#clients');
       const rail = qs('#clientLogos');
       if (!section || !rail) return;
 
-      const probeLogo = (src) => new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve({ ok: true, src });
-        img.onerror = () => resolve({ ok: false, src });
-        img.src = src;
-      });
-
-      const logos = [];
-      const maxLogos = 40;
-      let missStreak = 0;
-
-      for (let index = 1; index <= maxLogos; index += 1) {
-        const src = `asset/client/${index}.png`;
-        const result = await probeLogo(src);
-        if (result.ok) {
-          logos.push(result.src);
-          missStreak = 0;
-        } else {
-          missStreak += 1;
-          if (logos.length && missStreak >= 4) break;
-        }
-      }
-
-      if (!logos.length) {
-        section.hidden = true;
-        return;
-      }
+      // Keep this list in sync with the supplied client assets.
+      const logos = [1, 2, 3, 4, 5].map(index => `asset/client/${index}.png`);
 
       const createLogoItem = (src, idx, hidden=false) => {
         const item = document.createElement('figure');
@@ -3241,6 +3030,7 @@
       panel.classList.toggle('open', willOpen);
       scrim.classList.toggle('open', willOpen);
       hamburger.setAttribute('aria-expanded', String(willOpen));
+      hamburger.setAttribute('aria-label', willOpen ? 'Close menu' : 'Open menu');
       panel.setAttribute('aria-hidden', String(!willOpen));
       scrim.setAttribute('aria-hidden', String(!willOpen));
       document.body.style.overflow = willOpen ? 'hidden' : '';
@@ -3248,6 +3038,27 @@
     hamburger?.addEventListener('click', () => toggleMobile());
     scrim?.addEventListener('click', () => toggleMobile(false));
     qsa('#mobileNav a, .menu a').forEach(a => a.addEventListener('click', () => toggleMobile(false)));
+    document.addEventListener('keydown', (event) => {
+      if (!panel.classList.contains('open')) return;
+      if (event.key === 'Escape') {
+        toggleMobile(false);
+        hamburger.focus();
+      } else if (event.key === 'Tab') {
+        const links = qsa('a', panel);
+        const first = links[0];
+        const last = links[links.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !panel.contains(document.activeElement))) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && (document.activeElement === last || !panel.contains(document.activeElement))) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    });
+    window.matchMedia('(max-width: 1080px)').addEventListener('change', (event) => {
+      if (!event.matches) toggleMobile(false);
+    });
 
     // Year
     qs('#year').textContent = new Date().getFullYear();
@@ -3255,7 +3066,7 @@
     const navIndicator = qs('#navIndicator');
 
     (() => {
-      const hero = qs('main.hero');
+      const hero = qs('#home');
       if (!hero) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         htmlEl.classList.remove('hero-reveal-pending');
@@ -3273,7 +3084,6 @@
       if (!cards.length) return;
 
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const section = qs(sectionSelector);
 
       function closeCards(){
@@ -3291,37 +3101,28 @@
         });
       }
 
-      if (pointerFine) {
-        cards.forEach((card) => {
-          card.addEventListener('click', (event) => {
-            event.preventDefault();
+      cards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (card.classList.contains('is-open')) {
             closeCards();
-          });
-        });
-      } else {
-        cards.forEach((card) => {
-          card.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            if (card.classList.contains('is-open')) {
-              closeCards();
-              return;
-            }
-            openCard(card);
-          });
-
-          card.addEventListener('keydown', (event) => {
-            if (event.key !== 'Enter' && event.key !== ' ') return;
-            event.preventDefault();
-            card.click();
-          });
+            return;
+          }
+          openCard(card);
         });
 
-        document.addEventListener('click', (event) => {
-          if (event.target && event.target.closest && event.target.closest(cardSelector)) return;
-          closeCards();
+        card.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          card.click();
         });
-      }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (event.target && event.target.closest && event.target.closest(cardSelector)) return;
+        closeCards();
+      });
 
       if (!reduceMotion && section && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -3425,6 +3226,13 @@
     })();
 
     function setActiveMenu(key){
+      qsa('.menu a, #mobileNav a').forEach(link => {
+        if (link.getAttribute('href') === `#${key}`) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
       qsa('.menu a').forEach(el => el.classList.remove('active-link'));
       const desktopLink = qs(`.menu a[href="#${key}"]`) || qs('.menu a[href="#home"]');
       desktopLink?.classList.add('active-link');
@@ -3479,7 +3287,8 @@
       }
 
       function targetScrollTop(id){
-        const target = qs('#' + id);
+        if (id === 'home') return 0;
+        const target = document.getElementById(id);
         if (!target) return null;
         const top = target.getBoundingClientRect().top + window.scrollY - headerH() - 8;
         const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -3488,7 +3297,7 @@
 
       function alignToHashTarget(hash = window.location.hash){
         if (!hash) return;
-        const target = qs(hash);
+        const target = document.getElementById(hash.slice(1));
         if (!target) return;
         const top = targetScrollTop(target.id);
         if (top == null) return;
@@ -3584,12 +3393,13 @@
             if (navigationTargetId !== id) return;
             const top = targetScrollTop(id);
             if (top == null || Math.abs(window.scrollY - top) <= 14) return;
-            window.scrollTo({ top, behavior: 'smooth' });
+            window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
           }, delay);
         });
       }
 
       function navigateToSection(id, { behavior = 'smooth' } = {}){
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) behavior = 'auto';
         recomputeOffsets();
         const top = targetScrollTop(id);
         if (top == null) return;
@@ -3673,6 +3483,7 @@
       }
 
       document.addEventListener('click', (event) => {
+        if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
         const link = event.target?.closest?.('a[href^="#"]');
         if (!link) return;
         const hash = link.getAttribute('href');
@@ -3746,11 +3557,12 @@
     (() => {
       const canvas = document.getElementById('heroCanvas');
       if (!canvas) return;
-      const heroEl = document.querySelector('main.hero') || canvas;
+      const heroEl = document.querySelector('#home') || canvas;
       const orbitEl = heroEl.querySelector('.hero-orbit');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
       const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return;
 
       const BASE = {
         DPR_CAP: 1.25,
@@ -3995,7 +3807,7 @@
       }
 
       function getIntroState(now = performance.now()){
-        const darkTheme = getTheme() === 'dark';
+        const darkTheme = true;
         if (!intro || !intro.active) {
           return {
             active: false,
@@ -4197,7 +4009,7 @@
         const glow = ctx.createRadialGradient(w * cfg.FOCUS_X, h * cfg.FOCUS_Y, Math.max(18, w * 0.02), w * cfg.FOCUS_X, h * cfg.FOCUS_Y, Math.max(220, w * 0.32));
         glow.addColorStop(0, 'rgba(95,230,221,0.14)');
         glow.addColorStop(0.32, 'rgba(26,183,173,0.11)');
-        glow.addColorStop(0.62, 'rgba(246,182,84,0.08)');
+        glow.addColorStop(0.62, 'rgba(56,189,248,0.08)');
         glow.addColorStop(1, 'rgba(95,230,221,0)');
         ctx.fillStyle = glow;
         ctx.fillRect(0, 0, w, h);
@@ -4205,7 +4017,7 @@
         const fullWash = ctx.createLinearGradient(0, 0, w, 0);
         fullWash.addColorStop(0, 'rgba(95,230,221,0.045)');
         fullWash.addColorStop(0.56, 'rgba(255,255,255,0)');
-        fullWash.addColorStop(1, 'rgba(246,182,84,0.035)');
+        fullWash.addColorStop(1, 'rgba(56,189,248,0.035)');
         ctx.fillStyle = fullWash;
         ctx.fillRect(0, 0, w, h);
 
@@ -4220,7 +4032,7 @@
           );
           pulseGlow.addColorStop(0, 'rgba(110,244,233,0.22)');
           pulseGlow.addColorStop(0.28, 'rgba(110,244,233,0.13)');
-          pulseGlow.addColorStop(0.48, 'rgba(246,182,84,0.12)');
+          pulseGlow.addColorStop(0.48, 'rgba(56,189,248,0.12)');
           pulseGlow.addColorStop(1, 'rgba(110,244,233,0)');
           ctx.fillStyle = pulseGlow;
           ctx.fillRect(0, 0, w, h);
@@ -4326,7 +4138,7 @@
 
         const glow = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, cfg.POINTER_RADIUS * 0.82);
         glow.addColorStop(0, 'rgba(95,230,221,0.16)');
-        glow.addColorStop(0.46, 'rgba(246,182,84,0.09)');
+        glow.addColorStop(0.46, 'rgba(56,189,248,0.09)');
         glow.addColorStop(1, 'rgba(95,230,221,0)');
         ctx.fillStyle = glow;
         ctx.beginPath();
@@ -4341,7 +4153,7 @@
 
           const t = 1 - dist / cfg.POINTER_LINK_RADIUS;
           ctx.strokeStyle = node.accent
-            ? `rgba(246,182,84,${(0.08 + t * 0.22).toFixed(3)})`
+            ? `rgba(56,189,248,${(0.08 + t * 0.22).toFixed(3)})`
             : `rgba(95,230,221,${(0.09 + t * 0.26).toFixed(3)})`;
           ctx.lineWidth = 1 + t * 1.35;
           ctx.beginPath();
@@ -4357,9 +4169,9 @@
         const hotspotRadius = cfg.POINTER_RADIUS * 0.96;
         const glow = ctx.createRadialGradient(hotspot.x, hotspot.y, 0, hotspot.x, hotspot.y, hotspotRadius * 0.9);
         if (hotspot.accent) {
-          glow.addColorStop(0, 'rgba(246,182,84,0.15)');
-          glow.addColorStop(0.36, 'rgba(246,182,84,0.10)');
-          glow.addColorStop(1, 'rgba(246,182,84,0)');
+          glow.addColorStop(0, 'rgba(56,189,248,0.15)');
+          glow.addColorStop(0.36, 'rgba(56,189,248,0.10)');
+          glow.addColorStop(1, 'rgba(56,189,248,0)');
         } else {
           glow.addColorStop(0, 'rgba(95,230,221,0.15)');
           glow.addColorStop(0.36, 'rgba(95,230,221,0.11)');
@@ -4375,7 +4187,7 @@
           if (!node) return;
           const t = link.strength;
           ctx.strokeStyle = node.accent
-            ? `rgba(246,182,84,${(0.12 + t * 0.26).toFixed(3)})`
+            ? `rgba(56,189,248,${(0.12 + t * 0.26).toFixed(3)})`
             : `rgba(95,230,221,${(0.12 + t * 0.28).toFixed(3)})`;
           ctx.lineWidth = 1.15 + t * 1.55;
           ctx.beginPath();
@@ -4391,7 +4203,7 @@
           const radius = 14 + hotspotRadius * 0.92 * t;
           const alpha = (1 - t) * 0.34;
           ctx.strokeStyle = hotspot.accent
-            ? `rgba(246,182,84,${alpha.toFixed(3)})`
+            ? `rgba(56,189,248,${alpha.toFixed(3)})`
             : `rgba(95,230,221,${alpha.toFixed(3)})`;
           ctx.lineWidth = 1.4 + (1 - t) * 1.4;
           ctx.beginPath();
@@ -4399,11 +4211,11 @@
           ctx.stroke();
         }
 
-        ctx.fillStyle = hotspot.accent ? 'rgba(246,182,84,0.22)' : 'rgba(96,238,228,0.24)';
+        ctx.fillStyle = hotspot.accent ? 'rgba(56,189,248,0.22)' : 'rgba(96,238,228,0.24)';
         ctx.beginPath();
         ctx.arc(hotspot.x, hotspot.y, hotspot.accent ? 13.6 : 12.8, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = hotspot.accent ? 'rgba(246,182,84,0.92)' : 'rgba(96,238,228,0.94)';
+        ctx.fillStyle = hotspot.accent ? 'rgba(56,189,248,0.92)' : 'rgba(96,238,228,0.94)';
         ctx.beginPath();
         ctx.arc(hotspot.x, hotspot.y, hotspot.accent ? 5.2 : 4.9, 0, Math.PI * 2);
         ctx.fill();
@@ -4411,7 +4223,7 @@
 
       function drawMesh(skipMotion, now = performance.now()){
         ctx.clearRect(0, 0, w, h);
-        const darkTheme = getTheme() === 'dark';
+        const darkTheme = true;
         const introState = getIntroState(now);
         if (!darkTheme) {
           ctx.save();
@@ -4464,7 +4276,7 @@
             const hasAccent = a.accent || b.accent;
 
             ctx.strokeStyle = hasAccent
-              ? `rgba(246,182,84,${Math.min(0.28, tunedAlpha * 0.74).toFixed(3)})`
+              ? `rgba(56,189,248,${Math.min(0.28, tunedAlpha * 0.74).toFixed(3)})`
               : `rgba(92,208,230,${Math.min(0.30, tunedAlpha * 0.78).toFixed(3)})`;
             ctx.lineWidth =
               (0.42 + (1 - distance / maxDistance) * 0.54) * Math.max(0.88, regionBoost) +
@@ -4502,14 +4314,14 @@
 
           ctx.beginPath();
           ctx.fillStyle = node.accent
-            ? `rgba(246,182,84,${Math.min(0.40, (0.08 * regionBoost + hoverPulse * 0.10 + pinPulse * 0.16) * introVisibility + introPulse * 0.14).toFixed(3)})`
+            ? `rgba(56,189,248,${Math.min(0.40, (0.08 * regionBoost + hoverPulse * 0.10 + pinPulse * 0.16) * introVisibility + introPulse * 0.14).toFixed(3)})`
             : `rgba(110,224,238,${Math.min(0.38, (0.10 * regionBoost + hoverPulse * 0.10 + pinPulse * 0.15) * introVisibility + introPulse * 0.16).toFixed(3)})`;
           ctx.arc(node.x, node.y, outerRadius, 0, Math.PI * 2);
           ctx.fill();
 
           ctx.beginPath();
           ctx.fillStyle = node.accent
-            ? `rgba(249,209,128,${Math.min(0.96, (0.42 + regionBoost * 0.22 + hoverPulse * 0.16 + pinPulse * 0.12) * introVisibility + introPulse * 0.12).toFixed(3)})`
+            ? `rgba(125,211,252,${Math.min(0.96, (0.42 + regionBoost * 0.22 + hoverPulse * 0.16 + pinPulse * 0.12) * introVisibility + introPulse * 0.12).toFixed(3)})`
             : `rgba(188,247,255,${Math.min(0.94, (0.38 + regionBoost * 0.22 + hoverPulse * 0.16 + pinPulse * 0.12) * introVisibility + introPulse * 0.14).toFixed(3)})`;
           ctx.arc(node.x, node.y, innerRadius, 0, Math.PI * 2);
           ctx.fill();
@@ -4583,5 +4395,6 @@
       });
     })();
   </script>
+  <script src="js/hero-carousel.js" defer></script>
 </body>
 </html>
