@@ -329,6 +329,7 @@
       cursor:default;
       pointer-events:auto;
       -webkit-tap-highlight-color:transparent;
+      margin-bottom:54px;
     }
     .hero-visual::before{
       content:"";
@@ -379,11 +380,20 @@
     }
     .hero-slide{
       z-index:2;
-      opacity:1;
+      opacity:0;
       transform:translateY(-4px) scale(1.04);
-      transition:transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
+      transition:opacity .7s ease, transform .52s cubic-bezier(.22,.61,.36,1), filter .52s cubic-bezier(.22,.61,.36,1);
       filter:drop-shadow(0 28px 42px rgba(2,8,12,.38));
     }
+    .hero-slide.is-active{opacity:1}
+    .hero-echo[hidden]{display:none}
+    .hero-slide--photo{object-fit:cover;object-position:center;border-radius:22px}
+    .hero-controls{position:absolute;left:0;right:0;bottom:-52px;z-index:5;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--hero-muted)}
+    .hero-controls[hidden]{display:none}
+    .hero-controls button{display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;padding:0;border:1px solid rgba(160,207,225,.26);border-radius:50%;background:#102331;color:#e4f2fa;font:inherit;cursor:pointer}
+    .hero-controls button:hover{background:#173b44;border-color:var(--hero-accent)}
+    .hero-slide-caption{min-width:0;flex:1;max-width:270px;text-align:center;font-size:.76rem;line-height:1.5}
+    .hero-slide-caption strong{display:block;color:var(--hero-accent);font-size:.8rem;font-weight:600}
     .js.hero-reveal-pending .hero-copy > *{
       opacity:0;
       transform:translateY(22px);
@@ -2493,9 +2503,16 @@
             <a class="btn ghost" href="#portfolio">See Problem Explorations</a>
           </div>
         </div>
-        <div class="hero-visual" aria-hidden="true">
-          <img class="hero-echo" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
-          <img class="hero-slide" src="asset/hero/3.png" alt="" loading="eager" decoding="async" />
+        <div class="hero-visual" role="group" aria-roledescription="carousel" aria-label="Engineering capabilities">
+          <img class="hero-echo" src="asset/hero/3.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
+          <img class="hero-slide is-active" src="asset/hero/3.png" alt="Connected devices, gateways, and embedded engineering" loading="eager" decoding="async" />
+          <img class="hero-slide" src="asset/hero/3.png" alt="" aria-hidden="true" decoding="async" />
+          <div class="hero-controls" hidden>
+            <button type="button" data-carousel="previous" aria-label="Previous engineering image">&#8592;</button>
+            <div class="hero-slide-caption" aria-live="off"><strong data-carousel="title">Connected Engineering</strong><span data-carousel="count">01 / 10</span></div>
+            <button type="button" data-carousel="next" aria-label="Next engineering image">&#8594;</button>
+            <button type="button" data-carousel="pause" aria-label="Pause image slideshow">&#10074;&#10074;</button>
+          </div>
         </div>
       </div>
     </div>
@@ -4518,5 +4535,6 @@
       });
     })();
   </script>
+  <script src="js/hero-carousel.js" defer></script>
 </body>
 </html>
