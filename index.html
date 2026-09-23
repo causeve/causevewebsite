@@ -249,7 +249,7 @@
       .mobile-section h4{margin:6px 8px 8px;font-size:1rem;color:var(--muted)}
 
       /* Scrim behind mobile panel */
-      .scrim{display:none; position:fixed; inset:0; background:rgba(16,23,34,.18); z-index:55}
+      .scrim{display:none; position:fixed; inset:0; width:100vw; height:100dvh; background:rgba(16,23,34,.18); z-index:55}
       .scrim.open{display:block}
     }
 
@@ -2493,7 +2493,8 @@
     <div id="scrim" class="scrim" aria-hidden="true"></div>
   </header>
 
-  <main id="home" class="hero anchor">
+  <main>
+  <section id="home" class="hero anchor" aria-labelledby="heroTitle">
     <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
     <img class="hero-orbit" src="asset/hero/orbit.png" alt="" aria-hidden="true" loading="eager" decoding="async" />
 
@@ -2514,7 +2515,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </section>
 
   <section id="clients" class="clients-strip" aria-labelledby="clients-title">
     <div class="container wrap">
@@ -3050,6 +3051,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="container foot">
       <small>&copy; <span id="year"></span> Causeve Technologies LLP. All rights reserved.</small>
@@ -3202,7 +3205,7 @@
     const navIndicator = qs('#navIndicator');
 
     (() => {
-      const hero = qs('main.hero');
+      const hero = qs('#home');
       if (!hero) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         htmlEl.classList.remove('hero-reveal-pending');
@@ -3237,30 +3240,28 @@
         });
       }
 
-      {
-        cards.forEach((card) => {
-          card.addEventListener('click', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            if (card.classList.contains('is-open')) {
-              closeCards();
-              return;
-            }
-            openCard(card);
-          });
-
-          card.addEventListener('keydown', (event) => {
-            if (event.key !== 'Enter' && event.key !== ' ') return;
-            event.preventDefault();
-            card.click();
-          });
+      cards.forEach((card) => {
+        card.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          if (card.classList.contains('is-open')) {
+            closeCards();
+            return;
+          }
+          openCard(card);
         });
 
-        document.addEventListener('click', (event) => {
-          if (event.target && event.target.closest && event.target.closest(cardSelector)) return;
-          closeCards();
+        card.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault();
+          card.click();
         });
-      }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (event.target && event.target.closest && event.target.closest(cardSelector)) return;
+        closeCards();
+      });
 
       if (!reduceMotion && section && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -3364,6 +3365,13 @@
     })();
 
     function setActiveMenu(key){
+      qsa('.menu a, #mobileNav a').forEach(link => {
+        if (link.getAttribute('href') === `#${key}`) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
       qsa('.menu a').forEach(el => el.classList.remove('active-link'));
       const desktopLink = qs(`.menu a[href="#${key}"]`) || qs('.menu a[href="#home"]');
       desktopLink?.classList.add('active-link');
@@ -3418,7 +3426,8 @@
       }
 
       function targetScrollTop(id){
-        const target = qs('#' + id);
+        if (id === 'home') return 0;
+        const target = document.getElementById(id);
         if (!target) return null;
         const top = target.getBoundingClientRect().top + window.scrollY - headerH() - 8;
         const maxTop = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -3687,7 +3696,7 @@
     (() => {
       const canvas = document.getElementById('heroCanvas');
       if (!canvas) return;
-      const heroEl = document.querySelector('main.hero') || canvas;
+      const heroEl = document.querySelector('#home') || canvas;
       const orbitEl = heroEl.querySelector('.hero-orbit');
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const pointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
